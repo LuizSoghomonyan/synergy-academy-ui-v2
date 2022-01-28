@@ -3,9 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "synergy-academy-ui-v2": {
+    "synergy-academy-ui": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/synergy-academy-ui-v2",
+            "outputPath": "dist/synergy-academy-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "synergy-academy-ui-v2:build:production"
+              "browserTarget": "synergy-academy-ui:build:production"
             },
             "development": {
-              "browserTarget": "synergy-academy-ui-v2:build:development"
+              "browserTarget": "synergy-academy-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "synergy-academy-ui-v2:build"
+            "browserTarget": "synergy-academy-ui:build"
           }
         },
         "test": {
@@ -97,5 +101,6 @@
         }
       }
     }
-  }
+  },
+  "defaultProject": "synergy-academy-ui"
 }

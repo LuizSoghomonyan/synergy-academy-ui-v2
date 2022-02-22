@@ -1,0 +1,40 @@
+.mat-blue{
+  background-color: #007DC5;
+}
+.mat-lightgray{
+  color: lightgray;
+}
+
+.mat-gray{
+  background-color: #4B4B4B;
+}
+
+span{
+  vertical-align: center;
+}
+
+mat-toolbar {
+  background: #ccc;
+  color: white;
+}
+
+mat-sidenav {
+  width: 200px;
+  background: #4B4B4B;
+  text-align: center;
+}
+
+mat-sidenav-content {
+  background-color: white;
+  color: black;
+}
+
+mat-sidenav-container {
+  height: calc(100vh - 65px);
+}
+
+.sidebar-buttons{
+  width: 199px;
+  height: 55px;
+  text-align: left;
+}

@@ -1,3 +1,25 @@
 table {
-  width: 100%;
+  width: 94%;
+  /*background-color: whitesmoke;*/
+  color: black;
+  margin: 3%;
+  border-radius: 5px;
+  background-color:transparent;
+  overflow: hidden;
+}
+
+
+
+th{
+  background-color: #cecdcd;
+  color: #464545;
+  width: 33%;
+
+}
+
+td{
+  background-color: whitesmoke;
+  color: #646262;
+  border-top: 1px solid #939393;
+
 }

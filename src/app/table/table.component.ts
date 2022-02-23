@@ -7,7 +7,7 @@ export interface Student{
 }
 
 const students: Student[] = [
-  {fullName: 'Std1', email: 'email1', phone: 'phone1'},
+  {fullName: 'Str1', email: 'email1', phone: 'phone1'},
   {fullName: 'sdrf', email: 'sdf', phone: 'sdfds'},
   {fullName: 'sdferg', email: 'trtg', phone: 'nhbg'},
   {fullName: 'rtgrtg4', email: '343ger', phone: 'kgm54'},

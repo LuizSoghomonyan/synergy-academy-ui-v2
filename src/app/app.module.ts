@@ -9,6 +9,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { TestComponent } from './test/test.component';
 import { TableComponent } from './table/table.component';
 import {MatTableModule} from "@angular/material/table";
+import {StudentService} from "./services/student.service";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import {MatTableModule} from "@angular/material/table";
     FormsModule,
     MatTableModule
   ],
-  providers: [],
+  providers: [
+    StudentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

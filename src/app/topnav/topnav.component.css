@@ -26,7 +26,6 @@ mat-sidenav {
 
 mat-sidenav-content {
   background-color: white;
-  color: black;
 }
 
 mat-sidenav-container {
@@ -37,4 +36,5 @@ mat-sidenav-container {
   width: 199px;
   height: 55px;
   text-align: left;
+  color: #e0e0e0;
 }

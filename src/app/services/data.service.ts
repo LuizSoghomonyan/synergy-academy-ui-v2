@@ -15,8 +15,8 @@ export class DataService{
 
   constructor(private http: HttpClient) {}
 
-  getAllStudents(): Observable<any> {
-     return this.http.get('http://localhost:1238/students')
+  getAllStudents(): Observable<Student[]> {
+     return  this.http.get<Student[]>('http://localhost:1238/students');
      // ('https://jsonplaceholder.typicode.com/posts')
       // ('http://localhost:1238/students')
   }

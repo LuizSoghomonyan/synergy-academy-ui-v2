@@ -8,9 +8,9 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import { TestComponent } from './test/test.component';
 import { TableComponent } from './table/table.component';
 import {MatTableModule} from "@angular/material/table";
-import {StudentService} from "./services/student.service";
+import {DataService} from "./services/data.service";
 import {RouterModule} from "@angular/router";
-
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -25,10 +25,11 @@ import {RouterModule} from "@angular/router";
     MatSidenavModule,
     FormsModule,
     MatTableModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   providers: [
-    StudentService
+    DataService
   ],
   bootstrap: [AppComponent]
 })

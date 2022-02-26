@@ -1,28 +1,34 @@
 <mat-toolbar color="blue">
-  <div>
-    <button mat-icon-button color="lightgray" (click)="sidebarOpened=!sidebarOpened">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>Synergy Academy</span>
-  </div>
+    <div>
+        <button mat-icon-button color="lightgray" (click)="sidebarOpened=!sidebarOpened">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>Synergy Academy</span>
+    </div>
 </mat-toolbar>
 
-<mat-sidenav-container hasBackdrop="false" >
-  <mat-sidenav [(opened)]="sidebarOpened" mode="side">
-    <button mat-stroked-button color="gray" class="sidebar-buttons">Analytics</button>
-    <button mat-stroked-button color="gray" class="sidebar-buttons">All Students</button>
-    <button mat-stroked-button color="gray" class="sidebar-buttons">All Courses</button>
-    <button mat-stroked-button color="gray" class="sidebar-buttons">Roles</button>
-    <button mat-stroked-button color="gray" class="sidebar-buttons">Settings</button>
-    <button mat-stroked-button color="gray" class="sidebar-buttons">About</button>
+<mat-sidenav-container hasBackdrop="false">
+    <mat-sidenav [(opened)]="sidebarOpened" mode="side">
+        <button mat-stroked-button color="gray" class="sidebar-buttons">Analytics</button>
+        <button mat-stroked-button
+                color="gray"
+                class="sidebar-buttons"
+                (click)="clickButtonOnSideBar_AllStudents=!clickButtonOnSideBar_AllStudents"
+                [ngClass]="clickButtonOnSideBar_AllStudents ? 'clicked' : 'notClicked'"
 
-  </mat-sidenav>
+            >All Students
+        </button>
+        <button mat-stroked-button color="gray" class="sidebar-buttons">All Courses</button>
+        <button mat-stroked-button color="gray" class="sidebar-buttons">Roles</button>
+        <button mat-stroked-button color="gray" class="sidebar-buttons">Settings</button>
+        <button mat-stroked-button color="gray" class="sidebar-buttons">About</button>
 
-  <mat-sidenav-content>
-    <!--router outlet-->
-    <app-table></app-table>
-  </mat-sidenav-content>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <!--router outlet-->
+        <app-allstudents></app-allstudents>
+    </mat-sidenav-content>
 
 </mat-sidenav-container>
-
 

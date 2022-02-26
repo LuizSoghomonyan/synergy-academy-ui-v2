@@ -1,0 +1,22 @@
+.header {
+    margin: 0;
+    height: 44px;
+    padding: 8px 8px;
+    box-shadow: 0 3px 6px 1px rgb(0 0 0 / 20%), 0px 0px 2px 0 rgb(0 0 0 / 14%), 0 1px 5px 0 rgb(0 0 0 / 12%);
+    background: white;
+    color: #696c76;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.header-text {
+    padding-right: 20px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.header mat-icon {
+    margin-left: 10px;
+    margin-top: 8px;
+}
+

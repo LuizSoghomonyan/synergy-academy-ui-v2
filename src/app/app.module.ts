@@ -11,23 +11,29 @@ import {MatTableModule} from "@angular/material/table";
 import {DataService} from "./services/data.service";
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
+import { TitleComponent } from './title/title.component';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { AllstudentsComponent } from './allstudents/allstudents.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    TableComponent
+    TableComponent,
+    TitleComponent,
+    AllstudentsComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    MatSidenavModule,
-    FormsModule,
-    MatTableModule,
-    RouterModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MaterialModule,
+        MatSidenavModule,
+        FormsModule,
+        MatTableModule,
+        RouterModule,
+        HttpClientModule,
+        MatButtonToggleModule
+    ],
   providers: [
     DataService
   ],

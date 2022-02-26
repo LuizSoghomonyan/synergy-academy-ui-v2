@@ -38,3 +38,15 @@ mat-sidenav-container {
   text-align: left;
   color: #e0e0e0;
 }
+
+
+.clicked{
+    /*background: #007DC5;*/
+    /*opacity: .3;*/
+    /*color: whitesmoke;*/
+    background: rgba( 0, 125, 197, 0.5);
+}
+
+.notClicked {
+    background-color: #4B4B4B;
+}

@@ -1,0 +1,13 @@
+<div class="header">
+    <div [ngSwitch]="icon">
+        <div *ngSwitchCase = "'AllStudents'">
+            <mat-icon>people</mat-icon>
+        </div>
+
+        <div *ngSwitchCase = "'AllCourses'">
+            <mat-icon>library_books</mat-icon>
+        </div>
+    </div>
+
+    <h2 class="header-text">{{titleName | titlecase}}</h2>
+</div>

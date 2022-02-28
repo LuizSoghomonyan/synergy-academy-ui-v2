@@ -8,6 +8,16 @@ export interface Student{
   phone: string
 }
 
+export interface Course{
+    courseid?: number,
+    name: string,
+    description : string,
+    yearid : number,
+    officeid : number,
+    startdate : Date,
+    enddate : Date
+}
+
 @Injectable({providedIn: 'root'})
 export class DataService{
 
@@ -21,7 +31,9 @@ export class DataService{
       // ('http://localhost:1238/students')
   }
 
-
+    getAllCourses(): Observable<Course[]>{
+        return this.http.get<Course[]>('http://localhost:1238/courses');
+    }
 
 }
 

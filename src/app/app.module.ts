@@ -14,6 +14,9 @@ import {HttpClientModule} from "@angular/common/http";
 import { TitleComponent } from './title/title.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { AllstudentsComponent } from './allstudents/allstudents.component';
+import {AppRoutingModule} from "./app.routing.module";
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { AllcoursesComponent } from './allcourses/allcourses.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { AllstudentsComponent } from './allstudents/allstudents.component';
     TestComponent,
     TableComponent,
     TitleComponent,
-    AllstudentsComponent
+    AllstudentsComponent,
+    PagenotfoundComponent,
+    AllcoursesComponent
   ],
     imports: [
         BrowserModule,
@@ -32,7 +37,8 @@ import { AllstudentsComponent } from './allstudents/allstudents.component';
         MatTableModule,
         RouterModule,
         HttpClientModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        AppRoutingModule
     ],
   providers: [
     DataService

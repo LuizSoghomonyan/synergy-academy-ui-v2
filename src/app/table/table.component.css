@@ -15,7 +15,7 @@ table td:nth-child(1) {
 th {
     background-color: #cecdcd;
     color: #464545;
-    width: 33%;
+    /*width: 33%;*/
     padding: 5px;
     /*margin-bottom: 10px;*/
 }

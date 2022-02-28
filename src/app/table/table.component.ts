@@ -1,7 +1,7 @@
-import {ChangeDetectorRef, Component, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {DataService} from "../services/data.service";
+import {Course,Student, DataService} from "../services/data.service";
 import {
     delay,
     first,
@@ -19,29 +19,6 @@ import {
 } from "rxjs";
 import {MatSort} from "@angular/material/sort";
 
-export interface Student {
-    fullName: string,
-    email: string,
-    phone: string
-}
-
-// const students: Student[] = [
-// //   {fullName: 'Str1', email: 'email1', phone: 'phone1'},
-// //   {fullName: 'sdrf', email: 'sdf', phone: 'sdfds'},
-// //   {fullName: 'sdferg', email: 'trtg', phone: 'nhbg'},
-// //   {fullName: 'asdaasdas', email: '343ger', phone: 'kgm54'},
-// //   {fullName: '2wdr', email: '45ytr4', phone: '45t454'},
-// //   {fullName: 'qwjy2tgd', email: 'email1', phone: 'phone1'},
-// //   {fullName: 'asjuytgwbnqowy', email: 'sdf', phone: 'sdfds'},
-// //   {fullName: 'iu76543456', email: 'trtg', phone: 'nhbg'},
-// //   {fullName: 'bc xbnkuy2', email: '343ger', phone: 'kgm54'},
-// //   {fullName: 'mjht2uc w7tgh', email: '45ytr4', phone: '45t454'},
-// //   {fullName: 'kiuytfwvbnkag ', email: 'email1', phone: 'phone1'},
-// //   {fullName: 'iuywtrfdvbnmkj oiuytfvb', email: 'sdf', phone: 'sdfds'},
-// //   {fullName: 'qkkqnn qnn', email: 'trtg', phone: 'nhbg'},
-// //   {fullName: 'kq1y627b bw', email: '343ger', phone: 'kgm54'},
-// //   {fullName: 'kkcjhgg qbqgfw', email: '45ytr4', phone: '45t454'}
-// ];
 
 @Component({
     selector: 'app-table',
@@ -49,42 +26,25 @@ export interface Student {
     styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements OnInit, OnChanges {
+export class TableComponent implements OnInit{
+   @Input() datatype: string = ''
+    // @ts-ignore
+    dataSource: MatTableDataSource<any>;
 
     // @ts-ignore
-    dataSource: MatTableDataSource<Student>;
-    displayedColumnsConfig: {
+    displayedColumnsConfig:{
         key: string,
         displayName: string
-    }[] = [
-        {
-            key: 'fullname',
-            displayName: 'Full Name'
-        },
-        {
-            key: 'email',
-            displayName: '@Email'
-        },
-        {
-            key: 'phonenumber',
-            displayName: 'Phone'
-        }
-    ];
-    displayedColumns: string[] = this.displayedColumnsConfig.map(config => config.key);
+    }[]
+    displayedColumns: string[] = []
 
 
     constructor(private dataService: DataService) {
-        this.dataSource = new MatTableDataSource<Student>()
-    }
-
-    ngOnChanges() {
-        console.log('ngOnChanges')
+        this.dataSource = new MatTableDataSource<any>()
     }
 
     ngOnInit() {
-        console.log('ngOnInit')
         this.refreshData()
-        console.log('aaaaa')
     }
 
     // @ts-ignore
@@ -99,14 +59,70 @@ export class TableComponent implements OnInit, OnChanges {
     }
 
 
-    refreshData(dataType: string = 'allStudents') {
-        this.dataService.getAllStudents()
-            .pipe(
-                first(),
-                map((students: Student[]) => this.dataSource.data = students)
-                // , takeUntil(this.destroy$)
-            )
-            .subscribe();
+    refreshData() {
+        if (this.datatype == 'allStudents') {
+
+            this.displayedColumnsConfig = [
+                {
+                    key: 'fullname',
+                    displayName: 'Full Name'
+                },
+                {
+                    key: 'email',
+                    displayName: '@Email'
+                },
+                {
+                    key: 'phonenumber',
+                    displayName: 'Phone'
+                }
+            ];
+
+
+
+            this.dataService.getAllStudents()
+                .pipe(
+                    first(),
+                    map((students: Student[]) => this.dataSource.data = students)
+                    // , takeUntil(this.destroy$)
+                )
+                .subscribe();
+        }
+
+        if(this.datatype == 'allCourses'){
+           this.displayedColumnsConfig = [
+                {
+                    key: 'courseid',
+                    displayName: 'Course ID'
+                },
+                {
+                    key: 'name',
+                    displayName: 'Course Name'
+                },
+                {
+                    key: 'yearid',
+                    displayName: 'Year'
+                },
+                {
+                    key: 'officeid',
+                    displayName: 'Office'
+                },
+                {
+                    key: 'startdate',
+                    displayName: 'Start Date'
+                },
+                {
+                    key: 'enddate',
+                    displayName: 'End Date'
+                }
+            ];
+            this.dataService.getAllCourses()
+                .pipe(
+                    first(),
+                    map((courses: Course[]) => this.dataSource.data = courses)
+                )
+                .subscribe()
+        }
+         this.displayedColumns = this.displayedColumnsConfig.map(config => config.key);
     }
 
     private destroy$: Subject<boolean> = new Subject();

@@ -17,6 +17,9 @@ import { AllstudentsComponent } from './allstudents/allstudents.component';
 import {AppRoutingModule} from "./app.routing.module";
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AllcoursesComponent } from './allcourses/allcourses.component';
+import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { TabComponent } from './tab/tab.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { AllcoursesComponent } from './allcourses/allcourses.component';
     TitleComponent,
     AllstudentsComponent,
     PagenotfoundComponent,
-    AllcoursesComponent
+    AllcoursesComponent,
+    StudentProfileComponent,
+    TabComponent
   ],
     imports: [
         BrowserModule,

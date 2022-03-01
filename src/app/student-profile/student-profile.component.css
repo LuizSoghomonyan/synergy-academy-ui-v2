@@ -1,0 +1,17 @@
+
+/*.mat-tab-group.mat-blue{*/
+/*    background-color: #007DC5;*/
+/*}*/
+
+.mat-tab-label-active{
+    background-color: #007DC5;
+}
+
+
+.mat-tab.mat-primary{
+    background-color: #007DC5;
+}
+
+.mat-form-field{
+    width: 90%;
+}

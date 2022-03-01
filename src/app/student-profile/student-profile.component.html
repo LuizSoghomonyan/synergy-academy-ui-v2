@@ -1,0 +1,53 @@
+<mat-tab-group mat-stretch-tabs>
+    <mat-tab label="General Information">
+        <mat-form-field appearance="fill">
+            <mat-label>First name</mat-label>
+            <input matInput matInput [value]="student.firstname">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput [value]="student.lastname">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Email*</mat-label>
+            <input matInput [value]="student.email">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Phone Number*</mat-label>
+            <input matInput [value]="student.phonenumber">
+        </mat-form-field>
+<!--        <mat-form-field appearance="fill">-->
+<!--            <mat-label>Birthday*</mat-label>-->
+<!--            <input matInput [value]="student.birthday">-->
+<!--        </mat-form-field>-->
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Education: department,  admission and graduation year</mat-label>
+            <textarea matInput [value]="student.educationdepartmentadmissionandgraduationyear"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Other courses attended. Provide the educational institution, subjects, course start and end dates</mat-label>
+            <textarea matInput [value]="student.othercoursesattended"></textarea>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Have you ever participated in programming or other IT events or contests? Please provide details, such as when and where it was organized, what results did you have, etc.</mat-label>
+            <textarea matInput [value]="student.haveyoueverparticipatedinprogramming"></textarea>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill">
+            <mat-label>Do you have a work experience? please provide details, such as company, your title, start and end date</mat-label>
+            <textarea matInput [value]="student.doyouhaveworkexperience"></textarea>
+        </mat-form-field>
+
+
+    </mat-tab>
+    <mat-tab
+        label="LinkedIn">
+        Content 2
+    </mat-tab>
+</mat-tab-group>

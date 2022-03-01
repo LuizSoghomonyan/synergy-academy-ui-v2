@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {Course,Student, DataService} from "../services/data.service";
+import {Course, Student, DataService} from "../services/data.service";
 import {
     delay,
     first,
@@ -18,6 +18,7 @@ import {
     tap
 } from "rxjs";
 import {MatSort} from "@angular/material/sort";
+import {ActivatedRoute, Params} from "@angular/router";
 
 
 @Component({
@@ -26,25 +27,29 @@ import {MatSort} from "@angular/material/sort";
     styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements OnInit{
-   @Input() datatype: string = ''
+export class TableComponent implements OnInit {
+    @Input() datatype: string = ''
+    @Input() datatypeIdForRouting: string = ''
     // @ts-ignore
     dataSource: MatTableDataSource<any>;
 
     // @ts-ignore
-    displayedColumnsConfig:{
+    displayedColumnsConfig: {
         key: string,
-        displayName: string
+        displayName: string,
+        type: string
     }[]
     displayedColumns: string[] = []
+    private destroy$: Subject<boolean> = new Subject();
 
 
-    constructor(private dataService: DataService) {
+    constructor(private dataService: DataService, private route: ActivatedRoute) {
         this.dataSource = new MatTableDataSource<any>()
     }
 
     ngOnInit() {
-        this.refreshData()
+        this.refreshData();
+
     }
 
     // @ts-ignore
@@ -65,19 +70,22 @@ export class TableComponent implements OnInit{
             this.displayedColumnsConfig = [
                 {
                     key: 'fullname',
-                    displayName: 'Full Name'
+                    displayName: 'Full Name',
+                    type: 'student'
                 },
                 {
                     key: 'email',
-                    displayName: '@Email'
+                    displayName: '@Email',
+                    type: 'student'
                 },
                 {
                     key: 'phonenumber',
-                    displayName: 'Phone'
+                    displayName: 'Phone',
+                    type: 'student'
                 }
             ];
 
-
+            this.datatypeIdForRouting = 'studentid'
 
             this.dataService.getAllStudents()
                 .pipe(
@@ -88,33 +96,43 @@ export class TableComponent implements OnInit{
                 .subscribe();
         }
 
-        if(this.datatype == 'allCourses'){
-           this.displayedColumnsConfig = [
+        if (this.datatype == 'allCourses') {
+            this.displayedColumnsConfig = [
                 {
                     key: 'courseid',
-                    displayName: 'Course ID'
+                    displayName: 'Course ID',
+                    type: 'course'
                 },
                 {
                     key: 'name',
-                    displayName: 'Course Name'
+                    displayName: 'Course Name',
+                    type: 'course'
                 },
                 {
                     key: 'yearid',
-                    displayName: 'Year'
+                    displayName: 'Year',
+                    type: 'course'
                 },
                 {
                     key: 'officeid',
-                    displayName: 'Office'
+                    displayName: 'Office',
+                    type: 'course'
                 },
                 {
                     key: 'startdate',
-                    displayName: 'Start Date'
+                    displayName: 'Start Date',
+                    type: 'course'
                 },
                 {
                     key: 'enddate',
-                    displayName: 'End Date'
+                    displayName: 'End Date',
+                    type: 'course'
                 }
             ];
+
+            this.datatypeIdForRouting = 'courseid'
+
+
             this.dataService.getAllCourses()
                 .pipe(
                     first(),
@@ -122,10 +140,9 @@ export class TableComponent implements OnInit{
                 )
                 .subscribe()
         }
-         this.displayedColumns = this.displayedColumnsConfig.map(config => config.key);
+        this.displayedColumns = this.displayedColumnsConfig.map(config => config.key);
     }
 
-    private destroy$: Subject<boolean> = new Subject();
 
     ngOnDestroy(): void {
         this.destroy$.next(true);

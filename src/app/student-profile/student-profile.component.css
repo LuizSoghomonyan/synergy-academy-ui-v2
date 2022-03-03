@@ -1,17 +1,67 @@
 
-/*.mat-tab-group.mat-blue{*/
-/*    background-color: #007DC5;*/
+.student_profile_tab1{
+    margin-top: 1%;
+    width: 98%;
+}
+.mat-form-field{
+    width: 45%;
+    margin: 1%;
+    font-size: 15px;
+}
+
+.mat-tab-group{
+    margin-top: 1%;
+}
+.mat-blue{
+    background-color: rgba(0, 125, 197, 0.62);
+    color: white;
+}
+.btn{
+    /*margin-top: 1%;*/
+    margin-left: 1%;
+    float: right;
+    width: 90px;
+    line-height: 30px;
+    color: #696c76;
+}
+
+.savediv{
+    margin-right: 3%;
+}
+
+
+
+/*::ng-deep .mat-tab-labels :last-child.mat-tab-label{*/
+/*    color: unset;*/
+/*    opacity: 1;*/
+/*    float: right;*/
+
 /*}*/
 
-.mat-tab-label-active{
-    background-color: #007DC5;
-}
-
-
-.mat-tab.mat-primary{
-    background-color: #007DC5;
-}
-
-.mat-form-field{
+.mat-card{
+    margin-left: 2%;
+    margin-top: 2%;
     width: 90%;
+    box-shadow: 0px 1px 9px 1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+
+}
+
+
+
+.mat-select-panel{
+    color: red;
+}
+
+/*mat-label {*/
+/*    white-space: initial;*/
+/*    !*overflow: visible;*!*/
+/*    !*text-overflow: clip;*!*/
+/*}*/
+
+.span{
+    text-overflow: clip;
+}
+
+textarea{
+    height: 10%;
 }

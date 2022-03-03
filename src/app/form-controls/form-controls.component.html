@@ -1,0 +1,30 @@
+<ng-container *ngIf="type == 'text'">
+    <mat-form-field [formGroup]="form">
+        <mat-label>{{matlabel}}</mat-label>
+        <input [type]="type"
+               matInput
+               [(ngModel)]="value"
+               [formControlName]="formCName"
+               (change)="onChanges()">
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="value=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+</ng-container>
+
+<ng-container *ngIf="type == 'date'">
+    <mat-form-field [formGroup]="form">
+        <mat-label>{{matlabel}}</mat-label>
+        <input matInput [matDatepicker]="picker" [formControlName]="formCName" [(ngModel)]="changedDate" (change)="onChangesDate()">
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteDateValue()">
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</ng-container>
+
+
+<!--<app-form-controls type="text" value="firstname" matlabel="First Name"></app-form-controls>-->

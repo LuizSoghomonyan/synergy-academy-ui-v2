@@ -11,7 +11,7 @@ export interface Student {
     lastname : string,
     phonenumber : string,
     address : string,
-    universityid : number,
+    universityid : string,
     gpa : number,
     whatprogramminglanguagesdoyouknow : string,
     educationdepartmentadmissionandgraduationyear : string,
@@ -20,7 +20,7 @@ export interface Student {
     doyouhaveworkexperience : string,
     howdidyoufindid : number,
     stateid : number
-    // ,birthday: string
+    birthday: string
 }
 
 export interface Course {
@@ -61,7 +61,9 @@ export class DataService {
 
     //return Student by id(if type = student), or course by id(if type = course)
     loadinfo(type: string, id: string) {
-        return this.http.get('http://localhost:1238/students/' + id)
+        if(type == 'student')
+            return this.http.get(`http://localhost:1238/students/${id}`)
+        return;
     }
 
 }

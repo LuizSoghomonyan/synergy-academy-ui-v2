@@ -8,6 +8,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatSelectModule} from '@angular/material/select';
 
 const MaterialComponents = [
     MatButtonModule,
@@ -18,7 +22,11 @@ const MaterialComponents = [
     MatTableModule,
     MatSortModule,
     MatInputModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatSelectModule
 
 ];
 

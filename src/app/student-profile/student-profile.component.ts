@@ -78,36 +78,25 @@ export class StudentProfileComponent implements OnInit {
         {
             if(this.form.invalid)
             {
-                const dialogRef = this.dialog.open(StudentProfilePopupComponent);
-
-                dialogRef.afterClosed().subscribe(result => {
-                    console.log(`Dialog result: ${result}`);
-                });
+                this.dialog.open(StudentProfilePopupComponent);
             }
 
             else{
-                const dialogRef = this.dialog.open(DataSaveSuccessfulPopupComponent);
-                    dialogRef
-                dialogRef.afterClosed().subscribe(result => {
-                    console.log(`Dialog result: ${result}`);
-                });
+                this.dialog.open(DataSaveSuccessfulPopupComponent);
             }
         }
 
         if(buttontype == 'reset'){
             this.dialogRef =  this.dialog.open(ResetPopupComponent);
             console.log('this.dialogRef.componentInstance',this.dialogRef.componentInstance)
-            // this.dialogRef.afterOpened().subscribe()
-            // if(this.dialogRef.componentInstance.Reset()){
-            //     this.form.reset()
-            // }
+            // @ts-ignore
+            this. dialogRef.afterClosed().subscribe(result => {
+                if(this.dialogRef.componentInstance.isReset)
+                    this.form.reset();
+            });
+
         }
 
 
-    }
-
-
-    onReset(event: boolean) {
-        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
     }
 }

@@ -4,8 +4,7 @@
         <input [type]="type"
                matInput
                [(ngModel)]="value"
-               [formControlName]="formCName"
-               (change)="onChanges()">
+               [formControlName]="formCName">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
                 (click)="value=''">
             <mat-icon>close</mat-icon>
@@ -17,14 +16,63 @@
 <ng-container *ngIf="type == 'date'">
     <mat-form-field [formGroup]="form">
         <mat-label>{{matlabel}}</mat-label>
-        <input matInput [matDatepicker]="picker" [formControlName]="formCName" [(ngModel)]="changedDate" (change)="onChangesDate()">
-        <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteDateValue()">
+        <input matInput [matDatepicker]="picker" [formControlName]="formCName" [(ngModel)]="changedDate"
+               (change)="onChangesDate()">
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteDateValue()" type="button">
             <mat-icon>close</mat-icon>
         </button>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+
+    </mat-form-field>
+
+</ng-container>
+
+
+<ng-container *ngIf="type == 'textarea'">
+    <mat-form-field [formGroup]="form">
+        <mat-label>{{matlabel}}</mat-label>
+        <textarea matInput
+                  [(ngModel)]="value"
+                  [formControlName]="formCName">
+            </textarea>
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="value=''">
+            <mat-icon>close</mat-icon>
+        </button>
     </mat-form-field>
 </ng-container>
 
 
+<ng-container *ngIf="type == 'number'">
+    <mat-form-field [formGroup]="form">
+        <mat-label>{{matlabel}}</mat-label>
+        <input [type]="type"
+               matInput
+               [(ngModel)]="numberValue"
+               [formControlName]="formCName">
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="value=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+</ng-container>
+
+
+<ng-container *ngIf="type == 'phonenumber'">
+    <mat-form-field [formGroup]="form">
+        <mat-label>{{matlabel}}</mat-label>
+        <input type="text"
+               matInput
+               [(ngModel)]="value"
+               [formControlName]="formCName"
+               placeholder="098-12-34-56">
+        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+                (click)="value=''">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+</ng-container>
 <!--<app-form-controls type="text" value="firstname" matlabel="First Name"></app-form-controls>-->

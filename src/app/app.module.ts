@@ -21,6 +21,10 @@ import {StudentProfileComponent} from './student-profile/student-profile.compone
 import {TabComponent} from './tab/tab.component';
 import {MatInputModule} from "@angular/material/input";
 import { FormControlsComponent } from './form-controls/form-controls.component';
+import {DatePipe} from "@angular/common";
+import { StudentProfilePopupComponent } from './Popups/student-profile-popup/student-profile-popup.component';
+import { DataSaveSuccessfulPopupComponent } from './Popups/data-save-successful-popup/data-save-successful-popup.component';
+import { ResetPopupComponent } from './Popups/reset-popup/reset-popup.component';
 
 
 @NgModule({
@@ -34,7 +38,10 @@ import { FormControlsComponent } from './form-controls/form-controls.component';
         AllcoursesComponent,
         StudentProfileComponent,
         TabComponent,
-        FormControlsComponent
+        FormControlsComponent,
+        StudentProfilePopupComponent,
+        DataSaveSuccessfulPopupComponent,
+        ResetPopupComponent
 
     ],
     imports: [
@@ -52,7 +59,8 @@ import { FormControlsComponent } from './form-controls/form-controls.component';
         MatInputModule
     ],
     providers: [
-        DataService
+        DataService,
+        DatePipe
     ],
     bootstrap: [AppComponent]
 })

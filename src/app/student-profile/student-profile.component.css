@@ -20,7 +20,7 @@
     /*margin-top: 1%;*/
     margin-left: 1%;
     float: right;
-    width: 90px;
+    min-width: 88px;
     line-height: 30px;
     color: #696c76;
 }
@@ -31,32 +31,14 @@
 
 
 
-/*::ng-deep .mat-tab-labels :last-child.mat-tab-label{*/
-/*    color: unset;*/
-/*    opacity: 1;*/
-/*    float: right;*/
-
-/*}*/
-
 .mat-card{
-    margin-left: 2%;
-    margin-top: 2%;
+    /*margin-left: 2%;*/
+    /*margin-top: 2%;*/
+    margin: 2%;
     width: 90%;
     box-shadow: 0px 1px 9px 1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
 
 }
-
-
-
-.mat-select-panel{
-    color: red;
-}
-
-/*mat-label {*/
-/*    white-space: initial;*/
-/*    !*overflow: visible;*!*/
-/*    !*text-overflow: clip;*!*/
-/*}*/
 
 .span{
     text-overflow: clip;

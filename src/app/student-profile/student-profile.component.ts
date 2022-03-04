@@ -1,8 +1,14 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewContainerRef, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {DataService, Student} from "../services/data.service";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {map, Observable} from "rxjs";
+import {MatDialog} from "@angular/material/dialog";
+import {StudentProfilePopupComponent} from "../Popups/student-profile-popup/student-profile-popup.component";
+import {
+    DataSaveSuccessfulPopupComponent
+} from "../Popups/data-save-successful-popup/data-save-successful-popup.component";
+import {ResetPopupComponent} from "../Popups/reset-popup/reset-popup.component";
 
 @Component({
     selector: 'app-student-profile',
@@ -19,19 +25,33 @@ export class StudentProfileComponent implements OnInit {
     student$: Observable<Student> ;
     form: FormGroup
 
-    constructor(private route: ActivatedRoute, private dataService: DataService) {}
-
+    constructor(private route: ActivatedRoute, private dataService: DataService,public dialog: MatDialog) {}
+    dialogRef: any
 
     ngOnInit(): void {
         this.loadinfo();
 
         this.form = new FormGroup(  {
-            firstname: new FormControl(''),
-            lastname: new FormControl(''),
-            fullname: new FormControl(''),
-            email: new FormControl(''),
-            phonenumber: new FormControl(''),
-            birthday: new FormControl('')
+            firstname: new FormControl('', [
+                Validators.required
+            ]),
+            lastname: new FormControl('',[
+                Validators.required
+            ]),
+            email: new FormControl('',[
+                Validators.required, Validators.email
+                ]),
+            phonenumber: new FormControl('',[
+                Validators.required
+            ]),
+            birthday: new FormControl(''),
+            address: new FormControl(''),
+            whatprogramminglanguagesdoyouknow: new FormControl(''),
+            educationdepartmentadmissionandgraduationyear: new FormControl(''),
+            othercoursesattended: new FormControl(''),
+            haveyoueverparticipatedinprogramming: new FormControl(''),
+            doyouhaveworkexperience: new FormControl(''),
+            gpa: new FormControl('')
         });
         //console.log('this.form.controls[\'firstname\']',this.form.controls['firstname'])
 
@@ -40,13 +60,12 @@ export class StudentProfileComponent implements OnInit {
     loadinfo() {
         this.route.params.subscribe((x: Params) => {
             this.student$ =  this.dataService.loadinfo('student', x['id'].toString()) as Observable<Student>
+            // console.log(this.student$.subscribe(x=> console.log(x.birthday.toDateString())))
         })
 
     }
 
-    loadClassifersInfo(){
-
-    }
+    loadClassifersInfo(){}
 
 
     onSubmit() {
@@ -54,4 +73,41 @@ export class StudentProfileComponent implements OnInit {
         console.log('submit', this.form)
     }
 
+    openDialog(buttontype: string) {
+        if(buttontype == 'save')
+        {
+            if(this.form.invalid)
+            {
+                const dialogRef = this.dialog.open(StudentProfilePopupComponent);
+
+                dialogRef.afterClosed().subscribe(result => {
+                    console.log(`Dialog result: ${result}`);
+                });
+            }
+
+            else{
+                const dialogRef = this.dialog.open(DataSaveSuccessfulPopupComponent);
+                    dialogRef
+                dialogRef.afterClosed().subscribe(result => {
+                    console.log(`Dialog result: ${result}`);
+                });
+            }
+        }
+
+        if(buttontype == 'reset'){
+            this.dialogRef =  this.dialog.open(ResetPopupComponent);
+            console.log('this.dialogRef.componentInstance',this.dialogRef.componentInstance)
+            // this.dialogRef.afterOpened().subscribe()
+            // if(this.dialogRef.componentInstance.Reset()){
+            //     this.form.reset()
+            // }
+        }
+
+
+    }
+
+
+    onReset(event: boolean) {
+        console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')
+    }
 }

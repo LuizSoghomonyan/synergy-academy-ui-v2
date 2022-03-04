@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {AbstractControl, Form, FormControl, FormGroup} from "@angular/forms";
+import {DatePipe} from "@angular/common";
 
 @Component({
     selector: 'app-form-controls',
@@ -15,31 +16,32 @@ export class FormControlsComponent implements OnInit,OnChanges {
     @Output() changedValue: EventEmitter<string> = new EventEmitter<string>()
     @Output() changedValueDate: EventEmitter<Date> = new EventEmitter<Date>()
     @Input() dateValue: string
+    @Input() numberValue: number
 
-    changedDate: Date
-
-    onChanges(){
-        console.log('onChanges')
-        this.changedValue.emit(this.value)
-
-    }
+    changedDate: Date = new Date()
+    datePipe: DatePipe
 
     constructor() {
-
+        this.datePipe = new DatePipe(this.dateValue)
+        // @ts-ignore
+        this.changedDate = new Date(this.datePipe.transform(this.dateValue, 'yyyy-MM-dd'));
     }
 
     ngOnInit(): void {
-        // this.dateValue = '01-02-2022'
-        console.log(this.dateValue)
-        this.changedDate =  new Date(this.dateValue)
-        console.log('this.currentDate',this.changedDate)
+        //this.dateValue = '01-02-2022'
+        // console.log(this.dateValue)
+        // console.log('2',this.datePipe)
+        // console.log('this.currentDate',this.dateValue)
     }
     ngOnChanges(){
+        console.log('ngOnChanges')
         this.changedValue.emit(this.value)
+        // this.changedValue.emit(this.value)
     }
 
     deleteDateValue() {
-        // this.currentDate=new Date()
+        // @ts-ignore
+        this.changedDate = null
     }
 
     onChangesDate() {

@@ -27,7 +27,6 @@ import { DataSaveSuccessfulPopupComponent } from './Popups/data-save-successful-
 import { ResetPopupComponent } from './Popups/reset-popup/reset-popup.component';
 import { SelectComponent } from './select/select.component';
 import { CourseTabComponent } from './course-tab/course-tab.component';
-import { CourseTabsHomepageComponent } from './course-tabs-homepage/course-tabs-homepage.component';
 
 
 @NgModule({
@@ -46,8 +45,7 @@ import { CourseTabsHomepageComponent } from './course-tabs-homepage/course-tabs-
         DataSaveSuccessfulPopupComponent,
         ResetPopupComponent,
         SelectComponent,
-        CourseTabComponent,
-        CourseTabsHomepageComponent
+        CourseTabComponent
 
     ],
     imports: [

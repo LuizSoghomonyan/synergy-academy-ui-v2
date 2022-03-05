@@ -1,11 +1,16 @@
 .mat-dialog-title{
-    color: rgb(33, 128, 33);
+    min-width: 300px;
 }
 
-.green-button{
+.blue-button{
     margin-left: 1%;
-    float: right;
     min-width: 88px;
     line-height: 30px;
+    background-color: rgba(0, 125, 197, 0.62);
+}
+
+
+
+hr{
     background-color: rgba(114, 192, 114, 0.5);
 }

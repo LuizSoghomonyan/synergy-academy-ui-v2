@@ -25,6 +25,7 @@ import {DatePipe} from "@angular/common";
 import { StudentProfilePopupComponent } from './Popups/student-profile-popup/student-profile-popup.component';
 import { DataSaveSuccessfulPopupComponent } from './Popups/data-save-successful-popup/data-save-successful-popup.component';
 import { ResetPopupComponent } from './Popups/reset-popup/reset-popup.component';
+import { SelectComponent } from './select/select.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { ResetPopupComponent } from './Popups/reset-popup/reset-popup.component'
         FormControlsComponent,
         StudentProfilePopupComponent,
         DataSaveSuccessfulPopupComponent,
-        ResetPopupComponent
+        ResetPopupComponent,
+        SelectComponent
 
     ],
     imports: [

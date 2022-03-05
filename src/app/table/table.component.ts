@@ -143,6 +143,8 @@ export class TableComponent implements OnInit {
         this.displayedColumns = this.displayedColumnsConfig.map(config => config.key);
     }
 
+//
+
 
     ngOnDestroy(): void {
         this.destroy$.next(true);

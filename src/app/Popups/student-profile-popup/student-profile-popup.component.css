@@ -1,0 +1,14 @@
+.red-button{
+    margin-left: 1%;
+    min-width: 88px;
+    line-height: 30px;
+    background-color: rgba(255, 48, 48, 0.56);
+}
+.mat-dialog-title{
+    min-width: 250px;
+    color: rgba(234, 37, 37, 0.97);
+}
+hr{
+    background-color: rgba(255, 48, 48, 0.56);
+}
+

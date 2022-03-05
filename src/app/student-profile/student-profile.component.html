@@ -3,7 +3,6 @@
     [icon]="'StudentProfile'">
 </app-title>
 
-
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="savediv">
         <button
@@ -12,8 +11,7 @@
             class="btn"
             style="color: white"
             type="submit"
-            [routerLink]="['/students']"
-            (click)="openDialog('save')"
+            (click)="openDialog('save&close')"
         >Save&Close
         </button>
         <button
@@ -29,17 +27,17 @@
         <button
             mat-stroked-button
             class="btn"
-
             (click)="openDialog('reset')"
 
-        >Reset</button>
+        >Reset
+        </button>
     </div>
 
 
     <ng-container *ngIf="student$ | async as student">
+
         <mat-tab-group mat-align-tabs>
             <mat-tab label="General Information">
-
                 <mat-card>
                     <app-form-controls type="text" [value]="student.firstname" matlabel="First Name"
                                        [formCName]="'firstname'" [form]="form"
@@ -50,7 +48,8 @@
                                        (changedValue)="$event"></app-form-controls>
 
                     <app-form-controls type="text" [value]="student.email" matlabel="Email"
-                                       [formCName]="'email'" [form]="form" (changedValue)="$event"></app-form-controls>
+                                       [formCName]="'email'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
 
                     <app-form-controls type="phonenumber" [value]="student.phonenumber" matlabel="Phone"
                                        [formCName]="'phonenumber'" [form]="form"
@@ -60,14 +59,26 @@
                                        [formCName]="'birthday'" [form]="form"
                                        (changedValueDate)="$event"></app-form-controls>
 
-                    <app-form-controls type="textarea" [value]="student.address"
+                    <app-form-controls type="textarea"
+                                       [value]="student.address"
                                        matlabel="Address"
                                        [formCName]="'address'" [form]="form"
                                        (changedValue)="$event"></app-form-controls>
 
+                    <app-form-controls type="select"
+                                       [selectvalue]="student.universityid"
+                                       matlabel="University"
+                                       [formCName]="'university'"
+                                       [form]="form"
+                                       (selectedvalueOutput)="$event"></app-form-controls>
+
+
+
+
                 </mat-card>
                 <mat-card>
-                    <app-form-controls type="textarea" [value]="student.educationdepartmentadmissionandgraduationyear"
+                    <app-form-controls type="textarea"
+                                       [value]="student.educationdepartmentadmissionandgraduationyear"
                                        matlabel="Education: department, admission and graduation year"
                                        [formCName]="'educationdepartmentadmissionandgraduationyear'" [form]="form"
                                        (changedValue)="$event"></app-form-controls>
@@ -95,7 +106,12 @@
                                        matlabel=" Do you have a work experience? please provide details, such as company, your title, start and end date"
                                        [formCName]="'doyouhaveworkexperience'" [form]="form"
                                        (changedValue)="$event"></app-form-controls>
-
+<!--                    <app-form-controls type="select"-->
+<!--                                       [selectvalue]="student.howdidyoufindid"-->
+<!--                                       matlabel="How did you find out about this course?"-->
+<!--                                       [formCName]="'howdidyoufind'"-->
+<!--                                       [form]="form"-->
+<!--                                       (selectedvalueOutput)="$event"></app-form-controls>-->
 
                 </mat-card>
             </mat-tab>
@@ -103,25 +119,10 @@
 
         </mat-tab-group>
     </ng-container>
+
+
+    <button (click)="getUniversity()"></button>
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <!--    <div class="savediv">-->
 <!--        <button mat-stroked-button color="blue" class="btn" style="color: white" type="submit">-->

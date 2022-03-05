@@ -1,0 +1,23 @@
+<app-title [titleName]="'Course Name'"
+           [icon]="'AllCourses'"></app-title>
+
+<mat-grid-list cols="2" rowHeight="2:1" class="grid">
+    <mat-grid-tile>
+        <mat-card style="background-color: rgba(128,255,232,0.44)" routerLink="students">
+            <mat-card-title>Students</mat-card-title>
+            <hr>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card style="background-color: rgba(194,187,240,0.44)" routerLink="exams">
+            <mat-card-title>Exams</mat-card-title>
+            <hr>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card style="background-color: #fecef1" routerLink="educationProcess">
+            <mat-card-title>Education Process</mat-card-title>
+            <hr>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

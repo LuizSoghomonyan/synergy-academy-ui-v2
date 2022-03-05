@@ -79,25 +79,24 @@
 
 <ng-container *ngIf="type == 'select'">
     <ng-container *ngIf="classifierData$ | async as selectedvalues">
-<mat-form-field [formGroup]="form">
-    <mat-label>{{matlabel}}</mat-label>
-    <mat-select  [(ngModel)]="selectvalue" [formControlName]="formCName">
-        <mat-option>None</mat-option>
-        <mat-option *ngFor="let svalue of selectedvalues"
-                [value]="svalue['name']"
-        >
-            {{svalue["name"]}}
-        </mat-option>
-    </mat-select>
+        <mat-form-field [formGroup]="form">
+            <mat-label>{{matlabel}}</mat-label>
+            <mat-select [(ngModel)]="selectvalue" [formControlName]="formCName">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let svalue of selectedvalues"
+                            [value]="svalue['name']"
+                >
+                    {{svalue["name"]}}
+                </mat-option>
+            </mat-select>
 
-    <button *ngIf="selectvalue" matSuffix mat-icon-button aria-label="Clear" (click)="selectvalue='None'">
-        <mat-icon>close</mat-icon>
-    </button>
-</mat-form-field>
+            <button *ngIf="selectvalue" matSuffix mat-icon-button aria-label="Clear" (click)="selectvalue='None'">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
 
 
-
-<!--                    <button (click)="test(selectedvalues)">AAAAAAA</button>-->
+        <!--                    <button (click)="test(selectedvalues)">AAAAAAA</button>-->
 
         <!--        <p>{{selectedvalues | json}}</p>-->
         <!--        <p>{{t | json}}</p>-->

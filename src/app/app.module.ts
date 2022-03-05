@@ -26,6 +26,8 @@ import { StudentProfilePopupComponent } from './Popups/student-profile-popup/stu
 import { DataSaveSuccessfulPopupComponent } from './Popups/data-save-successful-popup/data-save-successful-popup.component';
 import { ResetPopupComponent } from './Popups/reset-popup/reset-popup.component';
 import { SelectComponent } from './select/select.component';
+import { CourseTabComponent } from './course-tab/course-tab.component';
+import { CourseTabsHomepageComponent } from './course-tabs-homepage/course-tabs-homepage.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { SelectComponent } from './select/select.component';
         StudentProfilePopupComponent,
         DataSaveSuccessfulPopupComponent,
         ResetPopupComponent,
-        SelectComponent
+        SelectComponent,
+        CourseTabComponent,
+        CourseTabsHomepageComponent
 
     ],
     imports: [

@@ -34,6 +34,7 @@ export class StudentProfileComponent implements OnInit {
         private elRef: ElementRef
     ) {}
     dialogRef: any
+    test: any;
 
     ngOnInit(): void {
         this.loadinfo();
@@ -61,7 +62,8 @@ export class StudentProfileComponent implements OnInit {
             doyouhaveworkexperience: new FormControl(''),
             gpa: new FormControl(''),
             university: new FormControl(''),
-            howdidyoufind: new FormControl('')
+            howdidyoufind: new FormControl(''),
+            test: new FormControl('')
         });
 
         this.universites$.pipe(
@@ -161,4 +163,6 @@ export class StudentProfileComponent implements OnInit {
     getUniversity(){
         console.log(this.universites)
     }
+
+
 }

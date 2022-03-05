@@ -5,6 +5,7 @@ import {TestComponent} from "./test/test.component";
 import {PagenotfoundComponent} from "./pagenotfound/pagenotfound.component";
 import {AllcoursesComponent} from "./allcourses/allcourses.component";
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
+import {CourseTabComponent} from "./course-tab/course-tab.component";
 
 //http://localhost:4200  - All Student
 //http://localhost:4200/courses
@@ -14,6 +15,11 @@ const routes: Routes = [
     {path: 'courses', component: AllcoursesComponent},
     {path: 'test', component: TestComponent},
     {path: 'student/:id', component: StudentProfileComponent},
+    {path: 'course/:coursename', component: CourseTabComponent},
+    {path: 'course/:coursename/students', component: TestComponent},
+    {path: 'course/:coursename/exams', component: TestComponent},
+    {path: 'course/:coursename/educationProcess', component: TestComponent},
+
     {path: '**', component: PagenotfoundComponent}
 ];
 

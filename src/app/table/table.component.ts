@@ -130,7 +130,7 @@ export class TableComponent implements OnInit {
                 }
             ];
 
-            this.datatypeIdForRouting = 'courseid'
+            this.datatypeIdForRouting = 'name'
 
 
             this.dataService.getAllCourses()

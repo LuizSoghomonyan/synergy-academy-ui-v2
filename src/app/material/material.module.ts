@@ -13,6 +13,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatGridListModule} from '@angular/material/grid-list';
+
+
 
 const MaterialComponents = [
     MatButtonModule,
@@ -28,7 +32,9 @@ const MaterialComponents = [
     MatNativeDateModule,
     MatDatepickerModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatAutocompleteModule,
+    MatGridListModule
 
 ];
 

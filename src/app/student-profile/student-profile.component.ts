@@ -62,8 +62,7 @@ export class StudentProfileComponent implements OnInit {
             doyouhaveworkexperience: new FormControl(''),
             gpa: new FormControl(''),
             university: new FormControl(''),
-            howdidyoufind: new FormControl(''),
-            test: new FormControl('')
+            howdidyoufind: new FormControl('')
         });
 
         this.universites$.pipe(
@@ -89,14 +88,6 @@ export class StudentProfileComponent implements OnInit {
     loadClassifersInfo(classifierName: string){
        // @ts-ignore
         this.universites$ = this.classiferService.getClassifierData(classifierName)
-            // .pipe(
-            //     // @ts-ignore
-            //     mergeMap(x => from(x)),
-            //     map(classifierItem => {
-            //         this.universites = this.universites.concat(classifierItem['name'])
-            //         // console.log(classifierItem['name'])
-            //     })
-            // )
 
     }
 
@@ -108,6 +99,8 @@ export class StudentProfileComponent implements OnInit {
             test = this.elRef.nativeElement.querySelector('form')
             // console.log('test',this.elRef.nativeElement.querySelector('form'))
             test.submit;
+            console.log('onSubmit()', this.form.controls)
+            this.dataService.updateDataById(this.form.controls['id'].value, 'student')
         }
         else{
             console.log('VALID DATA, NOT SUBMITTED')

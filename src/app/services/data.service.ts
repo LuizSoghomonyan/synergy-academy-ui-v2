@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {FormGroup} from "@angular/forms";
 
 
 export interface Student {
@@ -18,8 +19,8 @@ export interface Student {
     othercoursesattended : string,
     haveyoueverparticipatedinprogramming : string,
     doyouhaveworkexperience : string,
-    howdidyoufindid : number,
-    stateid : number
+    howdidyoufindid : string,
+    stateid : string,
     birthday: string
 }
 
@@ -64,6 +65,12 @@ export class DataService {
         if(type == 'student')
             return this.http.get(`http://localhost:1238/students/${id}`)
         return;
+    }
+
+    updateDataById(id: number, tablename: string){
+        this.http.put(`http://localhost:1238/${tablename}/${id}`,{
+
+        })
     }
 
 }

@@ -16,8 +16,13 @@
 <ng-container *ngIf="type == 'date'">
     <mat-form-field [formGroup]="form">
         <mat-label>{{matlabel}}</mat-label>
-        <input matInput [matDatepicker]="picker" [formControlName]="formCName" [(ngModel)]="changedDate"
-               (change)="onChangesDate()">
+        <input
+            matInput
+               [matDatepicker]="picker"
+               [formControlName]="formCName"
+               [(ngModel)]="changedDate"
+               (change)="onChangesDate()"
+        >
         <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteDateValue()" type="button">
             <mat-icon>close</mat-icon>
         </button>
@@ -33,6 +38,8 @@
     <mat-form-field [formGroup]="form">
         <mat-label>{{matlabel}}</mat-label>
         <textarea matInput
+                  [matTooltip]="matlabel"
+                  matTooltipShowDelay="500"
                   [(ngModel)]="value"
                   [formControlName]="formCName">
             </textarea>

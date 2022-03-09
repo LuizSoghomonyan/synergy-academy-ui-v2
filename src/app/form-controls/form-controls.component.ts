@@ -7,6 +7,20 @@ export interface Classifer{
     id:number,
     name:string
 }
+
+export const MY_DATE_FORMATS = {
+    parse: {
+        dateInput: 'DD-MM-YYYY',
+    },
+    display: {
+        dateInput: 'MMM DD, YYYY',
+        monthYearLabel: 'MMMM YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY'
+    },
+};
+
+
 @Component({
     selector: 'app-form-controls',
     templateUrl: './form-controls.component.html',
@@ -20,42 +34,49 @@ export class FormControlsComponent implements OnInit,OnChanges {
     @Input() form: FormGroup
     @Output() changedValue: EventEmitter<string> = new EventEmitter<string>()
     @Output() changedValueDate: EventEmitter<Date> = new EventEmitter<Date>()
-    @Input() dateValue: string
+    @Input() dateValue: string //= '05/02/2015'
     @Input() numberValue: number
     @Input() selectvalue: string
     @Output() selectedvalueOutput: EventEmitter<string> = new EventEmitter<string>();
     changedDate: Date = new Date()
-    datePipe: DatePipe
+
 
     classifierData$: Observable<string[]>
+    datePipeString : string | null;
+    constructor(private classifierService: ClassifierService,private datePipe: DatePipe) {
 
-    constructor(private classifierService: ClassifierService) {
-        this.datePipe = new DatePipe(this.dateValue)
-        // @ts-ignore
-        this.changedDate = new Date(this.datePipe.transform(this.dateValue, 'yyyy-MM-dd'));
+        // this.datePipeString = datePipe.transform(Date.now(),'dd/MM/YYYY');
+        // // @ts-ignore
+        // console.log(new Date(this.datePipeString,'yyyy-MM-dd'))
+        // console.log(this.datePipeString);
     }
 
     ngOnInit(): void {
-        // this.selectvalues$ = this.classifierService.getClassifierData('university')
-        // this.selectvalues$.pipe(
-        //     // @ts-ignore
-        //     mergeMap(x => from(x)),
-        //     map(classifierItem => {
-        //         // @ts-ignore
-        //         this.universites.push(classifierItem['name'])
-        //     }).subscribe()
+        console.log('ngOnInit')
         // @ts-ignore
         this.classifierData$ = this.classifierService.getClassifierData('university')
+        if(this.type=='date'){
+            this.changedDate = new Date(this.dateValue)
+            console.log('changedDate', this.changedDate)
+            console.log('dateValue', this.dateValue)
+        }
 
     }
+
+
     ngOnChanges(){ //TODO
         console.log('ngOnChanges')
+
         this.changedValue.emit(this.value)
-        console.log('emit')
+        // console.log('emit')
+        // console.log(this.changedDate)
         this.selectedvalueOutput.emit(this.selectvalue)
         // this.selectedvalueOutput.emit(this.selectedvalue)
         // this.changedValue.emit(this.value)
+
+
     }
+
 
     deleteDateValue() {
         // @ts-ignore
@@ -63,6 +84,7 @@ export class FormControlsComponent implements OnInit,OnChanges {
     }
 
     onChangesDate() {
+        console.log('onChangesDate')
         this.changedValueDate.emit(this.changedDate)
     }
 

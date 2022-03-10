@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-student-profile-popup',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentProfilePopupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private form: FormGroup) { }
 
   ngOnInit(): void {
   }

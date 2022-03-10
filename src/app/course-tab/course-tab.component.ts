@@ -15,7 +15,7 @@ export class CourseTabComponent implements OnInit {
 
     ngOnInit(): void {
         this.route.params.subscribe((x: Params) => {
-            this.coursename = x['coursename']
+            this.coursename = x['courseid']
         })
     }
 

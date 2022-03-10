@@ -37,6 +37,7 @@ export class FormControlsComponent implements OnInit,OnChanges {
     @Input() dateValue: string //= '05/02/2015'
     @Input() numberValue: number
     @Input() selectvalue: string
+    @Input() classifierName: string
     @Output() selectedvalueOutput: EventEmitter<string> = new EventEmitter<string>();
     changedDate: Date = new Date()
 
@@ -54,7 +55,7 @@ export class FormControlsComponent implements OnInit,OnChanges {
     ngOnInit(): void {
         console.log('ngOnInit')
         // @ts-ignore
-        this.classifierData$ = this.classifierService.getClassifierData('university')
+        this.classifierData$ = this.classifierService.getClassifierData(this.classifierName)
         if(this.type=='date'){
             this.changedDate = new Date(this.dateValue)
             console.log('changedDate', this.changedDate)

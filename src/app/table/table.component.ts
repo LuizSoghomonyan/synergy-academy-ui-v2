@@ -18,7 +18,7 @@ import {
     tap
 } from "rxjs";
 import {MatSort} from "@angular/material/sort";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute, Event, Params} from "@angular/router";
 
 
 @Component({
@@ -29,7 +29,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 
 export class TableComponent implements OnInit {
     @Input() datatype: string = ''
-    @Input() datatypeIdForRouting: string = ''
+    datatypeIdForRouting: string = ''
     // @ts-ignore
     dataSource: MatTableDataSource<any>;
 
@@ -42,14 +42,12 @@ export class TableComponent implements OnInit {
     displayedColumns: string[] = []
     private destroy$: Subject<boolean> = new Subject();
 
-
     constructor(private dataService: DataService, private route: ActivatedRoute) {
         this.dataSource = new MatTableDataSource<any>()
     }
 
     ngOnInit() {
         this.refreshData();
-
     }
 
     // @ts-ignore
@@ -71,19 +69,20 @@ export class TableComponent implements OnInit {
                 {
                     key: 'fullname',
                     displayName: 'Full Name',
-                    type: 'student'
+                    type: 'students'
                 },
                 {
                     key: 'email',
                     displayName: '@Email',
-                    type: 'student'
+                    type: 'students'
                 },
                 {
                     key: 'phonenumber',
                     displayName: 'Phone',
-                    type: 'student'
+                    type: 'students'
                 }
             ];
+
 
             this.datatypeIdForRouting = 'studentid'
 
@@ -101,17 +100,17 @@ export class TableComponent implements OnInit {
                 {
                     key: 'courseid',
                     displayName: 'Course ID',
-                    type: 'course'
+                    type: 'courses'
                 },
                 {
                     key: 'name',
                     displayName: 'Course Name',
-                    type: 'course'
+                    type: 'courses'
                 },
                 {
                     key: 'yearid',
                     displayName: 'Year',
-                    type: 'course'
+                    type: 'courses'
                 },
                 {
                     key: 'officeid',
@@ -121,16 +120,16 @@ export class TableComponent implements OnInit {
                 {
                     key: 'startdate',
                     displayName: 'Start Date',
-                    type: 'course'
+                    type: 'courses'
                 },
                 {
                     key: 'enddate',
                     displayName: 'End Date',
-                    type: 'course'
+                    type: 'courses'
                 }
             ];
 
-            this.datatypeIdForRouting = 'name'
+            this.datatypeIdForRouting = 'courseid'
 
 
             this.dataService.getAllCourses()
@@ -144,7 +143,11 @@ export class TableComponent implements OnInit {
     }
 
 //
-
+    applyFilter() {
+        // @ts-ignore
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
 
     ngOnDestroy(): void {
         this.destroy$.next(true);

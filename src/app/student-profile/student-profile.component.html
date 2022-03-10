@@ -33,9 +33,10 @@
         </button>
     </div>
 
-
+<!--<p>{{student$|json}}</p>-->
+<!--    <ng-container *ngIf="student$ | async as student">-->
     <ng-container *ngIf="student$ | async as student">
-
+<!--        <p>{{student|json}}</p>-->
         <mat-tab-group mat-align-tabs>
             <mat-tab label="General Information">
                 <mat-card>
@@ -68,8 +69,9 @@
                     <app-form-controls type="select"
                                        [selectvalue]="student.universityid"
                                        matlabel="University"
-                                       [formCName]="'university'"
+                                       [formCName]="'universityid'"
                                        [form]="form"
+                                       [classifierName]="'university'"
                                        (selectedvalueOutput)="$event"></app-form-controls>
 
 
@@ -106,12 +108,15 @@
                                        matlabel=" Do you have a work experience? please provide details, such as company, your title, start and end date"
                                        [formCName]="'doyouhaveworkexperience'" [form]="form"
                                        (changedValue)="$event"></app-form-controls>
-<!--                    <app-form-controls type="select"-->
-<!--                                       [selectvalue]="student.howdidyoufindid"-->
-<!--                                       matlabel="How did you find out about this course?"-->
-<!--                                       [formCName]="'howdidyoufind'"-->
-<!--                                       [form]="form"-->
-<!--                                       (selectedvalueOutput)="$event"></app-form-controls>-->
+                    <app-form-controls type="select"
+                                       [selectvalue]="student.howdidyoufindid"
+                                       matlabel="How did you find out about this course?"
+                                       [formCName]="'howdidyoufindid'"
+                                       [form]="form"
+                                       [classifierName]="'howdidyoufind'"
+                                       (selectedvalueOutput)="$event"></app-form-controls>
+
+
 
                 </mat-card>
             </mat-tab>

@@ -20,6 +20,7 @@
             "outputPath": "dist/synergy-academy-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
+
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -69,7 +70,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "synergy-academy-ui:build:production"
+              "browserTarget": "synergy-academy-ui:build:production",
+                "proxyConfig": "src/proxy.conf.json"
             },
             "development": {
               "browserTarget": "synergy-academy-ui:build:development"
@@ -80,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "synergy-academy-ui:build"
+            "browserTarget": "synergy-academy-ui:build",
           }
         },
         "test": {

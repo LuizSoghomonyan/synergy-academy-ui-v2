@@ -2,4 +2,13 @@
     [titleName]="'aLL students'"
     [icon]="'AllStudents'"
 ></app-title>
+
+<button
+    mat-stroked-button
+    color="blue"
+    class="btn"
+    [routerLink]="[ maxId]"
+    [queryParams]="{isNew: true}"
+>Add New</button>
+
 <app-table [datatype]="'allStudents'"></app-table>

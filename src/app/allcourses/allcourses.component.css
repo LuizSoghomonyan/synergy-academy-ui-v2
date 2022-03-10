@@ -1,0 +1,9 @@
+.btn{
+    /*margin-top: 1%;*/
+    margin: 37px;
+    float: right;
+    min-width: 88px;
+    line-height: 30px;
+    color: white;
+    background-color: #0277bd;
+}

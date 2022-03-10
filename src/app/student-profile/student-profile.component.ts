@@ -1,4 +1,13 @@
-import {Component, ElementRef, Input, OnInit, ViewContainerRef, ViewEncapsulation} from '@angular/core';
+import {
+    Component,
+    ElementRef,
+    Input,
+    OnChanges,
+    OnInit,
+    SimpleChanges,
+    ViewContainerRef,
+    ViewEncapsulation
+} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Course, DataService, Student} from "../services/data.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -16,8 +25,9 @@ import {ClassifierService} from "../services/classifier.service";
     templateUrl: './student-profile.component.html',
     styleUrls: ['./student-profile.component.css']
 })
-export class StudentProfileComponent implements OnInit {
 
+export class StudentProfileComponent implements OnInit {
+    isNew = false
     // universites = [5, 'B', 'C', 'D','A', 'B', 'C', 'D','A', 'B', 'C', 'D','A', 'B', 'C', 'D','A', 'B', 'C', 'D','A', 'B', 'C', 'D']
     currentDate =  new FormControl(new Date())
     howdidyoufind = [1,2,3,4,5,6,7,8,9,10,11,12,13]
@@ -25,6 +35,8 @@ export class StudentProfileComponent implements OnInit {
     student$: Observable<Student> ;
     form: FormGroup
     universites: string[] = [];
+    student: any
+
     constructor(
         private route: ActivatedRoute,
         private dataService: DataService,
@@ -35,9 +47,26 @@ export class StudentProfileComponent implements OnInit {
     ) {}
     dialogRef: any
     test: any;
+    id: number
 
     ngOnInit(): void {
-        this.loadinfo();
+        this.route.params.subscribe((x: Params) => {
+            this.id = x['isNew']
+        })
+
+
+        if(this.isNew){
+            this.student$ = this.dataService.addNew('student')
+            console.log(this.student$)
+            this.student$.subscribe(x => {
+                this.student =x;
+            })
+
+        }
+        else{
+            this.loadinfo();
+            console.log('loadinfo')
+        }
         this.loadClassifersInfo('university')
 
         this.form = new FormGroup(  {
@@ -61,8 +90,8 @@ export class StudentProfileComponent implements OnInit {
             haveyoueverparticipatedinprogramming: new FormControl(''),
             doyouhaveworkexperience: new FormControl(''),
             gpa: new FormControl(''),
-            university: new FormControl(''),
-            howdidyoufind: new FormControl('')
+            universityid: new FormControl(''),
+            howdidyoufindid: new FormControl('')
         });
 
         this.universites$.pipe(
@@ -80,7 +109,7 @@ export class StudentProfileComponent implements OnInit {
     loadinfo() {
         this.route.params.subscribe((x: Params) => {
             this.student$ =  this.dataService.loadinfo('student', x['id'].toString()) as Observable<Student>
-
+            this.id = x['id']
         })
 
     }
@@ -99,20 +128,29 @@ export class StudentProfileComponent implements OnInit {
             test = this.elRef.nativeElement.querySelector('form')
             // console.log('test',this.elRef.nativeElement.querySelector('form'))
             test.submit;
-            console.log('onSubmit()', this.form.controls)
-            this.dataService.updateDataById(this.form.controls['id'].value, 'student')
+            console.log('onSubmit()', this.form)
+            console.log('this.id', this.id)
+            console.log('lastname',this.form.controls['lastname'])
+
+            this.dataService.updateDataById(this.id, 'students', this.form.value)
+                .subscribe(msg =>{
+                    console.log(msg)
+                })
         }
         else{
+            console.log('------------', this.form)
             console.log('VALID DATA, NOT SUBMITTED')
-
+            console.log('lastname',this.form.controls['lastname'])
         }
     }
 
     openDialog(buttontype: string) {
         if(buttontype == 'save')
         {
+            //if()
             if(this.form.invalid)
             {
+
                 this.dialog.open(StudentProfilePopupComponent);
             }
 

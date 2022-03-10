@@ -5,17 +5,21 @@
 
 
 .page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+
+    width:100%;
 }
 
 .page_404  img{
+    margin-top: 100%;
     width:100%;
+
 }
 
 .four_zero_four_bg{
 
     background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
     height: 300px;
-    width: 85%;
+    width: 100%;
     background-position: center;
     /*padding-top: 10px;*/
     padding-left: 100px;
@@ -24,6 +28,7 @@
 
 .four_zero_four_bg h1{
     font-size:80px;
+    margin: 88px 0 16px;
 }
 
 .four_zero_four_bg h3{

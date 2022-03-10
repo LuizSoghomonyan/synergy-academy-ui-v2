@@ -14,11 +14,11 @@ const routes: Routes = [
     {path: 'students', component: AllstudentsComponent},
     {path: 'courses', component: AllcoursesComponent},
     {path: 'test', component: TestComponent},
-    {path: 'student/:id', component: StudentProfileComponent},
-    {path: 'course/:coursename', component: CourseTabComponent},
-    {path: 'course/:coursename/students', component: TestComponent},
-    {path: 'course/:coursename/exams', component: TestComponent},
-    {path: 'course/:coursename/educationProcess', component: TestComponent},
+    {path: 'students/:id', component: StudentProfileComponent},
+    {path: 'courses/:courseid', component: CourseTabComponent},
+    {path: 'courses/:courseid/students', component: TestComponent},
+    {path: 'courses/:courseid/exams', component: TestComponent},
+    {path: 'courses/:courseid/educationProcess', component: TestComponent},
 
     {path: '**', component: PagenotfoundComponent}
 ];

@@ -80,7 +80,8 @@ export class DataService {
 
     //return Student by id(if type = student), or course by id(if type = course)
     loadinfo(type: string, id: string) {
-        if (type == 'student')
+        if (type == 'students')
+            console.log(type,id)
             return this.http.get(`http://localhost:1238/students/${id}`)
         return;
     }
@@ -93,6 +94,7 @@ export class DataService {
 
     addNew(tablename: string): Observable<any> {
         let ob;
+        //TODO for course
         // if (tablename == 'student') {
         ob = of(this.newStudent);
         return ob
@@ -100,16 +102,11 @@ export class DataService {
 
     }
 
+    addData(tablename: string, formValues: any): Observable<any>{
+        console.log('post data')
+        return this.http.post(`http://localhost:1238/${tablename}`, formValues);
 
-    maxId(tablename: string):  Observable<number>{
-        //return this.http.get<number>(`http://localhost:1238/${tablename}/maxid`)
-        return  of(1001);
     }
-
-
-
-
-
 
 
 

@@ -57,8 +57,10 @@ export class TableComponent implements OnInit {
     @ViewChild(MatTable) matTable: MatTable<any>;
 
     ngAfterViewInit(): void {
+        console.log('after view Init')
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+        this.refreshData();
     }
 
 
@@ -142,9 +144,8 @@ export class TableComponent implements OnInit {
         this.displayedColumns = this.displayedColumnsConfig.map(config => config.key);
     }
 
-//
-    applyFilter() {
-        // @ts-ignore
+
+    applyFilter(event: KeyboardEvent) {
         const filterValue = (event.target as HTMLInputElement).value;
         this.dataSource.filter = filterValue.trim().toLowerCase();
     }

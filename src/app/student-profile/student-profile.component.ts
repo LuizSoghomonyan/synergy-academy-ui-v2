@@ -28,11 +28,9 @@ import {ClassifierService} from "../services/classifier.service";
 
 export class StudentProfileComponent implements OnInit {
     isNew = false
-    // universites = [5, 'B', 'C', 'D','A', 'B', 'C', 'D','A', 'B', 'C', 'D','A', 'B', 'C', 'D','A', 'B', 'C', 'D','A', 'B', 'C', 'D']
-    currentDate =  new FormControl(new Date())
-    howdidyoufind = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+    currentDate = new FormControl(new Date())
     universites$: Observable<string[]>;
-    student$: Observable<Student> ;
+    student$: Observable<Student>;
     form: FormGroup
     universites: string[] = [];
     student: any
@@ -44,45 +42,51 @@ export class StudentProfileComponent implements OnInit {
         private classiferService: ClassifierService,
         private router: Router,
         private elRef: ElementRef
-    ) {}
+    ) {
+    }
+
     dialogRef: any
     test: any;
     id: number
 
     ngOnInit(): void {
-        this.route.params.subscribe((x: Params) => {
-            this.id = x['isNew']
+        this.route.queryParams.subscribe((x: Params) => {
+            this.isNew = x['isNew']
+            console.log(x)
+
         })
 
-
-        if(this.isNew){
+        if (this.isNew) {
+            console.log('this.isNew')
             this.student$ = this.dataService.addNew('student')
             console.log(this.student$)
             this.student$.subscribe(x => {
-                this.student =x;
+                this.student = x;
             })
 
-        }
-        else{
+        } else {
             this.loadinfo();
             console.log('loadinfo')
         }
+
         this.loadClassifersInfo('university')
 
-        this.form = new FormGroup(  {
+        this.form = new FormGroup({
             firstname: new FormControl('', [
                 Validators.required
             ]),
-            lastname: new FormControl('',[
+            lastname: new FormControl('', [
                 Validators.required
             ]),
-            email: new FormControl('',[
+            email: new FormControl('', [
                 Validators.required, Validators.email
-                ]),
-            phonenumber: new FormControl('',[
+            ]),
+            phonenumber: new FormControl('', [
                 Validators.required
             ]),
-            birthday: new FormControl(''),
+            birthday: new FormControl('', [
+                Validators.required
+            ]),
             address: new FormControl(''),
             whatprogramminglanguagesdoyouknow: new FormControl(''),
             educationdepartmentadmissionandgraduationyear: new FormControl(''),
@@ -108,81 +112,76 @@ export class StudentProfileComponent implements OnInit {
 
     loadinfo() {
         this.route.params.subscribe((x: Params) => {
-            this.student$ =  this.dataService.loadinfo('student', x['id'].toString()) as Observable<Student>
+            this.student$ = this.dataService.loadinfo('students', x['id'].toString()) as Observable<Student>
             this.id = x['id']
         })
 
     }
 
-    loadClassifersInfo(classifierName: string){
-       // @ts-ignore
+    loadClassifersInfo(classifierName: string) {
+        // @ts-ignore
         this.universites$ = this.classiferService.getClassifierData(classifierName)
 
     }
 
     onSubmit() {
-        if(this.form.valid) {
+        if (this.form.valid) {
             let test;
             //TODO
             console.log('onSubmit()', this.form)
             test = this.elRef.nativeElement.querySelector('form')
-            // console.log('test',this.elRef.nativeElement.querySelector('form'))
             test.submit;
-            console.log('onSubmit()', this.form)
-            console.log('this.id', this.id)
-            console.log('lastname',this.form.controls['lastname'])
 
-            this.dataService.updateDataById(this.id, 'students', this.form.value)
-                .subscribe(msg =>{
-                    console.log(msg)
+            if (!this.isNew) {
+                this.dataService.updateDataById(this.id, 'students', this.form.value)
+                    .subscribe(msg => {
+                        console.log(msg)
+                    })
+            } else {
+                this.dataService.addData('students', this.form.value).subscribe(x=>{
+                    console.log(x)
                 })
-        }
-        else{
+            }
+
+        } else {
             console.log('------------', this.form)
             console.log('VALID DATA, NOT SUBMITTED')
-            console.log('lastname',this.form.controls['lastname'])
+            console.log('lastname', this.form.controls['lastname'])
         }
     }
 
     openDialog(buttontype: string) {
-        if(buttontype == 'save')
-        {
+        if (buttontype == 'save') {
             //if()
-            if(this.form.invalid)
-            {
-
+            if (this.form.invalid) {
+                console.log(this.dialog)
                 this.dialog.open(StudentProfilePopupComponent);
-            }
-
-            else{
+            } else {
                 this.dialog.open(DataSaveSuccessfulPopupComponent);
             }
             // [routerLink]="['/students']"
             // this.router.navigate(['/students'])
         }
 
-        if(buttontype == 'save&close')
-        {
+        if (buttontype == 'save&close') {
             let test;
-            if(this.form.invalid)
-            {
+            if (this.form.invalid) {
                 this.dialog.open(StudentProfilePopupComponent);
-            }
-
-            else{
+            } else {
                 this.dialog.open(DataSaveSuccessfulPopupComponent);
                 this.onSubmit()
-                if(this.form.valid)
+                if (this.form.valid)
                     this.router.navigate(['/students'])
+
             }
 
         }
 
-        if(buttontype == 'reset'){
-            this.dialogRef =  this.dialog.open(ResetPopupComponent);
+        if (buttontype == 'reset') {
+            this.dialogRef = this.dialog.open(ResetPopupComponent);
             // @ts-ignore
-            this. dialogRef.afterClosed().subscribe(result => {
-                if(this.dialogRef.componentInstance.isReset)
+            this.dialogRef.afterClosed().subscribe(result => {
+                if (this.dialogRef.componentInstance.isReset)
                     this.form.reset();
             });
 
@@ -191,7 +190,7 @@ export class StudentProfileComponent implements OnInit {
 
     }
 
-    getUniversity(){
+    getUniversity() {
         console.log(this.universites)
     }
 

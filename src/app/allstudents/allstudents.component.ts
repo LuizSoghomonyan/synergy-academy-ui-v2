@@ -7,15 +7,12 @@ import {DataService} from "../services/data.service";
     styleUrls: ['./allstudents.component.css']
 })
 export class AllstudentsComponent implements OnInit {
-    maxId: number
 
     constructor(private dataService: DataService) {
     }
 
     ngOnInit(): void {
-        this.dataService.maxId('student').subscribe(x => {
-            this.maxId = x
-        })
+
     }
 
 }

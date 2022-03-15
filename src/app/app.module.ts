@@ -27,10 +27,8 @@ import { DataSaveSuccessfulPopupComponent } from './Popups/data-save-successful-
 import { ResetPopupComponent } from './Popups/reset-popup/reset-popup.component';
 import { SelectComponent } from './select/select.component';
 import { CourseTabComponent } from './course-tab/course-tab.component';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
-
-import { MY_DATE_FORMATS } from 'src/app/form-controls/form-controls.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {ClassifierService} from "./services/classifier.service";
 
 @NgModule({
     declarations: [
@@ -69,7 +67,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     providers: [
         DataService,
         DatePipe,
-        { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+        ClassifierService
     ],
     bootstrap: [AppComponent]
 })

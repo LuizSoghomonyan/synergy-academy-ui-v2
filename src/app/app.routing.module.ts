@@ -15,6 +15,7 @@ const routes: Routes = [
     {path: 'courses', component: AllcoursesComponent},
     {path: 'test', component: TestComponent},
     {path: 'students/:id', component: StudentProfileComponent},
+    {path: 'students/addStudent', component: StudentProfileComponent},
     {path: 'courses/:courseid', component: CourseTabComponent},
     {path: 'courses/:courseid/students', component: TestComponent},
     {path: 'courses/:courseid/exams', component: TestComponent},

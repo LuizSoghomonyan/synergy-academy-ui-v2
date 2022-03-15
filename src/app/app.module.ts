@@ -29,6 +29,8 @@ import { SelectComponent } from './select/select.component';
 import { CourseTabComponent } from './course-tab/course-tab.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {ClassifierService} from "./services/classifier.service";
+import { CoursesProfileComponent } from './courses-profile/courses-profile.component';
+import { MaticonComponent } from './maticon/maticon.component';
 
 @NgModule({
     declarations: [
@@ -46,7 +48,9 @@ import {ClassifierService} from "./services/classifier.service";
         DataSaveSuccessfulPopupComponent,
         ResetPopupComponent,
         SelectComponent,
-        CourseTabComponent
+        CourseTabComponent,
+        CoursesProfileComponent,
+        MaticonComponent
 
     ],
     imports: [

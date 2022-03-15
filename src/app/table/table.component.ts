@@ -19,7 +19,7 @@ import {
 } from "rxjs";
 import {MatSort} from "@angular/material/sort";
 import {ActivatedRoute, Event, Params} from "@angular/router";
-
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'app-table',
@@ -42,8 +42,10 @@ export class TableComponent implements OnInit {
     displayedColumns: string[] = []
     private destroy$: Subject<boolean> = new Subject();
 
-    constructor(private dataService: DataService, private route: ActivatedRoute) {
+    constructor(private dataService: DataService, private route: ActivatedRoute,public datepipe: DatePipe) {
         this.dataSource = new MatTableDataSource<any>()
+        this.datepipe = new DatePipe('en-US')
+
     }
 
     ngOnInit() {
@@ -137,9 +139,19 @@ export class TableComponent implements OnInit {
             this.dataService.getAllCourses()
                 .pipe(
                     first(),
-                    map((courses: Course[]) => this.dataSource.data = courses)
+                    map((courses: Course[]) => {
+                        this.dataSource.data = courses
+
+                    })
                 )
-                .subscribe()
+                .subscribe(x =>{
+                        console.log( )
+                       this.dataSource.data.forEach((value) => {
+                           value['startdate'] = this.datepipe.transform(value['startdate'], 'mediumDate')
+                           value['enddate'] = this.datepipe.transform(value['enddate'], 'mediumDate')
+                       })
+                    }
+                )
         }
         this.displayedColumns = this.displayedColumnsConfig.map(config => config.key);
     }

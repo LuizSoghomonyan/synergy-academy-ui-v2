@@ -1,0 +1,31 @@
+<div [ngSwitch]="type">
+    <div *ngSwitchCase = "'AllStudents'">
+        <mat-icon>people</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
+    <div *ngSwitchCase = "'AllCourses'">
+        <mat-icon>library_books</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
+    <div *ngSwitchCase = "'StudentProfile'">
+        <mat-icon>people</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
+    <div *ngSwitchCase = "'EducationProcess'">
+        <mat-icon>dashboard</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
+    <div *ngSwitchCase = "'Exams'">
+        <mat-icon>collections_bookmark</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
+    <div *ngSwitchCase = "'menu'">
+        <mat-icon>more_vert</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
+    <div *ngSwitchCase = "'tab'">
+        <mat-icon>tab</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
+
+</div>

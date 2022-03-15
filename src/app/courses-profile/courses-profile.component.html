@@ -1,0 +1,80 @@
+<app-title
+    [titleName]="'Course Information'"
+    [icon]="'AllCourses'">
+</app-title>
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="savediv">
+
+        <button style="margin-top: 2%" mat-icon-button [matMenuTriggerFor]="menu">
+            <app-maticon [type]="'menu'"></app-maticon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="menuNavigate('')">
+                <app-maticon [showText]="true" [text]="'Tabs'" [type]="'tab'"></app-maticon>
+            </button>
+            <button mat-menu-item (click)="menuNavigate('students')">
+                <app-maticon [showText]="true" [text]="'Students'" [type]="'AllStudents'"></app-maticon>
+            </button>
+            <button mat-menu-item (click)="menuNavigate('exams')">
+                <app-maticon [showText]="true" [text]="'Exams'"  [type]="'Exams'">Exams</app-maticon>
+            </button>
+            <button mat-menu-item (click)="menuNavigate('educationProcess')">
+                <app-maticon [showText]="true" [text]="'Education Process'" [type]="'EducationProcess'"></app-maticon>
+            </button>
+        </mat-menu>
+
+
+
+
+        <button
+            mat-stroked-button
+            color="blue"
+            class="btn"
+            style="color: white"
+            type="submit"
+            (click)="openDialog('save&close')"
+        >Save&Close
+        </button>
+        <button
+            mat-stroked-button
+            color="blue"
+            class="btn"
+            style="color: white"
+            type="submit"
+            (click)="openDialog('save')"
+        >Save
+        </button>
+
+        <button
+            mat-stroked-button
+            class="btn"
+            (click)="openDialog('reset')"
+        >Reset
+        </button>
+    </div>
+<br>
+<br>
+
+    <mat-card style="margin-top: 0px;">
+        <app-form-controls type="text" [value]="''" matlabel="Course Name"
+                           [formCName]="'name'" [form]="form"
+                           (changedValue)="$event"></app-form-controls>
+        <app-form-controls type="select"
+                           [selectvalue]="''"
+                           matlabel="Year"
+                           [formCName]="'yearid'"
+                           [form]="form"
+                           [classifierName]="'year'"
+                           (selectedvalueOutput)="$event"></app-form-controls>
+        <app-form-controls type="select"
+                           [selectvalue]="''"
+                           matlabel="Office"
+                           [formCName]="'officeid'"
+                           [form]="form"
+                           [classifierName]="'office'"
+                           (selectedvalueOutput)="$event"></app-form-controls>
+
+    </mat-card>
+</form>

@@ -1,8 +1,8 @@
-.mat-card-title{
+.mat-card-title {
 
 }
 
-.mat-card{
+.mat-card {
     /*margin-left: -25%;*/
     height: 61%;
     width: 72%;
@@ -12,13 +12,24 @@
 }
 
 
-
-
-.mat-card-title{
+.mat-card-title {
     /*color: rgba(45, 45, 45, 0.65)*/
     color: #696c76;
     font-size: 22px;
 }
-.grid{
+
+.grid {
     margin-top: 50px
 }
+
+
+.maticon {
+    color: #696c76;
+    float: right;
+    font-size: 27px;
+    margin-top: -2% !important;
+    margin-right: 1%;
+
+}
+
+

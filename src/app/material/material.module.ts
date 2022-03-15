@@ -15,7 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatGridListModule} from '@angular/material/grid-list';
-
+import {MatMenuModule} from '@angular/material/menu';
 
 
 const MaterialComponents = [
@@ -34,7 +34,8 @@ const MaterialComponents = [
     MatSelectModule,
     MatDialogModule,
     MatAutocompleteModule,
-    MatGridListModule
+    MatGridListModule,
+    MatMenuModule
 
 ];
 

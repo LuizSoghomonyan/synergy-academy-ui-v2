@@ -6,7 +6,7 @@
                [(ngModel)]="value"
                [formControlName]="formCName">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="value=''">
+                (click)="value=''" type="reset">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -23,7 +23,7 @@
                [(ngModel)]="changedDate"
                (change)="onChangesDate()"
         >
-        <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteDateValue()" type="button">
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteDateValue()" type="reset">
             <mat-icon>close</mat-icon>
         </button>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -44,7 +44,7 @@
                   [formControlName]="formCName">
             </textarea>
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="value=''">
+                (click)="value=''"type="reset">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -59,7 +59,7 @@
                [(ngModel)]="numberValue"
                [formControlName]="formCName">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="value=''">
+                (click)="value=''"type="reset">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -76,7 +76,7 @@
                [formControlName]="formCName"
                placeholder="098-12-34-56">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="value=''">
+                (click)="value=''"type="reset">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -97,16 +97,11 @@
                 </mat-option>
             </mat-select>
 
-            <button *ngIf="selectvalue" matSuffix mat-icon-button aria-label="Clear" (click)="selectvalue='None'">
+            <button *ngIf="selectvalue" matSuffix mat-icon-button aria-label="Clear" (click)="selectvalue='None'"type="reset">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>
 
-
-        <!--                    <button (click)="test(selectedvalues)">AAAAAAA</button>-->
-
-        <!--        <p>{{selectedvalues | json}}</p>-->
-        <!--        <p>{{t | json}}</p>-->
     </ng-container>
 
 

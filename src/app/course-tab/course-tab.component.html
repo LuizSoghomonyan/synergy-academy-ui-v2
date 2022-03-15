@@ -3,7 +3,17 @@
 
 <mat-grid-list cols="2" rowHeight="2:1" class="grid">
     <mat-grid-tile>
+        <mat-card style="background-color: rgba(128,168,255,0.44)" routerLink="info">
+            <app-maticon [type]="'AllCourses'" class="maticon"></app-maticon>
+            <mat-card-title>Course Information</mat-card-title>
+            <hr>
+            <!--            TODO-->
+            <p>About This Course</p>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
         <mat-card style="background-color: rgba(128,255,232,0.44)" routerLink="students">
+            <app-maticon [type]="'AllStudents'" class="maticon"></app-maticon>
             <mat-card-title>Students</mat-card-title>
             <hr>
             <!--            TODO-->
@@ -12,6 +22,7 @@
     </mat-grid-tile>
     <mat-grid-tile>
         <mat-card style="background-color: rgba(194,187,240,0.44)" routerLink="exams">
+            <app-maticon [type]="'Exams'" class="maticon"></app-maticon>
             <mat-card-title>Exams</mat-card-title>
             <hr>
             <!--            TODO-->
@@ -20,6 +31,7 @@
     </mat-grid-tile>
     <mat-grid-tile>
         <mat-card style="background-color: #fecef1" routerLink="educationProcess">
+            <app-maticon [type]="'EducationProcess'" class="maticon"></app-maticon>
             <mat-card-title>Education Process</mat-card-title>
             <hr>
 <!--            TODO-->

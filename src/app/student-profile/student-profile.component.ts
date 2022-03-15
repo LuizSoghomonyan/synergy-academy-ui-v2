@@ -93,7 +93,9 @@ export class StudentProfileComponent implements OnInit {
             othercoursesattended: new FormControl(''),
             haveyoueverparticipatedinprogramming: new FormControl(''),
             doyouhaveworkexperience: new FormControl(''),
-            gpa: new FormControl(''),
+            gpa: new FormControl('', [
+                Validators.min(0)
+            ]),
             universityid: new FormControl(''),
             howdidyoufindid: new FormControl('')
         });
@@ -141,6 +143,8 @@ export class StudentProfileComponent implements OnInit {
                 this.dataService.addData('students', this.form.value).subscribe(x=>{
                     console.log(x)
                 })
+                //todo - add studentid
+               //this.router.navigate(['students', '999'])
             }
 
         } else {

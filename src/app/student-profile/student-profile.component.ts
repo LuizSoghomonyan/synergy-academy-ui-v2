@@ -1,22 +1,11 @@
-import {
-    Component,
-    ElementRef,
-    Input,
-    OnChanges,
-    OnInit,
-    SimpleChanges,
-    ViewContainerRef,
-    ViewEncapsulation
-} from '@angular/core';
+import {Component, ElementRef, OnInit,} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Course, DataService, Student} from "../services/data.service";
+import {DataService, Student} from "../services/data.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {first, from, map, mergeMap, Observable} from "rxjs";
+import {from, map, mergeMap, Observable} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {StudentProfilePopupComponent} from "../Popups/student-profile-popup/student-profile-popup.component";
-import {
-    DataSaveSuccessfulPopupComponent
-} from "../Popups/data-save-successful-popup/data-save-successful-popup.component";
+import {DataSaveSuccessfulPopupComponent} from "../Popups/data-save-successful-popup/data-save-successful-popup.component";
 import {ResetPopupComponent} from "../Popups/reset-popup/reset-popup.component";
 import {ClassifierService} from "../services/classifier.service";
 
@@ -108,7 +97,6 @@ export class StudentProfileComponent implements OnInit {
                 this.universites.push(classifierItem['name'])
             })
         ).subscribe()
-
     }
 
 
@@ -116,6 +104,7 @@ export class StudentProfileComponent implements OnInit {
         this.route.params.subscribe((x: Params) => {
             this.student$ = this.dataService.loadinfo('students', x['id'].toString()) as Observable<Student>
             this.id = x['id']
+            console.log('student$',this.student$)
         })
 
     }

@@ -7,10 +7,9 @@ import {AllcoursesComponent} from "./allcourses/allcourses.component";
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
 import {CourseTabComponent} from "./course-tab/course-tab.component";
 import {CoursesProfileComponent} from "./courses-profile/courses-profile.component";
+import {ExamsComponent} from "./exams/exams.component";
+import {EducationProcessComponent} from "./education-process/education-process.component";
 
-//http://localhost:4200  - All Student
-//http://localhost:4200/courses
-//http://localhost:4200
 const routes: Routes = [
     {path: 'students', component: AllstudentsComponent},
     {path: 'courses', component: AllcoursesComponent},
@@ -20,9 +19,8 @@ const routes: Routes = [
     {path: 'courses/:courseid', component: CourseTabComponent},
     {path: 'courses/:courseid/info', component: CoursesProfileComponent},
     {path: 'courses/:courseid/students', component: TestComponent},
-    {path: 'courses/:courseid/exams', component: TestComponent},
-    {path: 'courses/:courseid/educationProcess', component: TestComponent},
-
+    {path: 'courses/:courseid/exams', component: ExamsComponent},
+    {path: 'courses/:courseid/educationProcess', component: EducationProcessComponent},
     {path: '**', component: PagenotfoundComponent}
 ];
 

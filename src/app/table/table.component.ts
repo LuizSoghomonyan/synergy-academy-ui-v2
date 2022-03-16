@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {Course, Student, DataService} from "../services/data.service";
+import {Course, Student, DataService, Config} from "../services/data.service";
 import {
     delay,
     first,
@@ -32,16 +32,12 @@ export class TableComponent implements OnInit {
     datatypeIdForRouting: string = ''
     // @ts-ignore
     dataSource: MatTableDataSource<any>;
-
+    displayedColumnsConfig$: Observable<any>
     // @ts-ignore
-    displayedColumnsConfig: {
-        key: string,
-        displayName: string,
-        type: string
-    }[]
+    displayedColumnsConfig: Config[]
     displayedColumns: string[] = []
     private destroy$: Subject<boolean> = new Subject();
-
+    config: Config
     constructor(private dataService: DataService, private route: ActivatedRoute,public datepipe: DatePipe) {
         this.dataSource = new MatTableDataSource<any>()
         this.datepipe = new DatePipe('en-US')
@@ -50,6 +46,7 @@ export class TableComponent implements OnInit {
 
     ngOnInit() {
         this.refreshData();
+        console.log('test')
     }
 
     // @ts-ignore
@@ -65,74 +62,44 @@ export class TableComponent implements OnInit {
         this.refreshData();
     }
 
+    sortingConfigs = function (config1: Config, config2: Config) {
+        if (config1.orderid > config2.orderid) { return 1; }
+        if (config1.orderid < config2.orderid) {return -1; }
+        return 0;
+    }
 
     refreshData() {
+        console.log('this.datatype',this.datatype)
+
         if (this.datatype == 'allStudents') {
 
-            this.displayedColumnsConfig = [
-                {
-                    key: 'fullname',
-                    displayName: 'Full Name',
-                    type: 'students'
-                },
-                {
-                    key: 'email',
-                    displayName: '@Email',
-                    type: 'students'
-                },
-                {
-                    key: 'phonenumber',
-                    displayName: 'Phone',
-                    type: 'students'
-                }
-            ];
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('students');
 
+            this.displayedColumnsConfig$.subscribe(x =>{
+                this.config = x
+                this.displayedColumnsConfig = x //this.displayedColumnsConfig.push(x);
+                this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
 
+            })
             this.datatypeIdForRouting = 'studentid'
-
             this.dataService.getAllStudents()
                 .pipe(
                     first(),
                     map((students: Student[]) => this.dataSource.data = students)
-                    // , takeUntil(this.destroy$)
                 )
                 .subscribe();
         }
 
         if (this.datatype == 'allCourses') {
-            this.displayedColumnsConfig = [
-                {
-                    key: 'courseid',
-                    displayName: 'Course ID',
-                    type: 'courses'
-                },
-                {
-                    key: 'name',
-                    displayName: 'Course Name',
-                    type: 'courses'
-                },
-                {
-                    key: 'yearid',
-                    displayName: 'Year',
-                    type: 'courses'
-                },
-                {
-                    key: 'officeid',
-                    displayName: 'Office',
-                    type: 'course'
-                },
-                {
-                    key: 'startdate',
-                    displayName: 'Start Date',
-                    type: 'courses'
-                },
-                {
-                    key: 'enddate',
-                    displayName: 'End Date',
-                    type: 'courses'
-                }
-            ];
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('courses');
+            this.displayedColumnsConfig$.subscribe(x =>{
+                this.config = x
+                console.log('this.config',this.config)
+                this.displayedColumnsConfig = x;
+                console.log('displayedColumnsConfig',this.displayedColumnsConfig)
+                this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
 
+            })
             this.datatypeIdForRouting = 'courseid'
 
 
@@ -141,7 +108,6 @@ export class TableComponent implements OnInit {
                     first(),
                     map((courses: Course[]) => {
                         this.dataSource.data = courses
-
                     })
                 )
                 .subscribe(x =>{
@@ -153,7 +119,8 @@ export class TableComponent implements OnInit {
                     }
                 )
         }
-        this.displayedColumns = this.displayedColumnsConfig.map(config => config.key);
+
+
     }
 
 

@@ -8,7 +8,7 @@
     <div class="savediv">
 
         <button style="margin-top: 2%" mat-icon-button [matMenuTriggerFor]="menu">
-            <app-maticon [type]="'menu'"></app-maticon>
+            <app-maticon [type]="'back'"></app-maticon>
         </button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="menuNavigate('')">
@@ -58,23 +58,26 @@
 <br>
 
     <mat-card style="margin-top: 0px;">
-        <app-form-controls type="text" [value]="''" matlabel="Course Name"
-                           [formCName]="'name'" [form]="form"
-                           (changedValue)="$event"></app-form-controls>
-        <app-form-controls type="select"
-                           [selectvalue]="''"
-                           matlabel="Year"
-                           [formCName]="'yearid'"
-                           [form]="form"
-                           [classifierName]="'year'"
-                           (selectedvalueOutput)="$event"></app-form-controls>
-        <app-form-controls type="select"
-                           [selectvalue]="''"
-                           matlabel="Office"
-                           [formCName]="'officeid'"
-                           [form]="form"
-                           [classifierName]="'office'"
-                           (selectedvalueOutput)="$event"></app-form-controls>
+        <ng-container>
+            <app-form-controls type="text" [value]="courseName" matlabel="Course Name"
+                               [formCName]="'name'" [form]="form"
+                               (changedValue)="$event"></app-form-controls>
+            <app-form-controls type="select"
+                               [selectvalue]="''"
+                               matlabel="Year"
+                               [formCName]="'yearid'"
+                               [form]="form"
+                               [classifierName]="'year'"
+                               (selectedvalueOutput)="$event"></app-form-controls>
+            <app-form-controls type="select"
+                               [selectvalue]="''"
+                               matlabel="Office"
+                               [formCName]="'officeid'"
+                               [form]="form"
+                               [classifierName]="'office'"
+                               (selectedvalueOutput)="$event"></app-form-controls>
+        </ng-container>
+
 
     </mat-card>
 </form>

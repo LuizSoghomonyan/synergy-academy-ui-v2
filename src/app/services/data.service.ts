@@ -1,8 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable, of, Subject, takeUntil} from "rxjs";
-import {FormGroup} from "@angular/forms";
-
 
 export interface Student {
     fullname: string,
@@ -36,7 +34,8 @@ export interface Course {
 export interface Config {
     _key: string,
     displayname: string,
-    type: string
+    type: string,
+    orderid: number
 }
 
 @Injectable({providedIn: 'root'})
@@ -75,15 +74,12 @@ export class DataService {
     }
 
     getConfigs(type: string) {
-        return this.http.get<Config[]>('http://localhost:1238/config/')
+        return this.http.get<Config[]>(`http://localhost:1238/config/${type}`)
     }
 
-    //return Student by id(if type = student), or course by id(if type = course)
-    loadinfo(type: string, id: string) {
-        if (type == 'students')
-            console.log(type,id)
-            return this.http.get(`http://localhost:1238/students/${id}`)
-        return;
+    //return Student by id(if type = students), or course by id(if type = course)
+    loadinfo(type: string, id: string):Observable<any> {
+            return this.http.get(`http://localhost:1238/${type}/${id}`)
     }
 
     updateDataById(id: number, tablename: string, formValues: any): Observable<any> {

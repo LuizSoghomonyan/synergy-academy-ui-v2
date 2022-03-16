@@ -31,6 +31,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {ClassifierService} from "./services/classifier.service";
 import { CoursesProfileComponent } from './courses-profile/courses-profile.component';
 import { MaticonComponent } from './maticon/maticon.component';
+import { ExamsComponent } from './exams/exams.component';
+import { EducationProcessComponent } from './education-process/education-process.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,9 @@ import { MaticonComponent } from './maticon/maticon.component';
         SelectComponent,
         CourseTabComponent,
         CoursesProfileComponent,
-        MaticonComponent
+        MaticonComponent,
+        ExamsComponent,
+        EducationProcessComponent
 
     ],
     imports: [

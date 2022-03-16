@@ -9,8 +9,8 @@
     </div>
     <div *ngSwitchCase = "'StudentProfile'">
         <mat-icon>people</mat-icon>
-        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
     </div>
+
     <div *ngSwitchCase = "'EducationProcess'">
         <mat-icon>dashboard</mat-icon>
         <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
@@ -27,5 +27,8 @@
         <mat-icon>tab</mat-icon>
         <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
     </div>
-
+    <div *ngSwitchCase = "'back'">
+        <mat-icon>arrow_back</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
 </div>

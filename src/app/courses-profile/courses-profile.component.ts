@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {StudentProfilePopupComponent} from "../Popups/student-profile-popup/student-profile-popup.component";
 import {
@@ -16,6 +16,7 @@ import {ClassifierService} from "../services/classifier.service";
     styleUrls: ['./courses-profile.component.css']
 })
 export class CoursesProfileComponent implements OnInit {
+    @Input() courseName: string
     form: FormGroup
     dialogRef: any
     constructor( private route: ActivatedRoute,

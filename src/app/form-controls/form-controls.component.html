@@ -1,5 +1,6 @@
 <ng-container *ngIf="type == 'text'">
     <mat-form-field [formGroup]="form">
+
         <mat-label>{{matlabel}}</mat-label>
         <input [type]="type"
                matInput
@@ -10,7 +11,7 @@
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
-
+    <p>{{value}}</p>
 </ng-container>
 
 <ng-container *ngIf="type == 'date'">

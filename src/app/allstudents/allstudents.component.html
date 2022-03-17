@@ -3,12 +3,12 @@
     [icon]="'AllStudents'"
 ></app-title>
 
-<button
-    mat-stroked-button
-    color="blue"
-    class="btn"
-    routerLink="addStudent"
-    [queryParams]="{isNew: true}"
->Add New</button>
+<div>
+    <div class="app-button">
+        <app-button type="addNew" routerLink="addStudent"></app-button>
+    </div>
 
-<app-table [datatype]="'allStudents'"></app-table>
+
+    <app-table [datatype]="'allStudents'"></app-table>
+
+</div>

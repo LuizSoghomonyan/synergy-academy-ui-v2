@@ -2,11 +2,8 @@
     [titleName]="'Courses'"
     [icon]="'AllCourses'"
 ></app-title>
-<button
-    mat-stroked-button
-    color="blue"
-    class="btn"
-
->Add New</button>
+<div class="app-button">
+    <app-button type="addNew" routerLink="addCourse"></app-button>
+</div>
 
 <app-table [datatype]="'allCourses'"></app-table>

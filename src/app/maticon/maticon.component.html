@@ -31,4 +31,11 @@
         <mat-icon>arrow_back</mat-icon>
         <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
     </div>
+
+    <div *ngSwitchCase = "'add'">
+        <mat-icon>add_circle_outline</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
+
+
 </div>

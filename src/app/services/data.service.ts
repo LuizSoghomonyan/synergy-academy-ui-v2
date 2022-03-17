@@ -92,7 +92,7 @@ export class DataService {
         let ob;
         //TODO for course
         // if (tablename == 'student') {
-        ob = of(this.newStudent);
+        ob = of([this.newStudent]);
         return ob
         // }
 

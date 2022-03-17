@@ -10,12 +10,22 @@ import {Student} from "../services/data.service";
 })
 export class CourseTabComponent implements OnInit {
     coursename: string;
+    isNew: false;
     constructor(private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {
         this.route.params.subscribe((x: Params) => {
-            this.coursename = x['courseid']
+            if(x['courseid'] == 'addCourse'){
+                this.coursename = 'New Course'
+            }
+            else{
+                this.coursename = x['courseid']
+            }
+
+        })
+        this.route.queryParams.subscribe((x: Params) =>{
+            this.isNew = x['isNew']
         })
     }
 

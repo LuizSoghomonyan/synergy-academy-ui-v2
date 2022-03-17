@@ -1,4 +1,4 @@
-<app-title [titleName]="coursename"
+<app-title [titleName]="coursename | titlecase"
            [icon]="'AllCourses'"></app-title>
 
 <mat-grid-list cols="2" rowHeight="2:1" class="grid">
@@ -12,7 +12,9 @@
         </mat-card>
     </mat-grid-tile>
     <mat-grid-tile>
-        <mat-card style="background-color: rgba(128,255,232,0.44)" routerLink="students">
+
+        <mat-card  style="background-color: rgba(128,255,232,0.44)"
+                 routerLink="students">
             <app-maticon [type]="'AllStudents'" class="maticon"></app-maticon>
             <mat-card-title>Students</mat-card-title>
             <hr>

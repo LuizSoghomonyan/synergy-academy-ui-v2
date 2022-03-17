@@ -1,9 +1,5 @@
-.btn{
-    /*margin-top: 1%;*/
-    margin: 37px;
-    float: right;
-    min-width: 88px;
-    line-height: 30px;
-    color: white;
-    background-color: #0277bd;
+.app-button{
+    /*margin: 37px;*/
+    margin-right: 3%;
+    margin-top: 1%;
 }

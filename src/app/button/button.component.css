@@ -1,0 +1,15 @@
+.btn{
+    /*margin-top: 1%;*/
+    margin: 7px;
+    float: right;
+    min-width: 85px;
+    line-height: 30px;
+    color: white;
+    background-color: #00897B;
+    font-weight: 400;
+
+}
+
+.btn app-maticon{
+    font-size: 15px;
+}

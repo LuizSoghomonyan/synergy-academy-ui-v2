@@ -1,0 +1,51 @@
+<ng-container *ngIf="type=='addNew'">
+    <button
+        mat-stroked-button
+        color="blue"
+        class="btn"
+        routerLink="{{routerLink}}"
+        [queryParams]="{isNew: true}"
+    >
+        <app-maticon class="mat-icon" type="add"></app-maticon>
+        Add New
+    </button>
+
+</ng-container>
+
+<ng-container *ngIf="type=='save&close'">
+    <button
+        mat-stroked-button
+        color="blue"
+        class="btn"
+        style="color: white"
+        type="submit"
+    >Save&Close
+    </button>
+
+</ng-container>
+
+
+<ng-container *ngIf="type=='save'">
+    <button
+        mat-stroked-button
+        color="blue"
+        class="btn"
+        style="color: white"
+        type="submit"
+    >Save
+    </button>
+
+</ng-container>
+
+
+
+<ng-container *ngIf="type=='reset'">
+    <button
+        mat-stroked-button
+        class="btn"
+        type="button"
+        style="background-color: white; color: #4B4B4B"
+    >Reset
+    </button>
+
+</ng-container>

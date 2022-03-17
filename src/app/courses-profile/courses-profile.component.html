@@ -3,61 +3,37 @@
     [icon]="'AllCourses'">
 </app-title>
 
-
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="savediv">
 
-        <button style="margin-top: 2%" mat-icon-button [matMenuTriggerFor]="menu">
-            <app-maticon [type]="'back'"></app-maticon>
+<div class="menu" style="height: 20px; margin-left: 1%">
+    <button style="margin-top: 2%" mat-icon-button [matMenuTriggerFor]="menu">
+        <app-maticon [type]="'back'"></app-maticon>
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="menuNavigate('')">
+            <app-maticon [showText]="true" [text]="'Tabs'" [type]="'tab'"></app-maticon>
         </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="menuNavigate('')">
-                <app-maticon [showText]="true" [text]="'Tabs'" [type]="'tab'"></app-maticon>
-            </button>
-            <button mat-menu-item (click)="menuNavigate('students')">
-                <app-maticon [showText]="true" [text]="'Students'" [type]="'AllStudents'"></app-maticon>
-            </button>
-            <button mat-menu-item (click)="menuNavigate('exams')">
-                <app-maticon [showText]="true" [text]="'Exams'"  [type]="'Exams'">Exams</app-maticon>
-            </button>
-            <button mat-menu-item (click)="menuNavigate('educationProcess')">
-                <app-maticon [showText]="true" [text]="'Education Process'" [type]="'EducationProcess'"></app-maticon>
-            </button>
-        </mat-menu>
-
-
-
-
-        <button
-            mat-stroked-button
-            color="blue"
-            class="btn"
-            style="color: white"
-            type="submit"
-            (click)="openDialog('save&close')"
-        >Save&Close
+        <button mat-menu-item (click)="menuNavigate('students')">
+            <app-maticon [showText]="true" [text]="'Students'" [type]="'AllStudents'"></app-maticon>
         </button>
-        <button
-            mat-stroked-button
-            color="blue"
-            class="btn"
-            style="color: white"
-            type="submit"
-            (click)="openDialog('save')"
-        >Save
+        <button mat-menu-item (click)="menuNavigate('exams')">
+            <app-maticon [showText]="true" [text]="'Exams'" [type]="'Exams'">Exams</app-maticon>
         </button>
+        <button mat-menu-item (click)="menuNavigate('educationProcess')">
+            <app-maticon [showText]="true" [text]="'Education Process'" [type]="'EducationProcess'"></app-maticon>
+        </button>
+    </mat-menu>
+</div>
 
-        <button
-            mat-stroked-button
-            class="btn"
-            (click)="openDialog('reset')"
-        >Reset
-        </button>
+    <div class="btn">
+        <app-button type="save&close" (click)="openDialog('save&close')" class="btn"></app-button>
+        <app-button type="save" (click)="openDialog('save')"  class="btn"></app-button>
+        <app-button type="reset" (click)="openDialog('reset')"  class="btn"></app-button>
+
     </div>
-<br>
-<br>
 
-    <mat-card style="margin-top: 0px;">
+
+    <mat-card>
         <ng-container>
             <app-form-controls type="text" [value]="courseName" matlabel="Course Name"
                                [formCName]="'name'" [form]="form"

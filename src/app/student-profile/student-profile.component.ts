@@ -126,11 +126,11 @@ export class StudentProfileComponent implements OnInit {
             if (!this.isNew) {
                 this.dataService.updateDataById(this.id, 'students', this.form.value)
                     .subscribe(msg => {
-                        console.log(msg)
+                        console.log('1',msg)
                     })
             } else {
                 this.dataService.addData('students', this.form.value).subscribe(x=>{
-                    console.log(x)
+                    console.log('2',x)
                 })
                 //todo - add studentid
                //this.router.navigate(['students', '999'])

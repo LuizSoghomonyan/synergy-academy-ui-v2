@@ -17,10 +17,12 @@ const routes: Routes = [
     {path: 'students/:id', component: StudentProfileComponent},
     {path: 'students/addStudent', component: StudentProfileComponent},
     {path: 'courses/:courseid', component: CourseTabComponent},
+
     {path: 'courses/:courseid/info', component: CoursesProfileComponent},
     {path: 'courses/:courseid/students', component: TestComponent},
     {path: 'courses/:courseid/exams', component: ExamsComponent},
     {path: 'courses/:courseid/educationProcess', component: EducationProcessComponent},
+    {path: 'courses/addCourse', component: TestComponent},
     {path: '**', component: PagenotfoundComponent}
 ];
 

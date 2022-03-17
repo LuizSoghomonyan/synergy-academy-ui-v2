@@ -3,46 +3,29 @@
     [icon]="'StudentProfile'">
 </app-title>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div class="savediv">
-        <button
-            mat-stroked-button
-            color="blue"
-            class="btn"
-            style="color: white"
-            type="submit"
-            (click)="openDialog('save&close')"
-        >Save&Close
-        </button>
-        <button
-            mat-stroked-button
-            color="blue"
-            class="btn"
-            style="color: white"
-            type="submit"
-            (click)="openDialog('save')"
-        >Save
-        </button>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
 
-        <button
-            mat-stroked-button
-            class="btn"
-            (click)="openDialog('reset')"
+    <div class="tab-group savediv">
+        <div class="tab-group savediv app-button1" style="left: 1500px;">
+            <app-button (click)="openDialog('save&close')" type="save&close"></app-button>
+        </div>
 
-        >Reset
-        </button>
+        <div class="tab-group savediv app-button2" style="left: 1400px;">
+            <app-button (click)="openDialog('save')" type="save"></app-button>
+        </div>
+
+        <div class="tab-group savediv app-button3" style="left: 1300px;">
+            <app-button (click)="openDialog('reset')" type="reset"></app-button>
+        </div>
+
     </div>
 
-<!--<p>{{student$|json}}</p>-->
-<!--    <ng-container *ngIf="student$ | async as student">-->
-    <ng-container *ngIf="student$ | async as student">
 
-        <mat-tab-group mat-align-tabs>
+    <ng-container *ngIf="student$ | async as student">
+        <mat-tab-group mat-align-tabs class="tab-group">
             <mat-tab label="General Information">
                 <mat-card>
-                    <p>{{student | json}}</p>
-                    <p>student.firstname {{student['firstname']}}</p>
-                    <p>student.firstname {{student[0].firstname}}</p>
+
                     <app-form-controls type="text" [value]="student[0].firstname" matlabel="First Name"
                                        [formCName]="'firstname'" [form]="form"
                                        (changedValue)="$event"></app-form-controls>
@@ -76,8 +59,6 @@
                                        [form]="form"
                                        [classifierName]="'university'"
                                        (selectedvalueOutput)="$event"></app-form-controls>
-
-
 
 
                 </mat-card>
@@ -120,12 +101,12 @@
                                        (selectedvalueOutput)="$event"></app-form-controls>
 
 
-
                 </mat-card>
             </mat-tab>
 
 
         </mat-tab-group>
+
     </ng-container>
 
 

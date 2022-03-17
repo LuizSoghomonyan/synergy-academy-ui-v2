@@ -34,24 +34,40 @@
 
 
     <mat-card>
-        <ng-container>
-            <app-form-controls type="text" [value]="courseName" matlabel="Course Name"
-                               [formCName]="'name'" [form]="form"
-                               (changedValue)="$event"></app-form-controls>
+        <ng-container *ngIf="course$ | async as course">
+
+            <div>
+                <app-form-controls type="text" [value]="course[0].name" matlabel="Course Name"
+                                   [formCName]="'name'" [form]="form"
+                                   (changedValue)="$event"></app-form-controls>
+                <app-form-controls type="text" [value]="course[0].description" matlabel="Description"
+                                   [formCName]="'description'" [form]="form"
+                                   (changedValue)="$event"></app-form-controls>
+            </div>
+
             <app-form-controls type="select"
-                               [selectvalue]="''"
+                               [selectvalue]="course[0].yearid.toString()"
                                matlabel="Year"
                                [formCName]="'yearid'"
                                [form]="form"
                                [classifierName]="'year'"
                                (selectedvalueOutput)="$event"></app-form-controls>
             <app-form-controls type="select"
-                               [selectvalue]="''"
+                               [selectvalue]="course[0].officeid"
                                matlabel="Office"
                                [formCName]="'officeid'"
                                [form]="form"
                                [classifierName]="'office'"
                                (selectedvalueOutput)="$event"></app-form-controls>
+            <div>
+                <app-form-controls type="date" [dateValue]="course[0].startdate" matlabel="Start Date"
+                                   [formCName]="'startdate'" [form]="form"
+                                   (changedValueDate)="$event"></app-form-controls>
+                <app-form-controls type="date" [dateValue]="course[0].enddate" matlabel="End Date"
+                                   [formCName]="'enddate'" [form]="form"
+                                   (changedValueDate)="$event"></app-form-controls>
+            </div>
+
         </ng-container>
 
 

@@ -6,9 +6,10 @@ import {
 } from "../Popups/data-save-successful-popup/data-save-successful-popup.component";
 import {ResetPopupComponent} from "../Popups/reset-popup/reset-popup.component";
 import {MatDialog} from "@angular/material/dialog";
-import {ActivatedRoute, Router} from "@angular/router";
-import {DataService} from "../services/data.service";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {Course, DataService, Student} from "../services/data.service";
 import {ClassifierService} from "../services/classifier.service";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-courses-profile',
@@ -17,8 +18,13 @@ import {ClassifierService} from "../services/classifier.service";
 })
 export class CoursesProfileComponent implements OnInit {
     @Input() courseName: string
+
     form: FormGroup
-    dialogRef: any
+    dialogRef: any;
+    course$: Observable<Course>;
+    isNew: false;
+    courseid: number;
+
     constructor( private route: ActivatedRoute,
                  private dataService: DataService,
                  public dialog: MatDialog,
@@ -32,13 +38,33 @@ export class CoursesProfileComponent implements OnInit {
             yearid: new FormControl('',[
                 Validators.required
             ]),
-            officeid: new FormControl('')
+            officeid: new FormControl(''),
+            startdate: new FormControl(''),
+            enddate: new FormControl(''),
+            description: new FormControl('')
         })
     }
 
     ngOnInit(): void {
+        this.initializeParams()
+        if(this.isNew){
+            this.course$ = this.dataService.addNew('course')
+        }
+        else{
+            this.course$ = this.dataService.loadinfo('courses', this.courseid.toString())
+        }
+
     }
 
+    initializeParams(){
+        this.route.params.subscribe((x: Params) =>{
+            this.courseid = x['courseid']
+        });
+
+        this.route.queryParams.subscribe((x: Params)=>{
+            this.isNew = x['isNew']
+        })
+    }
     onSubmit() {
         if(this.form.valid)
             console.log('submit')

@@ -6,15 +6,15 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
 
     <div class="tab-group savediv">
-        <div class="tab-group savediv app-button1" style="left: 1500px;">
+        <div class="tab-group savediv app-button1" style="margin-left: 300px" >
             <app-button (click)="openDialog('save&close')" type="save&close"></app-button>
         </div>
 
-        <div class="tab-group savediv app-button2" style="left: 1400px;">
+        <div class="tab-group savediv app-button2"  style="margin-left: 200px">
             <app-button (click)="openDialog('save')" type="save"></app-button>
         </div>
 
-        <div class="tab-group savediv app-button3" style="left: 1300px;">
+        <div class="tab-group savediv app-button3"  style="margin-left: 100px">
             <app-button (click)="openDialog('reset')" type="reset"></app-button>
         </div>
 

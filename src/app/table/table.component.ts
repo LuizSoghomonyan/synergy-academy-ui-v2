@@ -46,7 +46,7 @@ export class TableComponent implements OnInit {
 
     ngOnInit() {
         this.refreshData();
-        console.log('test')
+        // console.log('test')
     }
 
     // @ts-ignore
@@ -56,7 +56,7 @@ export class TableComponent implements OnInit {
     @ViewChild(MatTable) matTable: MatTable<any>;
 
     ngAfterViewInit(): void {
-        console.log('after view Init')
+        // console.log('after view Init')
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
         this.refreshData();
@@ -69,7 +69,7 @@ export class TableComponent implements OnInit {
     }
 
     refreshData() {
-        console.log('this.datatype',this.datatype)
+        // console.log('this.datatype',this.datatype)
 
         if (this.datatype == 'allStudents') {
 
@@ -94,9 +94,9 @@ export class TableComponent implements OnInit {
             this.displayedColumnsConfig$ = this.dataService.getConfigs('courses');
             this.displayedColumnsConfig$.subscribe(x =>{
                 this.config = x
-                console.log('this.config',this.config)
+                // console.log('this.config',this.config)
                 this.displayedColumnsConfig = x;
-                console.log('displayedColumnsConfig',this.displayedColumnsConfig)
+                // console.log('displayedColumnsConfig',this.displayedColumnsConfig)
                 this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
 
             })
@@ -111,7 +111,7 @@ export class TableComponent implements OnInit {
                     })
                 )
                 .subscribe(x =>{
-                        console.log( )
+                        // console.log( )
                        this.dataSource.data.forEach((value) => {
                            value['startdate'] = this.datepipe.transform(value['startdate'], 'mediumDate')
                            value['enddate'] = this.datepipe.transform(value['enddate'], 'mediumDate')

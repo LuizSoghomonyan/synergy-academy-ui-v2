@@ -5,10 +5,9 @@
 }
 
 .tab-group {
-
     position: absolute;
-    top: 0;
-    left: 0;
+    /*top: 0;*/
+    /*left: 0;*/
 }
 
 .mat-blue {
@@ -19,9 +18,13 @@
 
 .savediv {
     margin-top: 0.5%;
-    z-index: 9;
+    z-index: 10;
+    left: 57%;
 }
-
+.app-button1{
+    left: 100%;
+    /*float: right;*/
+}
 .mat-card {
     margin: 2%;
     width: 90%;

@@ -42,6 +42,7 @@ export interface Config {
 export class DataService {
     private destroy$: Subject<boolean> = new Subject();
     allStudents: Student[] = []
+
     newStudent: Student = {
         address: '',
         birthday: '',
@@ -59,6 +60,16 @@ export class DataService {
         studentid: 0,
         universityid: '',
         whatprogramminglanguagesdoyouknow: '',
+    }
+
+    newCourse: Course = {
+        courseid: 0,
+        name: '',
+        description: '',
+        yearid: 0,
+        officeid: 0,
+        startdate: new Date(),
+        enddate: new Date()
     }
 
     // { birthday: string; firstname: string; address: string; whatprogramminglanguagesdoyouknow: string; phonenumber: string; othercoursesattended: string; lastname: string; studentid: number; howdidyoufindid: string; universityid: string; educationdepartmentadmissionandgraduationyear: string; haveyoueverparticipatedinprogramming: string; doyouhaveworkexperience: string; gpa: number; fullname: string; email: string }
@@ -91,10 +102,13 @@ export class DataService {
     addNew(tablename: string): Observable<any> {
         let ob;
         //TODO for course
-        // if (tablename == 'student') {
-        ob = of([this.newStudent]);
-        return ob
-        // }
+        if (tablename == 'student') {
+            return of([this.newStudent]);
+        }
+        else if(tablename == 'course'){
+            return of([this.newCourse])
+        }
+        else return of([])
 
     }
 

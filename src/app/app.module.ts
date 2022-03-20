@@ -34,6 +34,7 @@ import { MaticonComponent } from './maticon/maticon.component';
 import { ExamsComponent } from './exams/exams.component';
 import { EducationProcessComponent } from './education-process/education-process.component';
 import { ButtonComponent } from './button/button.component';
+import { ExamProfileComponent } from './exam-profile/exam-profile.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import { ButtonComponent } from './button/button.component';
         MaticonComponent,
         ExamsComponent,
         EducationProcessComponent,
-        ButtonComponent
+        ButtonComponent,
+        ExamProfileComponent
 
     ],
     imports: [

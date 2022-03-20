@@ -2,3 +2,12 @@
     [titleName]="'Exams'"
     [icon]="'Exams'">
 </app-title>
+
+<div>
+    <div class="app-button">
+        <app-button type="addNew" routerLink="addExam"></app-button>
+    </div>
+
+    <app-table [datatype]="'allExams'"></app-table>
+
+</div>

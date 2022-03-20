@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {Course, Student, DataService, Config} from "../services/data.service";
+import {Course, Student, DataService, Config, Exam} from "../services/data.service";
 import {
     delay,
     first,
@@ -118,8 +118,34 @@ export class TableComponent implements OnInit {
                        })
                     }
                 )
-        }
+        } if (this.datatype == 'allExams') {
 
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('exams');
+
+            this.displayedColumnsConfig$.subscribe(x =>{
+                this.config = x
+                this.displayedColumnsConfig = x //this.displayedColumnsConfig.push(x);
+                this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
+
+            })
+            this.datatypeIdForRouting = 'courseexamid'
+            this.route.params.subscribe((x:Params) =>{
+                this.dataService.getExams(x['courseid'])
+                    .pipe(
+                        first(),
+                        map((exams: Exam[]) => this.dataSource.data = exams)
+                    )
+                    .subscribe(x =>{
+                        // console.log( )
+                        this.dataSource.data.forEach((value) => {
+                            value['startdate'] = this.datepipe.transform(value['startdate'], 'mediumDate')
+                            value['enddate'] = this.datepipe.transform(value['enddate'], 'mediumDate')
+                        })
+                    });
+            })
+
+        }
+        //todo - educationProcess
 
     }
 
@@ -137,14 +163,3 @@ export class TableComponent implements OnInit {
 
 }
 
-
-/*
-*
-*   key display  module
-*   a     b       student
-*
-*
-*
-*
-*
-* */

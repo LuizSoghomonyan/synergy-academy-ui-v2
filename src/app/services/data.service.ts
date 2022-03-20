@@ -38,6 +38,15 @@ export interface Config {
     orderid: number
 }
 
+export interface Exam{
+    courseexamid : number,
+    courseid : number,
+    enddate : Date,
+    examtypeid : string,
+    name : string,
+    startdate : Date
+}
+
 @Injectable({providedIn: 'root'})
 export class DataService {
     private destroy$: Subject<boolean> = new Subject();
@@ -70,6 +79,15 @@ export class DataService {
         officeid: 0,
         startdate: new Date(),
         enddate: new Date()
+    };
+
+    newExam: Exam = {
+        courseexamid : 0,
+        courseid : 0,
+        enddate : new Date(),
+        examtypeid : '',
+        name : '',
+        startdate : new Date()
     }
 
     // { birthday: string; firstname: string; address: string; whatprogramminglanguagesdoyouknow: string; phonenumber: string; othercoursesattended: string; lastname: string; studentid: number; howdidyoufindid: string; universityid: string; educationdepartmentadmissionandgraduationyear: string; haveyoueverparticipatedinprogramming: string; doyouhaveworkexperience: string; gpa: number; fullname: string; email: string }
@@ -86,6 +104,10 @@ export class DataService {
 
     getConfigs(type: string) {
         return this.http.get<Config[]>(`http://localhost:1238/config/${type}`)
+    }
+
+    getExams(id: number): Observable<Exam[]> {
+        return this.http.get<Exam[]>(`http://localhost:1238/courses/${id}/exams`);
     }
 
     //return Student by id(if type = students), or course by id(if type = course)
@@ -107,6 +129,9 @@ export class DataService {
         }
         else if(tablename == 'course'){
             return of([this.newCourse])
+        }
+        else if(tablename == 'exam'){
+            return of([this.newExam])
         }
         else return of([])
 

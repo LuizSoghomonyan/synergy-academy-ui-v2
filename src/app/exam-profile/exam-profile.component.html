@@ -1,0 +1,4 @@
+<p>exam-profile works!</p>
+<ng-container *ngIf="exams$ | async as exams">
+    <p>{{exams | json}}</p>
+</ng-container>

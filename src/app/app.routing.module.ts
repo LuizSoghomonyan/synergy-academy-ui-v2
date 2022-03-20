@@ -9,6 +9,7 @@ import {CourseTabComponent} from "./course-tab/course-tab.component";
 import {CoursesProfileComponent} from "./courses-profile/courses-profile.component";
 import {ExamsComponent} from "./exams/exams.component";
 import {EducationProcessComponent} from "./education-process/education-process.component";
+import {ExamProfileComponent} from "./exam-profile/exam-profile.component";
 
 const routes: Routes = [
     {path: 'students', component: AllstudentsComponent},
@@ -21,6 +22,8 @@ const routes: Routes = [
     {path: 'courses/:courseid/info', component: CoursesProfileComponent},
     {path: 'courses/:courseid/students', component: TestComponent},
     {path: 'courses/:courseid/exams', component: ExamsComponent},
+    {path: 'courses/:courseid/exams/addExam', component: ExamProfileComponent},
+    {path: 'exams/:examid', component: ExamProfileComponent},
     {path: 'courses/:courseid/educationProcess', component: EducationProcessComponent},
     {path: 'courses/addCourse', component: TestComponent},
     {path: '**', component: PagenotfoundComponent}

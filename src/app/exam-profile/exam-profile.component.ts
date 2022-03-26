@@ -1,7 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {DataService, Exam} from "../services/data.service";
-import {ActivatedRoute, Params, Route} from "@angular/router";
+import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 import {Observable} from "rxjs";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {StudentProfilePopupComponent} from "../Popups/student-profile-popup/student-profile-popup.component";
+import {
+    DataSaveSuccessfulPopupComponent
+} from "../Popups/data-save-successful-popup/data-save-successful-popup.component";
+import {ResetPopupComponent} from "../Popups/reset-popup/reset-popup.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ClassifierService} from "../services/classifier.service";
 
 @Component({
     selector: 'app-exam-profile',
@@ -13,29 +21,113 @@ export class ExamProfileComponent implements OnInit {
     isNew: false;
     examid: number;
     exams$: Observable<Exam[]>
-    constructor(private dataService: DataService, private route: ActivatedRoute) {
+    form: FormGroup
+    isSaveClose: boolean = false
+    dialogRef: any
+    courseid: number;
 
+
+    constructor(private dataService: DataService, private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private classiferService: ClassifierService,
+    private router: Router,
+    private elRef: ElementRef) {
+        this.form = new FormGroup({
+            examtypeid: new FormControl('',Validators.required),
+            name: new FormControl('', Validators.required),
+            startdate: new FormControl('',Validators.required),
+            enddate: new FormControl('',Validators.required)
+
+        })
     }
 
     ngOnInit(): void {
-        this.route.queryParams.subscribe((x: Params) => {
-            this.isNew = x['isNew']
-            // console.log('xxxxxxxxxxxx',x)
-        })
-        this.route.params.subscribe((x: Params) => {
-            this.examid = x['examid']
-            // console.log('eeeeeeeeeee',x)
-        })
+        this.initializeParams();
         if(this.isNew){
-            // this.exam = this.dataService.getExams()
-            this.dataService.addNew('exam').subscribe(x=>console.log(x))
+            this.exams$ = this.dataService.addNew('exam')
         }
         else{
-            this.exams$ = this.dataService.loadinfo('exams', this.examid.toString()) as Observable<Exam[]>
+            this.exams$ = this.dataService.loadinfo('exams', this.examid.toString())
         }
-
     }
 
+    initializeParams(){
+        this.route.params.subscribe((x: Params) =>{
+            this.examid = x['examid']
+        });
+
+        this.route.queryParams.subscribe((x: Params)=>{
+            this.isNew = x['isNew']
+        })
+    }
+
+    onSubmit() {
+        if(this.form.valid){
+            console.log('exam submit')
+            if(!this.isNew){
+                console.log('old exam')
+                this.dataService.updateDataById(this.examid,'exams', this.form.value).subscribe()
+            }
+            else{
+                console.log('new exam')
+                this.route.params.subscribe((params: Params) =>{
+                    this.courseid = params['courseid']
+                    // console.log('ASDFGHJASDFGHJK@#$%^&*', params)
+                    this.dataService.addData('exams', this.form.value, this.courseid).subscribe(x => {
+                        this.examid = x['id']
+
+                        if(!this.isSaveClose)
+                            this.router.navigate(['exams', this.examid])
+                    })
+                })
+
+            }
+
+        }
+
+        else
+            console.log('not valid')
+    }
+
+    openDialog(buttontype: string) {
+        if (buttontype == 'save') {
+            //if()
+            if (this.form.invalid) {
+                // console.log(this.dialog)
+                this.dialog.open(StudentProfilePopupComponent);
+            } else {
+                this.dialog.open(DataSaveSuccessfulPopupComponent);
+            }
+            // [routerLink]="['/students']"
+            // this.router.navigate(['/students'])
+        }
+
+        if (buttontype == 'save&close') {
+            this.isSaveClose = true;
+            if (this.form.invalid) {
+                this.dialog.open(StudentProfilePopupComponent);
+            } else {
+                this.dialog.open(DataSaveSuccessfulPopupComponent);
+                this.onSubmit()
+                if (this.form.valid){
+                    ///courses/1676/exams/addExam?isNew=true
+                    // console.log('URL',this.router.url)
+                    this.router.navigate(['/courses'])
+                }
 
 
+            }
+
+        }
+
+        if (buttontype == 'reset') {
+            this.dialogRef = this.dialog.open(ResetPopupComponent);
+            // @ts-ignore
+            this.dialogRef.afterClosed().subscribe(result => {
+                if (this.dialogRef.componentInstance.isReset)
+                    this.form.reset();
+            });
+
+        }
+    }
 }

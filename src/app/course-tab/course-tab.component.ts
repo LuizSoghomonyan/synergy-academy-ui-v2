@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Params} from "@angular/router";
 import {Observable} from "rxjs";
-import {Student} from "../services/data.service";
+import {DataService, Student} from "../services/data.service";
 
 @Component({
     selector: 'app-course-tab',
@@ -11,7 +11,7 @@ import {Student} from "../services/data.service";
 export class CourseTabComponent implements OnInit {
     coursename: string;
     isNew: false;
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private dataService: DataService) {
     }
 
     ngOnInit(): void {
@@ -20,7 +20,11 @@ export class CourseTabComponent implements OnInit {
                 this.coursename = 'New Course'
             }
             else{
-                this.coursename = x['courseid']
+                //this.coursename = x['courseid']
+                this.dataService.loadinfo('courses',x['courseid']).subscribe((x => {
+                    // console.log('WWWWWWWWWWWWW',x)
+                    this.coursename = x[0]['name']
+                }))
             }
 
         })

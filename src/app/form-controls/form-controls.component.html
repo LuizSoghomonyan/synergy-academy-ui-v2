@@ -4,10 +4,10 @@
         <mat-label>{{matlabel}}</mat-label>
         <input [type]="type"
                matInput
-               [(ngModel)]="value"
+               [(ngModel)]="value == null ? '' : value"
                [formControlName]="formCName">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="value=''" type="reset">
+                (click)="value=''" type="button">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -18,12 +18,12 @@
         <mat-label>{{matlabel}}</mat-label>
         <input
             matInput
-               [matDatepicker]="picker"
-               [formControlName]="formCName"
-               [(ngModel)]="changedDate"
-               (change)="onChangesDate()"
+            [matDatepicker]="picker"
+            [formControlName]="formCName"
+            [(ngModel)]="changedDate == null ? '' : changedDate"
+            (change)="onChangesDate()"
         >
-        <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteDateValue()" type="reset">
+        <button matSuffix mat-icon-button aria-label="Clear" (click)="deleteDateValue()" type="button">
             <mat-icon>close</mat-icon>
         </button>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -40,11 +40,11 @@
         <textarea matInput
                   [matTooltip]="matlabel"
                   matTooltipShowDelay="1000"
-                  [(ngModel)]="value"
+                  [(ngModel)]="value == null ? '' : value"
                   [formControlName]="formCName">
             </textarea>
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="value=''"type="reset">
+                (click)="value=''"type="button">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -56,10 +56,10 @@
         <mat-label>{{matlabel}}</mat-label>
         <input [type]="type"
                matInput
-               [(ngModel)]="numberValue"
+               [(ngModel)]="numberValue == null ? '' : numberValue"
                [formControlName]="formCName">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="value=''"type="reset">
+                (click)="value=''"type="button">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -72,11 +72,11 @@
         <mat-label>{{matlabel}}</mat-label>
         <input type="text"
                matInput
-               [(ngModel)]="value"
+               [(ngModel)]="value == null ? '' : value"
                [formControlName]="formCName"
                placeholder="098-12-34-56">
         <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                (click)="value=''"type="reset">
+                (click)="value=''"type="button">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
@@ -89,8 +89,8 @@
 
         <mat-form-field [formGroup]="form">
             <mat-label>{{matlabel}}</mat-label>
-            <mat-select [(ngModel)]="selectvalue" [formControlName]="formCName">
-                <mat-option>None</mat-option>
+            <mat-select [(ngModel)]="selectvalue == null ? '' : selectvalue" [formControlName]="formCName">
+                <mat-option [value]="null">None</mat-option>
                 <mat-option *ngFor="let svalue of selectedvalues"
                             [value]="svalue['name']"
                 >
@@ -98,7 +98,7 @@
                 </mat-option>
             </mat-select>
 
-            <button *ngIf="selectvalue" matSuffix mat-icon-button aria-label="Clear" (click)="selectvalue='None'"type="reset">
+            <button *ngIf="selectvalue" matSuffix mat-icon-button aria-label="Clear" (click)="selectvalue='None'"type="button">
                 <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>

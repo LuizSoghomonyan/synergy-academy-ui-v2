@@ -1,4 +1,46 @@
-<p>exam-profile works!</p>
-<ng-container *ngIf="exams$ | async as exams">
-    <p>{{exams | json}}</p>
-</ng-container>
+<app-title
+    [titleName]="'Exam Information'"
+    [icon]="'Exams'">
+</app-title>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="btn">
+        <app-button type="save&close" (click)="openDialog('save&close')" class="btn"></app-button>
+        <app-button type="save" (click)="openDialog('save')"  class="btn"></app-button>
+        <app-button type="reset" (click)="openDialog('reset')"  class="btn"></app-button>
+
+    </div>
+
+
+    <mat-card>
+        <ng-container *ngIf="exams$ | async as exam">
+
+            <div>
+                <app-form-controls type="text" [value]="exam[0].name == null ? '' : exam[0].name" matlabel="Exam Name"
+                                   [formCName]="'name'" [form]="form"
+                                   (changedValue)="$event"></app-form-controls>
+            </div>
+
+            <app-form-controls type="select"
+                               [selectvalue]="exam[0].examtypeid == null ? '' : exam[0].examtypeid.toString()"
+                               matlabel="Exam Type"
+                               [formCName]="'examtypeid'"
+                               [form]="form"
+                               [classifierName]="'examtype'"
+                               (selectedvalueOutput)="$event"></app-form-controls>
+            <div>
+                <app-form-controls type="date" [dateValue]="exam[0].startdate == null ? '' :
+                 exam[0].startdate.toString()" matlabel="Start Date"
+                                   [formCName]="'startdate'" [form]="form"
+                                   (changedValueDate)="$event"></app-form-controls>
+                <app-form-controls type="date" [dateValue]="exam[0].enddate == null ? '' : exam[0].enddate.toString()" matlabel="End Date"
+                                   [formCName]="'enddate'" [form]="form"
+                                   (changedValueDate)="$event"></app-form-controls>
+            </div>
+
+        </ng-container>
+
+
+    </mat-card>
+</form>

@@ -34,7 +34,7 @@ export class FormControlsComponent implements OnInit,OnChanges {
     @Input() form: FormGroup
     @Output() changedValue: EventEmitter<string> = new EventEmitter<string>()
     @Output() changedValueDate: EventEmitter<Date> = new EventEmitter<Date>()
-    @Input() dateValue: string //= '05/02/2015'
+    @Input() dateValue: string
     @Input() numberValue: number
     @Input() selectvalue: string
     @Input() classifierName: string
@@ -44,8 +44,8 @@ export class FormControlsComponent implements OnInit,OnChanges {
 
     classifierData$: Observable<string[]>
     datePipeString : string | null;
-    constructor(private classifierService: ClassifierService,private datePipe: DatePipe) {
-
+    constructor(private classifierService: ClassifierService,public datepipe: DatePipe) {
+        this.datepipe = new DatePipe('en-US')
         // this.datePipeString = datePipe.transform(Date.now(),'dd/MM/YYYY');
         // // @ts-ignore
         // console.log(new Date(this.datePipeString,'yyyy-MM-dd'))
@@ -57,9 +57,12 @@ export class FormControlsComponent implements OnInit,OnChanges {
         // @ts-ignore
         this.classifierData$ = this.classifierService.getClassifierData(this.classifierName)
         if(this.type=='date'){
-            this.changedDate = new Date(this.dateValue)
-            console.log('changedDate', this.changedDate)
-            console.log('dateValue', this.dateValue)
+            let str: string = <string>this.datepipe.transform(this.changedDate, 'yyyy/MM/dd');
+            this.changedDate = new Date(str)
+            // console.log('BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB',
+            //     this.datepipe.transform(this.changedDate, 'yyyy/MM/dd')) //2022-03-10
+            // console.log('changedDate', this.changedDate)
+            // console.log('dateValue', this.dateValue)
         }
 
     }
@@ -74,7 +77,6 @@ export class FormControlsComponent implements OnInit,OnChanges {
         this.selectedvalueOutput.emit(this.selectvalue)
         // this.selectedvalueOutput.emit(this.selectedvalue)
         // this.changedValue.emit(this.value)
-
 
     }
 

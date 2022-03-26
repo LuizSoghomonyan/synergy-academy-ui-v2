@@ -35,6 +35,7 @@ import { ExamsComponent } from './exams/exams.component';
 import { EducationProcessComponent } from './education-process/education-process.component';
 import { ButtonComponent } from './button/button.component';
 import { ExamProfileComponent } from './exam-profile/exam-profile.component';
+import { CourseStudentsComponent } from './course-students/course-students.component';
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import { ExamProfileComponent } from './exam-profile/exam-profile.component';
         ExamsComponent,
         EducationProcessComponent,
         ButtonComponent,
-        ExamProfileComponent
+        ExamProfileComponent,
+        CourseStudentsComponent
 
     ],
     imports: [

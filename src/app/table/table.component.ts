@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {Course, Student, DataService, Config, Exam} from "../services/data.service";
@@ -29,6 +29,7 @@ import { DatePipe } from '@angular/common';
 
 export class TableComponent implements OnInit {
     @Input() datatype: string = ''
+    @Output() examsOutput: EventEmitter<Exam[]> = new EventEmitter<Exam[]>()
     datatypeIdForRouting: string = ''
     // @ts-ignore
     dataSource: MatTableDataSource<any>;
@@ -38,6 +39,7 @@ export class TableComponent implements OnInit {
     displayedColumns: string[] = []
     private destroy$: Subject<boolean> = new Subject();
     config: Config
+    exams: Exam[]
     constructor(private dataService: DataService, private route: ActivatedRoute,public datepipe: DatePipe) {
         this.dataSource = new MatTableDataSource<any>()
         this.datepipe = new DatePipe('en-US')
@@ -87,7 +89,7 @@ export class TableComponent implements OnInit {
                     first(),
                     map((students: Student[]) => this.dataSource.data = students)
                 )
-                .subscribe();
+                .subscribe(x => console.log('zQWERTYUI'));
         }
 
         if (this.datatype == 'allCourses') {
@@ -111,7 +113,7 @@ export class TableComponent implements OnInit {
                     })
                 )
                 .subscribe(x =>{
-                        // console.log( )
+                        console.log( 'ASDFGHJKXCVBN')
                        this.dataSource.data.forEach((value) => {
                            value['startdate'] = this.datepipe.transform(value['startdate'], 'mediumDate')
                            value['enddate'] = this.datepipe.transform(value['enddate'], 'mediumDate')
@@ -136,11 +138,14 @@ export class TableComponent implements OnInit {
                         map((exams: Exam[]) => this.dataSource.data = exams)
                     )
                     .subscribe(x =>{
-                        // console.log( )
+                        console.log('POIUYTR(*&^%$#@')
                         this.dataSource.data.forEach((value) => {
                             value['startdate'] = this.datepipe.transform(value['startdate'], 'mediumDate')
                             value['enddate'] = this.datepipe.transform(value['enddate'], 'mediumDate')
                         })
+                        this.exams = x
+                        console.log(this.exams)
+                        this.examsOutput.emit(this.exams)
                     });
             })
 

@@ -24,7 +24,7 @@ export class CoursesProfileComponent implements OnInit {
     course$: Observable<Course>;
     isNew: false;
     courseid: number;
-
+    isSaveClose: boolean = false
     constructor( private route: ActivatedRoute,
                  private dataService: DataService,
                  public dialog: MatDialog,
@@ -66,8 +66,23 @@ export class CoursesProfileComponent implements OnInit {
         })
     }
     onSubmit() {
-        if(this.form.valid)
-            console.log('submit')
+        if(this.form.valid){
+            console.log('course submit')
+            if(!this.isNew){
+                console.log('old course')
+                this.dataService.updateDataById(this.courseid,'courses', this.form.value).subscribe()
+            }
+            else{
+                console.log('new course')
+                this.dataService.addData('courses', this.form.value).subscribe(x => {
+                    this.courseid = x['id']
+                    if(!this.isSaveClose)
+                        this.router.navigate(['courses', this.courseid, 'info'])
+                })
+            }
+
+        }
+
         else
             console.log('not valid')
     }
@@ -86,6 +101,7 @@ export class CoursesProfileComponent implements OnInit {
         }
 
         if (buttontype == 'save&close') {
+            this.isSaveClose = true;
             let test;
             if (this.form.invalid) {
                 this.dialog.open(StudentProfilePopupComponent);

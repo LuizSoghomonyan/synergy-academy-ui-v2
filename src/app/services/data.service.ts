@@ -116,7 +116,11 @@ export class DataService {
     }
 
     updateDataById(id: number, tablename: string, formValues: any): Observable<any> {
-        console.log('formValues', formValues)
+        // if(tablename == 'exams')
+        // {
+        //     if(formValues['examtypeid'] == undefined)
+        // }
+        console.log('put', formValues)
         return this.http.put(`http://localhost:1238/${tablename}/${id}`, formValues)
     }
 
@@ -137,8 +141,17 @@ export class DataService {
 
     }
 
-    addData(tablename: string, formValues: any): Observable<any>{
+    addData(tablename: string, formValues: any, courseid?: number): Observable<any>{
         console.log('post data')
+        if(tablename == 'exams'){
+            console.log(formValues)
+            ///courses/{courseId}/exams:
+            //formValues.add('courseid', courseid)
+            formValues['courseid'] = courseid;
+            console.log('AFTER',formValues)
+            return this.http.post(`http://localhost:1238/courses/${courseid}/exams`, formValues)
+        }
+
         return this.http.post(`http://localhost:1238/${tablename}`, formValues);
 
     }

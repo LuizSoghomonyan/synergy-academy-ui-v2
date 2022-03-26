@@ -23,6 +23,7 @@ export class StudentProfileComponent implements OnInit {
     form: FormGroup
     universites: string[] = [];
     student: any
+    isSaveClose: boolean = false
 
     constructor(
         private route: ActivatedRoute,
@@ -118,22 +119,20 @@ export class StudentProfileComponent implements OnInit {
     onSubmit() {
         if (this.form.valid) {
             let test;
-            //TODO
-            console.log('onSubmit()', this.form)
             test = this.elRef.nativeElement.querySelector('form')
             test.submit;
-
+            console.log(this.isNew)
             if (!this.isNew) {
                 this.dataService.updateDataById(this.id, 'students', this.form.value)
-                    .subscribe(msg => {
-                        console.log('1',msg)
-                    })
+                    .subscribe()
             } else {
                 this.dataService.addData('students', this.form.value).subscribe(x=>{
-                    console.log('2',x)
+                    this.id = x['id'];
+                    if(!this.isSaveClose){
+                        this.router.navigate(['students', this.id])
+                    }
+
                 })
-                //todo - add studentid
-               //this.router.navigate(['students', '999'])
             }
 
         } else {
@@ -157,6 +156,7 @@ export class StudentProfileComponent implements OnInit {
         }
 
         if (buttontype == 'save&close') {
+            this.isSaveClose = true;
             let test;
             if (this.form.invalid) {
                 this.dialog.open(StudentProfilePopupComponent);
@@ -164,6 +164,7 @@ export class StudentProfileComponent implements OnInit {
                 this.dialog.open(DataSaveSuccessfulPopupComponent);
                 this.onSubmit()
                 if (this.form.valid)
+                    console.log('URLURLLLLL',this.router.url)
                     this.router.navigate(['/students'])
 
             }

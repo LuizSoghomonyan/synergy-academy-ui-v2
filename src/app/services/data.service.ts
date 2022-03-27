@@ -47,6 +47,12 @@ export interface Exam{
     startdate : Date
 }
 
+export interface ExamStudentResult{
+    studnetid: number,
+    fullname: string,
+    grade: number,
+    comment: string
+}
 @Injectable({providedIn: 'root'})
 export class DataService {
     private destroy$: Subject<boolean> = new Subject();
@@ -110,6 +116,17 @@ export class DataService {
         return this.http.get<Exam[]>(`http://localhost:1238/courses/${id}/exams`);
     }
 
+    ///exams/{examId}/students:
+    getStudentsByExamId(id: number): Observable<Student[]>{
+        return this.http.get<Student[]>(`http://localhost:1238/exams/${id}/students`)
+    }
+
+    getStudentsResultsByExamId(id: number): Observable<ExamStudentResult[]>{
+        return this.http.get<ExamStudentResult[]>(`http://localhost:1238/exams/${id}/results`)
+    }
+
+
+
     //return Student by id(if type = students), or course by id(if type = course)
     loadinfo(type: string, id: string):Observable<any> {
             return this.http.get(`http://localhost:1238/${type}/${id}`)
@@ -122,6 +139,9 @@ export class DataService {
         // }
         console.log('put', formValues)
         return this.http.put(`http://localhost:1238/${tablename}/${id}`, formValues)
+    }
+    updateResultsById(formValues: any){
+        return this.http.put(`http://localhost:1238/exams/${formValues["courseexamid"]}/results`, formValues)
     }
 
 

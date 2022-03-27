@@ -1,0 +1,18 @@
+<app-title
+    [titleName]="'Exam Information'"
+    [icon]="'Exams'">
+</app-title>
+
+<mat-tab-group>
+    <mat-tab label="General Informatiom">
+        <app-exam-profile></app-exam-profile>
+    </mat-tab>
+
+    <mat-tab label="Participants">
+        <app-exam-students></app-exam-students>
+    </mat-tab>
+
+    <mat-tab label="Results">
+        <app-exam-students-result></app-exam-students-result>
+    </mat-tab>
+</mat-tab-group>

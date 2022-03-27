@@ -1,0 +1,18 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <app-form-controls type="text" [value]="this.data.dataKey[0].fullname" matlabel="Full Name"
+                       [formCName]="'fullname'" [form]="form"
+                       [_disabled]="true"
+                       (changedValue)="$event"></app-form-controls>
+
+    <app-form-controls type="number" [numberValue]="this.data.dataKey[0].grade" matlabel="Grade"
+                       [formCName]="'grade'" [form]="form"
+                       (changedValue)="$event"></app-form-controls>
+
+    <app-form-controls type="textarea"
+                       [value]="this.data.dataKey[0].comment"
+                       matlabel="Comment"
+                       [formCName]="'comment'" [form]="form"
+                       (changedValue)="$event"></app-form-controls>
+</form>
+
+<app-button (click)="onSubmit()" type="save"></app-button>

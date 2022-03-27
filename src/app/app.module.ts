@@ -35,7 +35,10 @@ import { ExamsComponent } from './exams/exams.component';
 import { EducationProcessComponent } from './education-process/education-process.component';
 import { ButtonComponent } from './button/button.component';
 import { ExamProfileComponent } from './exam-profile/exam-profile.component';
-import { CourseStudentsComponent } from './course-students/course-students.component';
+import { ExamStudentsComponent } from './exam-students/exam-students.component';
+import { ExamTabsComponent } from './exam-tabs/exam-tabs.component';
+import { ExamStudentsResultComponent } from './exam-students-result/exam-students-result.component';
+import { ExamResultsPopupComponent } from './exam-results-popup/exam-results-popup.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +63,10 @@ import { CourseStudentsComponent } from './course-students/course-students.compo
         EducationProcessComponent,
         ButtonComponent,
         ExamProfileComponent,
-        CourseStudentsComponent
+        ExamStudentsComponent,
+        ExamTabsComponent,
+        ExamStudentsResultComponent,
+        ExamResultsPopupComponent
 
     ],
     imports: [

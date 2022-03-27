@@ -1,17 +1,32 @@
 <ng-container *ngIf="type == 'text'">
     <mat-form-field [formGroup]="form">
-
+<!--<p>{{value}}</p>-->
         <mat-label>{{matlabel}}</mat-label>
-        <input [type]="type"
-               matInput
-               [(ngModel)]="value == null ? '' : value"
-               [formControlName]="formCName">
-        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+        <ng-container *ngIf="_disabled; else active">
+<!--            <input matInput disabled value="Google">-->
+            <input [type]="type"
+                   matInput
+                   disabled
+                   value="{{value}}"
+            >
+        </ng-container>
+        <ng-template #active>
+            <input [type]="type"
+                   matInput
+                   [(ngModel)]="value == null ? '' : value"
+                   [formControlName]="formCName"
+                   [disabled]="_disabled"
+
+            >
+
+        </ng-template>
+        <button *ngIf="value && !_disabled" matSuffix mat-icon-button aria-label="Clear"
                 (click)="value=''" type="button">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
 </ng-container>
+
 
 <ng-container *ngIf="type == 'date'">
     <mat-form-field [formGroup]="form">

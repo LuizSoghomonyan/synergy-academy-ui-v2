@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {Course, Student, DataService, Config, Exam} from "../services/data.service";
+import {Course, Student, DataService, Config, Exam, ExamStudentResult} from "../services/data.service";
 import {
     delay,
     first,
@@ -18,8 +18,10 @@ import {
     tap
 } from "rxjs";
 import {MatSort} from "@angular/material/sort";
-import {ActivatedRoute, Event, Params} from "@angular/router";
+import {ActivatedRoute, Event, Params, Router} from "@angular/router";
 import { DatePipe } from '@angular/common';
+import {MatDialog} from "@angular/material/dialog";
+import {ExamResultsPopupComponent} from "../exam-results-popup/exam-results-popup.component";
 
 @Component({
     selector: 'app-table',
@@ -40,7 +42,12 @@ export class TableComponent implements OnInit {
     private destroy$: Subject<boolean> = new Subject();
     config: Config
     exams: Exam[]
-    constructor(private dataService: DataService, private route: ActivatedRoute,public datepipe: DatePipe) {
+    constructor(private dataService: DataService,
+                private route: ActivatedRoute,
+                public datepipe: DatePipe,
+                private router: Router,
+                public dialog: MatDialog,
+    ) {
         this.dataSource = new MatTableDataSource<any>()
         this.datepipe = new DatePipe('en-US')
 
@@ -120,7 +127,8 @@ export class TableComponent implements OnInit {
                        })
                     }
                 )
-        } if (this.datatype == 'allExams') {
+        }
+        if (this.datatype == 'allExams') {
 
             this.displayedColumnsConfig$ = this.dataService.getConfigs('exams');
 
@@ -150,6 +158,51 @@ export class TableComponent implements OnInit {
             })
 
         }
+
+        if (this.datatype == 'allExamStudents') {
+
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('students');
+
+            this.displayedColumnsConfig$.subscribe(x =>{
+                this.config = x
+                this.displayedColumnsConfig = x //this.displayedColumnsConfig.push(x);
+                this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
+
+            })
+            this.datatypeIdForRouting = 'studentid'
+            this.route.url.subscribe(x=> {
+                this.dataService.getStudentsByExamId(<number><unknown>(x[1].path))
+                    .pipe(
+                        first(),
+                        map((students: Student[]) => this.dataSource.data = students)
+                    )
+                    .subscribe(x => console.log('zQWERTYUI'));
+            })
+
+
+        }
+        if (this.datatype == 'allExamStudentsResults') {
+
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('examstudnetsresults');
+
+            this.displayedColumnsConfig$.subscribe(x =>{
+                this.config = x
+                this.displayedColumnsConfig = x //this.displayedColumnsConfig.push(x);
+                this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
+
+            })
+            this.datatypeIdForRouting = 'studentid'
+            this.route.url.subscribe(x=> {
+                this.dataService.getStudentsResultsByExamId(<number><unknown>(x[1].path))
+                    .pipe(
+                        first(),
+                        map((examStudentResult: ExamStudentResult[]) => this.dataSource.data = examStudentResult)
+                    )
+                    .subscribe(x => console.log('zQWERTYUI'));
+            })
+
+
+        }
         //todo - educationProcess
 
     }
@@ -166,5 +219,23 @@ export class TableComponent implements OnInit {
     }
 
 
+    routerLinkForRows(type: any, id: number) {
+        //[routerLink]="['/',col['type'],element[datatypeIdForRouting]]"
+        if(type == 'examstudnetsresults'){
+            console.log('ID', id)
+            this.dialog.open(ExamResultsPopupComponent, {
+                width: '500',
+                height: '500',
+                data: {
+                    dataKey: this.dataSource.data.filter(x => {
+                        return x['studentid'] == id;
+                    })
+                }
+            })
+        }
+        else{
+            this.router.navigate(['/', type, id])
+        }
+    }
 }
 

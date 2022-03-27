@@ -39,6 +39,7 @@ export class FormControlsComponent implements OnInit,OnChanges {
     @Input() selectvalue: string
     @Input() classifierName: string
     @Output() selectedvalueOutput: EventEmitter<string> = new EventEmitter<string>();
+    @Input() _disabled: boolean = false
     changedDate: Date = new Date()
 
 

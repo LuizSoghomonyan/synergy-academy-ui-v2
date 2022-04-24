@@ -126,7 +126,6 @@ export class DataService {
     }
 
 
-
     //return Student by id(if type = students), or course by id(if type = course)
     loadinfo(type: string, id: string):Observable<any> {
             return this.http.get(`http://localhost:1238/${type}/${id}`)

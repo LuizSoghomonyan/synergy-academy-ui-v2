@@ -20,25 +20,28 @@ import {AllcoursesComponent} from './allcourses/allcourses.component';
 import {StudentProfileComponent} from './student-profile/student-profile.component';
 import {TabComponent} from './tab/tab.component';
 import {MatInputModule} from "@angular/material/input";
-import { FormControlsComponent } from './form-controls/form-controls.component';
+import {FormControlsComponent} from './form-controls/form-controls.component';
 import {DatePipe} from "@angular/common";
-import { StudentProfilePopupComponent } from './Popups/student-profile-popup/student-profile-popup.component';
-import { DataSaveSuccessfulPopupComponent } from './Popups/data-save-successful-popup/data-save-successful-popup.component';
-import { ResetPopupComponent } from './Popups/reset-popup/reset-popup.component';
-import { SelectComponent } from './select/select.component';
-import { CourseTabComponent } from './course-tab/course-tab.component';
+import {StudentProfilePopupComponent} from './Popups/student-profile-popup/student-profile-popup.component';
+import {
+    DataSaveSuccessfulPopupComponent
+} from './Popups/data-save-successful-popup/data-save-successful-popup.component';
+import {ResetPopupComponent} from './Popups/reset-popup/reset-popup.component';
+import {SelectComponent} from './select/select.component';
+import {CourseTabComponent} from './course-tab/course-tab.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {ClassifierService} from "./services/classifier.service";
-import { CoursesProfileComponent } from './courses-profile/courses-profile.component';
-import { MaticonComponent } from './maticon/maticon.component';
-import { ExamsComponent } from './exams/exams.component';
-import { EducationProcessComponent } from './education-process/education-process.component';
-import { ButtonComponent } from './button/button.component';
-import { ExamProfileComponent } from './exam-profile/exam-profile.component';
-import { ExamStudentsComponent } from './exam-students/exam-students.component';
-import { ExamTabsComponent } from './exam-tabs/exam-tabs.component';
-import { ExamStudentsResultComponent } from './exam-students-result/exam-students-result.component';
-import { ExamResultsPopupComponent } from './exam-results-popup/exam-results-popup.component';
+import {CoursesProfileComponent} from './courses-profile/courses-profile.component';
+import {MaticonComponent} from './maticon/maticon.component';
+import {ExamsComponent} from './exams/exams.component';
+import {EducationProcessComponent} from './education-process/education-process.component';
+import {ButtonComponent} from './button/button.component';
+import {ExamProfileComponent} from './exam-profile/exam-profile.component';
+import {ExamStudentsComponent} from './exam-students/exam-students.component';
+import {ExamTabsComponent} from './exam-tabs/exam-tabs.component';
+import {ExamStudentsResultComponent} from './exam-students-result/exam-students-result.component';
+import {ExamResultsPopupComponent} from './exam-results-popup/exam-results-popup.component';
+import {CourseStudentsComponent} from './course-students/course-students.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +69,8 @@ import { ExamResultsPopupComponent } from './exam-results-popup/exam-results-pop
         ExamStudentsComponent,
         ExamTabsComponent,
         ExamStudentsResultComponent,
-        ExamResultsPopupComponent
+        ExamResultsPopupComponent,
+        CourseStudentsComponent
 
     ],
     imports: [

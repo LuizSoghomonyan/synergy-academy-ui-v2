@@ -1,0 +1,14 @@
+<app-title
+    [titleName]="'aLL students'"
+    [icon]="'AllStudents'"
+></app-title>
+
+<div>
+    <div class="app-button">
+        <app-button type="addNew" routerLink="addStudent"></app-button>
+    </div>
+
+
+    <app-table [datatype]="'courseStudents'"></app-table>
+
+</div>

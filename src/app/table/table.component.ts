@@ -158,7 +158,7 @@ export class TableComponent implements OnInit {
             })
 
         }
-
+        //courseStudents
         if (this.datatype == 'allExamStudents') {
 
             this.displayedColumnsConfig$ = this.dataService.getConfigs('students');
@@ -203,6 +203,8 @@ export class TableComponent implements OnInit {
 
 
         }
+        //courseStudents
+
         //todo - educationProcess
 
     }

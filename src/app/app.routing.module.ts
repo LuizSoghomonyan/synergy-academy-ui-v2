@@ -12,6 +12,7 @@ import {EducationProcessComponent} from "./education-process/education-process.c
 import {ExamProfileComponent} from "./exam-profile/exam-profile.component";
 import {ExamTabsComponent} from "./exam-tabs/exam-tabs.component";
 import {CourseStudentsComponent} from "./course-students/course-students.component";
+import {AnalyticsPage1Component} from "./analytics-page1/analytics-page1.component";
 
 const routes: Routes = [
     {path: 'students', component: AllstudentsComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path: 'exams/:examid', component: ExamTabsComponent},
     {path: 'courses/:courseid/educationProcess', component: EducationProcessComponent},
     {path: 'courses/addCourse', component: TestComponent},
+    {path: 'analytics', component: AnalyticsPage1Component},
     {path: '**', component: PagenotfoundComponent}
 ];
 

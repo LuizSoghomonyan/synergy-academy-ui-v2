@@ -42,6 +42,7 @@ import {ExamTabsComponent} from './exam-tabs/exam-tabs.component';
 import {ExamStudentsResultComponent} from './exam-students-result/exam-students-result.component';
 import {ExamResultsPopupComponent} from './exam-results-popup/exam-results-popup.component';
 import {CourseStudentsComponent} from './course-students/course-students.component';
+import { AnalyticsPage1Component } from './analytics-page1/analytics-page1.component';
 
 @NgModule({
     declarations: [
@@ -70,7 +71,8 @@ import {CourseStudentsComponent} from './course-students/course-students.compone
         ExamTabsComponent,
         ExamStudentsResultComponent,
         ExamResultsPopupComponent,
-        CourseStudentsComponent
+        CourseStudentsComponent,
+        AnalyticsPage1Component
 
     ],
     imports: [

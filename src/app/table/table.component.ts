@@ -204,7 +204,28 @@ export class TableComponent implements OnInit {
 
         }
         //courseStudents
+        if (this.datatype == 'courseStudents') {
 
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('students');
+
+            this.displayedColumnsConfig$.subscribe(x =>{
+                this.config = x
+                this.displayedColumnsConfig = x //this.displayedColumnsConfig.push(x);
+                this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
+
+            })
+            this.datatypeIdForRouting = 'studentid'
+            this.route.url.subscribe(x=> {
+                this.dataService.getStudentsByCourseId(<number><unknown>(x[1].path))
+                    .pipe(
+                        first(),
+                        map((students: Student[]) => this.dataSource.data = students)
+                    )
+                    .subscribe(x => console.log('zQWERTYUI'));
+            })
+
+
+        }
         //todo - educationProcess
 
     }

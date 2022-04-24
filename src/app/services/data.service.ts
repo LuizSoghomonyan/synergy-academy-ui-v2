@@ -125,6 +125,9 @@ export class DataService {
         return this.http.get<ExamStudentResult[]>(`http://localhost:1238/exams/${id}/results`)
     }
 
+    getStudentsByCourseId(id:number) : Observable<Student[]>{
+        return this.http.get<Student[]>(`http://localhost:1238/courses/${id}/students`)
+    }
 
     //return Student by id(if type = students), or course by id(if type = course)
     loadinfo(type: string, id: string):Observable<any> {

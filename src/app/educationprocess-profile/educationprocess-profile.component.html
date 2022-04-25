@@ -34,10 +34,11 @@
                                [classifierName]="'lecturer'"
                                (selectedvalueOutput)="$event"></app-form-controls>
             <div>
-                <app-form-controls type="date" [dateValue]="educationProcess[0].startdate == null ? '' :
-                 educationProcess[0].startdate.toString()" matlabel="Start Date"
+
+                <app-form-controls type="date" [dateValue]="educationProcess[0].startdate == null ? '' : educationProcess[0].startdate.toString()" matlabel="Start Date"
                                    [formCName]="'startdate'" [form]="form"
                                    (changedValueDate)="$event"></app-form-controls>
+
                 <app-form-controls type="date" [dateValue]="educationProcess[0].enddate == null ? '' : educationProcess[0].enddate.toString()" matlabel="End Date"
                                    [formCName]="'enddate'" [form]="form"
                                    (changedValueDate)="$event"></app-form-controls>

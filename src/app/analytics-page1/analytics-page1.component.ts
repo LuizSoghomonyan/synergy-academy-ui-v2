@@ -1,50 +1,83 @@
 import { Component, OnInit } from '@angular/core';
+import {Config, DataService, Student} from "../services/data.service";
+import {Observable} from "rxjs";
 declare var google:any;
 @Component({
   selector: 'app-analytics-page1',
   templateUrl: './analytics-page1.component.html',
   styleUrls: ['./analytics-page1.component.css']
 })
-export class AnalyticsPage1Component implements OnInit {
 
-  constructor() { }
+// [
+//     ['Mike',  {v: 10000, f: '$10,000'}, true],
+//     ['Jim',   {v:8000,   f: '$8,000'},  false],
+//     ['Alice', {v: 12500, f: '$12,500'}, true],
+//     ['Bob',   {v: 7000,  f: '$7,000'},  true],
+//     ['Mike',  {v: 10000, f: '$10,000'}, true],
+//     ['Jim',   {v:8000,   f: '$8,000'},  false],
+//     ['Alice', {v: 12500, f: '$12,500'}, true],
+//     ['Bob',   {v: 7000,  f: '$7,000'},  true],
+//     ['Mike',  {v: 10000, f: '$10,000'}, true],
+//     ['Jim',   {v:8000,   f: '$8,000'},  false],
+//     ['Alice', {v: 12500, f: '$12,500'}, true],
+//     ['Bob',   {v: 7000,  f: '$7,000'},  true],
+//     ['Mike',  {v: 10000, f: '$10,000'}, true],
+//     ['Jim',   {v:8000,   f: '$8,000'},  false],
+//     ['Alice', {v: 12500, f: '$12,500'}, true],
+//     ['Bob',   {v: 7000,  f: '$7,000'},  true],
+//     ['Mike',  {v: 10000, f: '$10,000'}, true],
+//     ['Jim',   {v:8000,   f: '$8,000'},  false],
+//     ['Alice', {v: 12500, f: '$12,500'}, true],
+//     ['Bob',   {v: 7000,  f: '$7,000'},  true]
+// ]
+export class AnalyticsPage1Component implements OnInit {
+    tableData$: Observable<any>
+    tableData: any
+  constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
-      google.charts.load('current', {'packages':['table']});
-      google.charts.setOnLoadCallback(drawTable);
+      this.tableData$ = this.dataService.getEducationProcessGradesAndFeedbacks(77);
+      this.tableData$.subscribe(x => {
+          this.tableData = x
+          console.log(this.tableData)
+      })
 
-      function drawTable() {
+      google.charts.load('current', {'packages':['table']});
+      const drawTable = () => {
           var data = new google.visualization.DataTable();
-          data.addColumn('string', 'Name');
-          data.addColumn('number', 'Salary');
-          data.addColumn('boolean', 'Full Time Employee');
-          data.addRows([
-              ['Mike',  {v: 10000, f: '$10,000'}, true],
-              ['Jim',   {v:8000,   f: '$8,000'},  false],
-              ['Alice', {v: 12500, f: '$12,500'}, true],
-              ['Bob',   {v: 7000,  f: '$7,000'},  true],
-              ['Mike',  {v: 10000, f: '$10,000'}, true],
-              ['Jim',   {v:8000,   f: '$8,000'},  false],
-              ['Alice', {v: 12500, f: '$12,500'}, true],
-              ['Bob',   {v: 7000,  f: '$7,000'},  true],
-              ['Mike',  {v: 10000, f: '$10,000'}, true],
-              ['Jim',   {v:8000,   f: '$8,000'},  false],
-              ['Alice', {v: 12500, f: '$12,500'}, true],
-              ['Bob',   {v: 7000,  f: '$7,000'},  true],
-              ['Mike',  {v: 10000, f: '$10,000'}, true],
-              ['Jim',   {v:8000,   f: '$8,000'},  false],
-              ['Alice', {v: 12500, f: '$12,500'}, true],
-              ['Bob',   {v: 7000,  f: '$7,000'},  true],
-              ['Mike',  {v: 10000, f: '$10,000'}, true],
-              ['Jim',   {v:8000,   f: '$8,000'},  false],
-              ['Alice', {v: 12500, f: '$12,500'}, true],
-              ['Bob',   {v: 7000,  f: '$7,000'},  true]
-          ]);
+          // comment: "c39c2e"
+          // courseeducationprocessgradesid: 9836
+          // courseeducationprocessid: 77
+          // grades: 84
+          // numberofpasses: 97
+          // studentid: "Karen Novak"
+          // test: 46
+          //columns
+          data.addColumn('string', 'Comment');
+          data.addColumn('number', 'Grade');
+          data.addColumn('number', 'Number Of Passes');
+          data.addColumn('string', 'Student Name');
+          data.addColumn('number', 'Test');
+
+        //data
+          for (var i = 0; i <  this.tableData.length; i++){
+            const c = [ this.tableData[i].comment,
+                  this.tableData[i].grades,
+                 this.tableData[i].numberofpasses,
+                 this.tableData[i].studentid,
+                 this.tableData[i].test
+              ];
+              data.addRow(c);
+          }
+
 
           var table = new google.visualization.Table(document.getElementById('table_div'));
 
           table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
       }
+      google.charts.setOnLoadCallback(drawTable);
+
+
 
 
       google.charts.load('current', {'packages':['bar']});
@@ -161,7 +194,8 @@ export class AnalyticsPage1Component implements OnInit {
           ]);
 
           var options = {
-              title: 'My Daily Activities'
+              title: 'My Daily Activities',
+              colors: ['#0285e3', '#275f87', '#72a8cf', '#58656e', '#2d363d']
           };
 
           var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -178,10 +212,10 @@ export class AnalyticsPage1Component implements OnInit {
       function drawChart() {
           var data = google.visualization.arrayToDataTable([
               ["Element", "Density", { role: "style" } ],
-              ["Copper", 8.94, "#b87333"],
+              ["Copper", 8.94, "color: #76A7FA"],
               ["Silver", 10.49, "silver"],
-              ["Gold", 19.30, "gold"],
-              ["Platinum", 21.45, "color: #e5e4e2"]
+              ["Gold", 19.30, "color: #76A7FA"],
+              ["Platinum", 21.45, "silver"]
           ]);
 
           var view = new google.visualization.DataView(data);

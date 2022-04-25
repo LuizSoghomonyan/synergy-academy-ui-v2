@@ -8,7 +8,7 @@ import {
     Config,
     Exam,
     ExamStudentResult,
-    EducationProcess
+    EducationProcess, EducationProcessGradesAndFeedbacks
 } from "../services/data.service";
 import {
     delay,
@@ -246,7 +246,7 @@ export class TableComponent implements OnInit {
                 this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
 
             })
-            this.datatypeIdForRouting = 'courseid'
+            this.datatypeIdForRouting = 'courseeducationprocessid'
             this.route.url.subscribe(x=> {
                 this.dataService.getEducationProcess(<number><unknown>(x[1].path))
                     .pipe(
@@ -259,9 +259,9 @@ export class TableComponent implements OnInit {
 
         }
         //educationProcessGradesAndFeedbacks
-        if (this.datatype == 'educationProcessGradesAndFeedbacks') {
+        if (this.datatype == 'educationprocessgrades') {
 
-            this.displayedColumnsConfig$ = this.dataService.getConfigs('educationProcessGradesAndFeedbacks');
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('educationprocessgrades');
 
             this.displayedColumnsConfig$.subscribe(x =>{
                 this.config = x
@@ -269,14 +269,14 @@ export class TableComponent implements OnInit {
                 this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
 
             })
-            this.datatypeIdForRouting = 'courseid'
+
             this.route.url.subscribe(x=> {
-                this.dataService.getEducationProcess(<number><unknown>(x[1].path))
+                this.dataService.getEducationProcessGradesAndFeedbacks(<number><unknown>(x[1].path))
                     .pipe(
                         first(),
-                        map((educationProcess: EducationProcess[]) => this.dataSource.data = educationProcess)
+                        map((educationProcessGradesAndFeedbacks: EducationProcessGradesAndFeedbacks[]) => this.dataSource.data = educationProcessGradesAndFeedbacks)
                     )
-                    .subscribe();
+                    .subscribe(x => console.log(x));
             })
 
 

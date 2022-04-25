@@ -63,6 +63,15 @@ export interface EducationProcess{
     subjectid: string,
     lecturerid: string
 }
+export interface EducationProcessGradesAndFeedbacks{
+    courseeducationprocessgradesid: number,
+    courseeducationprocessid: number,
+    studentid: string,
+    grades : number,
+    numberofpasses : number,
+    test : number,
+    comment: string
+}
 
 @Injectable({providedIn: 'root'})
 export class DataService {
@@ -116,6 +125,15 @@ export class DataService {
         lecturerid: ''
     }
 
+    newEducationProcessGradesAndFeedbacks : EducationProcessGradesAndFeedbacks = {
+        courseeducationprocessgradesid: 0,
+        courseeducationprocessid: 0,
+        studentid: 'Student1',
+        grades : 13,
+        numberofpasses : 11,
+        test : 44,
+        comment: 'Good!!'
+    }
     // { birthday: string; firstname: string; address: string; whatprogramminglanguagesdoyouknow: string; phonenumber: string; othercoursesattended: string; lastname: string; studentid: number; howdidyoufindid: string; universityid: string; educationdepartmentadmissionandgraduationyear: string; haveyoueverparticipatedinprogramming: string; doyouhaveworkexperience: string; gpa: number; fullname: string; email: string }
     constructor(private http: HttpClient) {
     }
@@ -149,32 +167,34 @@ export class DataService {
         return this.http.get<Student[]>(`http://localhost:1238/courses/${id}/students`)
     }
     getEducationProcess(courseid:number) : Observable<EducationProcess[]>{
-        // return this.http.get<EducationProcess[]>(`http://localhost:1238/courses/${courseid}/educationprocess`)
-        let educationProcess: EducationProcess = {
-            courseeducationprocessid: 0,
-            courseid: 200000,
-            enddate : new Date(),
-            startdate : new Date(),
-            subjectid: 'Database',
-            lecturerid: 'Lecturer1'
-        }
-        return of([educationProcess])
+        return this.http.get<EducationProcess[]>(`http://localhost:1238/courses/${courseid}/educationprocess`)
+        // let educationProcess: EducationProcess = {
+        //     courseeducationprocessid: 0,
+        //     courseid: 200000,
+        //     enddate : new Date(),
+        //     startdate : new Date(),
+        //     subjectid: 'Database',
+        //     lecturerid: 'Lecturer1'
+        // }
+        // return of([educationProcess])
+    }
+    getEducationProcessGradesAndFeedbacks(id: number){
+        return this.http.get<EducationProcessGradesAndFeedbacks[]>(`http://localhost:1238/educationprocess/${id}/grades`)
+
     }
 
     //return Student by id(if type = students), or course by id(if type = course)
     loadinfo(type: string, id: string):Observable<any> {
-            if(type == 'educationprocess') {
-                let educationProcess: EducationProcess = {
-                    courseeducationprocessid: 0,
-                    courseid: 200000,
-                    enddate : new Date(),
-                    startdate : new Date(),
-                    subjectid: 'Database',
-                    lecturerid: 'Lecturer1'
-                }
-                return of([educationProcess])
-            }
-
+            // if(type == 'educationprocess') {
+            //     let educationProcess: EducationProcess = {
+            //         courseeducationprocessid: 0,
+            //         courseid: 200000,
+            //         enddate : new Date(),
+            //         startdate : new Date(),
+            //         subjectid: 'Database',
+            //         lecturerid: 'Lecturer1'
+            //     }
+            //     return of(
             return this.http.get(`http://localhost:1238/${type}/${id}`)
     }
 

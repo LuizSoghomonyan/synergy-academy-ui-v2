@@ -1,0 +1,50 @@
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="btn">
+        <app-button type="save&close" (click)="openDialog('save&close')" class="btn"></app-button>
+        <app-button type="save" (click)="openDialog('save')"  class="btn"></app-button>
+        <app-button type="reset" (click)="openDialog('reset')"  class="btn"></app-button>
+
+    </div>
+
+
+    <mat-card>
+        <ng-container *ngIf="educationProcess$ | async as educationProcess">
+
+<!--            enddate : new FormControl('',Validators.required),-->
+<!--            startdate : new FormControl('',Validators.required),-->
+<!--            subjectid: new FormControl('',Validators.required),-->
+<!--            lecturerid: new FormControl('',Validators.required)-->
+<!--            -->
+<!--            <div>-->
+<!--                <p>{{educationProcess | json}}</p>-->
+<!--            </div>-->
+            <div>
+                <app-form-controls type="text" [value]="educationProcess[0].subjectid == null ? '' : educationProcess[0].subjectid" matlabel="Subject Name"
+                                   [formCName]="'subjectid'" [form]="form"
+                                   (changedValue)="$event"></app-form-controls>
+            </div>
+
+            <app-form-controls type="select"
+                               [selectvalue]="educationProcess[0].lecturerid == null ? '' : educationProcess[0].lecturerid.toString()"
+                               matlabel="Lecturer"
+                               [formCName]="'lecturerid'"
+                               [form]="form"
+                               [classifierName]="'lecturer'"
+                               (selectedvalueOutput)="$event"></app-form-controls>
+            <div>
+                <app-form-controls type="date" [dateValue]="educationProcess[0].startdate == null ? '' :
+                 educationProcess[0].startdate.toString()" matlabel="Start Date"
+                                   [formCName]="'startdate'" [form]="form"
+                                   (changedValueDate)="$event"></app-form-controls>
+                <app-form-controls type="date" [dateValue]="educationProcess[0].enddate == null ? '' : educationProcess[0].enddate.toString()" matlabel="End Date"
+                                   [formCName]="'enddate'" [form]="form"
+                                   (changedValueDate)="$event"></app-form-controls>
+            </div>
+
+        </ng-container>
+
+
+    </mat-card>
+</form>

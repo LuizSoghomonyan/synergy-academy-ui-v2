@@ -1,5 +1,13 @@
 <app-title [titleName]="coursename | titlecase"
            [icon]="'AllCourses'"></app-title>
+<button
+    mat-stroked-button
+    color="blue"
+    routerLink="registrationform"
+    style="width: 250px; height: 50px; float: right; margin-right: 5.5%; margin-top: 2%"
+>
+    Generate Registration Form
+</button>
 
 <mat-grid-list cols="2" rowHeight="2:1" class="grid">
     <mat-grid-tile>
@@ -41,3 +49,4 @@
         </mat-card>
     </mat-grid-tile>
 </mat-grid-list>
+

@@ -53,6 +53,17 @@ export interface ExamStudentResult{
     grade: number,
     comment: string
 }
+
+
+export interface EducationProcess{
+    courseeducationprocessid: number,
+    courseid: number,
+    enddate : Date,
+    startdate : Date
+    subjectid: string,
+    lecturerid: string
+}
+
 @Injectable({providedIn: 'root'})
 export class DataService {
     private destroy$: Subject<boolean> = new Subject();
@@ -96,6 +107,15 @@ export class DataService {
         startdate : new Date()
     }
 
+    newEducationProcess: EducationProcess = {
+        courseeducationprocessid: 0,
+        courseid: 0,
+        enddate : new Date(),
+        startdate : new Date(),
+        subjectid: '',
+        lecturerid: ''
+    }
+
     // { birthday: string; firstname: string; address: string; whatprogramminglanguagesdoyouknow: string; phonenumber: string; othercoursesattended: string; lastname: string; studentid: number; howdidyoufindid: string; universityid: string; educationdepartmentadmissionandgraduationyear: string; haveyoueverparticipatedinprogramming: string; doyouhaveworkexperience: string; gpa: number; fullname: string; email: string }
     constructor(private http: HttpClient) {
     }
@@ -128,9 +148,33 @@ export class DataService {
     getStudentsByCourseId(id:number) : Observable<Student[]>{
         return this.http.get<Student[]>(`http://localhost:1238/courses/${id}/students`)
     }
+    getEducationProcess(courseid:number) : Observable<EducationProcess[]>{
+        // return this.http.get<EducationProcess[]>(`http://localhost:1238/courses/${courseid}/educationprocess`)
+        let educationProcess: EducationProcess = {
+            courseeducationprocessid: 0,
+            courseid: 200000,
+            enddate : new Date(),
+            startdate : new Date(),
+            subjectid: 'Database',
+            lecturerid: 'Lecturer1'
+        }
+        return of([educationProcess])
+    }
 
     //return Student by id(if type = students), or course by id(if type = course)
     loadinfo(type: string, id: string):Observable<any> {
+            if(type == 'educationprocess') {
+                let educationProcess: EducationProcess = {
+                    courseeducationprocessid: 0,
+                    courseid: 200000,
+                    enddate : new Date(),
+                    startdate : new Date(),
+                    subjectid: 'Database',
+                    lecturerid: 'Lecturer1'
+                }
+                return of([educationProcess])
+            }
+
             return this.http.get(`http://localhost:1238/${type}/${id}`)
     }
 
@@ -158,6 +202,9 @@ export class DataService {
         }
         else if(tablename == 'exam'){
             return of([this.newExam])
+        }
+        else if(tablename == 'educationprocess'){
+            return of([this.newEducationProcess])
         }
         else return of([])
 

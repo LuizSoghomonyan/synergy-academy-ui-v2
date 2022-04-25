@@ -1,0 +1,187 @@
+<app-title
+    [titleName]="'Registration Form'"
+    [icon]="'registration'">
+</app-title>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+
+    <div class="tab-group savediv">
+        <div class="tab-group savediv app-button1" style="margin-left: 300px" >
+            <app-button (click)="openDialog('save&close')" type="save&close"></app-button>
+        </div>
+
+        <div class="tab-group savediv app-button2"  style="margin-left: 200px">
+            <app-button (click)="openDialog('save')" type="save"></app-button>
+        </div>
+
+        <div class="tab-group savediv app-button3"  style="margin-left: 100px">
+            <app-button (click)="openDialog('reset')" type="reset"></app-button>
+        </div>
+
+    </div>
+
+
+    <ng-container *ngIf="student$ | async as student">
+        <mat-tab-group mat-align-tabs class="tab-group">
+            <mat-tab label="General Information">
+                <mat-card>
+
+                    <app-form-controls type="text" [value]="student[0].firstname" matlabel="First Name"
+                                       [formCName]="'firstname'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="text" [value]="student[0].lastname" matlabel="Last Name"
+                                       [formCName]="'lastname'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="text" [value]="student[0].email" matlabel="Email"
+                                       [formCName]="'email'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="phonenumber" [value]="student[0].phonenumber" matlabel="Phone"
+                                       [formCName]="'phonenumber'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="date" [dateValue]="student[0].birthday" matlabel="Birthday"
+                                       [formCName]="'birthday'" [form]="form"
+                                       (changedValueDate)="$event"></app-form-controls>
+
+                    <app-form-controls type="textarea"
+                                       [value]="student[0].address"
+                                       matlabel="Address"
+                                       [formCName]="'address'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="select"
+                                       [selectvalue]="student[0].universityid"
+                                       matlabel="University"
+                                       [formCName]="'universityid'"
+                                       [form]="form"
+                                       [classifierName]="'university'"
+                                       (selectedvalueOutput)="$event"></app-form-controls>
+
+
+                </mat-card>
+                <mat-card>
+                    <app-form-controls type="textarea"
+                                       [value]="student[0].educationdepartmentadmissionandgraduationyear"
+                                       matlabel="Education: department, admission and graduation year"
+                                       [formCName]="'educationdepartmentadmissionandgraduationyear'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="number" [numberValue]="student[0].gpa" matlabel="Your GPA"
+                                       [formCName]="'gpa'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="textarea" [value]="student[0].whatprogramminglanguagesdoyouknow"
+                                       matlabel="What programming languages do you know?"
+                                       [formCName]="'whatprogramminglanguagesdoyouknow'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="textarea" [value]="student[0].othercoursesattended"
+                                       matlabel="Other courses attended. Provide the educational institution, subjects, course start and end dates"
+                                       [formCName]="'othercoursesattended'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="textarea" [value]="student[0].haveyoueverparticipatedinprogramming"
+                                       matlabel="Have you ever participated in programming or other IT events or contests? Please provide details, such as when and where it was organized, what results did you have, etc."
+                                       [formCName]="'haveyoueverparticipatedinprogramming'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+
+                    <app-form-controls type="textarea" [value]="student[0].doyouhaveworkexperience"
+                                       matlabel=" Do you have a work experience? please provide details, such as company, your title, start and end date"
+                                       [formCName]="'doyouhaveworkexperience'" [form]="form"
+                                       (changedValue)="$event"></app-form-controls>
+                    <app-form-controls type="select"
+                                       [selectvalue]="student[0].howdidyoufindid"
+                                       matlabel="How did you find out about this course?"
+                                       [formCName]="'howdidyoufindid'"
+                                       [form]="form"
+                                       [classifierName]="'howdidyoufind'"
+                                       (selectedvalueOutput)="$event"></app-form-controls>
+
+
+                </mat-card>
+            </mat-tab>
+
+
+        </mat-tab-group>
+
+    </ng-container>
+
+
+</form>
+
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+<!-------------------------------------------->
+
+
+<!--        <ng-container-->
+<!--            [ngTemplateOutlet]="control"-->
+<!--            [ngTemplateOutletContext]="{type: 'text', label: 'First Name', value: [student.firstname],st: student,formControlName: 'firstname'}"-->
+<!--        >-->
+
+
+<!--        </ng-container>-->
+
+<!--        <ng-template #control-->
+<!--                     let-type='type'-->
+<!--                     let-label='label'-->
+<!--                     let-value='value'-->
+<!--                     let-formControlName='formControlName'-->
+<!--                     let-st='st'-->
+
+
+<!--        >-->
+<!--            &lt;!&ndash;            <p>type   {{type}}</p>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <p>label   {{label}}</p>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <p>student   {{value[0]}}</p>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <p>formControlName   {{formControlName}}</p>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <p>{{st | json}}</p>&ndash;&gt;-->
+
+<!--            <mat-form-field>-->
+<!--                <mat-label>{{label}}</mat-label>-->
+<!--                <input matInput-->
+<!--                       formControlName="{{formControlName}}"-->
+<!--                       [(ngModel)]="value[0]"-->
+<!--                >-->
+<!--                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"-->
+<!--                        (click)="value[0]=''"-->
+<!--                        type="button"-->
+<!--                >-->
+<!--                    <mat-icon>close</mat-icon>-->
+<!--                </button>-->
+<!--            </mat-form-field>-->
+
+<!--        </ng-template>-->
+
+
+<!--    </ng-container>-->
+<!--</form>-->

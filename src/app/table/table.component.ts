@@ -1,7 +1,15 @@
 import {ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, OnInit, Output, ViewChild} from '@angular/core';
 import {MatTable, MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {Course, Student, DataService, Config, Exam, ExamStudentResult} from "../services/data.service";
+import {
+    Course,
+    Student,
+    DataService,
+    Config,
+    Exam,
+    ExamStudentResult,
+    EducationProcess
+} from "../services/data.service";
 import {
     delay,
     first,
@@ -227,6 +235,52 @@ export class TableComponent implements OnInit {
 
         }
         //todo - educationProcess
+
+        if (this.datatype == 'educationProcess') {
+
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('educationprocess');
+
+            this.displayedColumnsConfig$.subscribe(x =>{
+                this.config = x
+                this.displayedColumnsConfig = x //this.displayedColumnsConfig.push(x);
+                this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
+
+            })
+            this.datatypeIdForRouting = 'courseid'
+            this.route.url.subscribe(x=> {
+                this.dataService.getEducationProcess(<number><unknown>(x[1].path))
+                    .pipe(
+                        first(),
+                        map((educationProcess: EducationProcess[]) => this.dataSource.data = educationProcess)
+                    )
+                    .subscribe();
+            })
+
+
+        }
+        //educationProcessGradesAndFeedbacks
+        if (this.datatype == 'educationProcessGradesAndFeedbacks') {
+
+            this.displayedColumnsConfig$ = this.dataService.getConfigs('educationProcessGradesAndFeedbacks');
+
+            this.displayedColumnsConfig$.subscribe(x =>{
+                this.config = x
+                this.displayedColumnsConfig = x //this.displayedColumnsConfig.push(x);
+                this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
+
+            })
+            this.datatypeIdForRouting = 'courseid'
+            this.route.url.subscribe(x=> {
+                this.dataService.getEducationProcess(<number><unknown>(x[1].path))
+                    .pipe(
+                        first(),
+                        map((educationProcess: EducationProcess[]) => this.dataSource.data = educationProcess)
+                    )
+                    .subscribe();
+            })
+
+
+        }
 
     }
 

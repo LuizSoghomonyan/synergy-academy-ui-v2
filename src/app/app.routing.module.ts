@@ -13,6 +13,9 @@ import {ExamProfileComponent} from "./exam-profile/exam-profile.component";
 import {ExamTabsComponent} from "./exam-tabs/exam-tabs.component";
 import {CourseStudentsComponent} from "./course-students/course-students.component";
 import {AnalyticsPage1Component} from "./analytics-page1/analytics-page1.component";
+import {RegistrationFormComponent} from "./registration-form/registration-form.component";
+import {EducationprocessProfileComponent} from "./educationprocess-profile/educationprocess-profile.component";
+import {EducationprocessTabsComponent} from "./educationprocess-tabs/educationprocess-tabs.component";
 
 const routes: Routes = [
     {path: 'students', component: AllstudentsComponent},
@@ -28,8 +31,11 @@ const routes: Routes = [
     {path: 'courses/:courseid/exams/addExam', component: ExamProfileComponent},
     {path: 'exams/:examid', component: ExamTabsComponent},
     {path: 'courses/:courseid/educationProcess', component: EducationProcessComponent},
+    {path: 'educationprocess/:educationProcessid', component: EducationprocessTabsComponent},
     {path: 'courses/addCourse', component: TestComponent},
     {path: 'analytics', component: AnalyticsPage1Component},
+    //courses/1294/info/
+    {path: 'courses/:courseid/registrationform', component: RegistrationFormComponent},
     {path: '**', component: PagenotfoundComponent}
 ];
 

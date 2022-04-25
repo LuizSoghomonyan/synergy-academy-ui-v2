@@ -43,6 +43,10 @@ import {ExamStudentsResultComponent} from './exam-students-result/exam-students-
 import {ExamResultsPopupComponent} from './exam-results-popup/exam-results-popup.component';
 import {CourseStudentsComponent} from './course-students/course-students.component';
 import { AnalyticsPage1Component } from './analytics-page1/analytics-page1.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { EducationprocessProfileComponent } from './educationprocess-profile/educationprocess-profile.component';
+import { EducationprocessTabsComponent } from './educationprocess-tabs/educationprocess-tabs.component';
+import { EducationprocessGradesFeedbacksComponent } from './educationprocess-grades-feedbacks/educationprocess-grades-feedbacks.component';
 
 @NgModule({
     declarations: [
@@ -72,7 +76,11 @@ import { AnalyticsPage1Component } from './analytics-page1/analytics-page1.compo
         ExamStudentsResultComponent,
         ExamResultsPopupComponent,
         CourseStudentsComponent,
-        AnalyticsPage1Component
+        AnalyticsPage1Component,
+        RegistrationFormComponent,
+        EducationprocessProfileComponent,
+        EducationprocessTabsComponent,
+        EducationprocessGradesFeedbacksComponent
 
     ],
     imports: [

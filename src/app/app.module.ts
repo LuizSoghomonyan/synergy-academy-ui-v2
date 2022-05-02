@@ -47,6 +47,7 @@ import { RegistrationFormComponent } from './registration-form/registration-form
 import { EducationprocessProfileComponent } from './educationprocess-profile/educationprocess-profile.component';
 import { EducationprocessTabsComponent } from './educationprocess-tabs/educationprocess-tabs.component';
 import { EducationprocessGradesFeedbacksComponent } from './educationprocess-grades-feedbacks/educationprocess-grades-feedbacks.component';
+import {AnalyticsService} from "./services/analytics.service";
 
 @NgModule({
     declarations: [
@@ -101,7 +102,8 @@ import { EducationprocessGradesFeedbacksComponent } from './educationprocess-gra
     providers: [
         DataService,
         DatePipe,
-        ClassifierService
+        ClassifierService,
+        AnalyticsService
     ],
     bootstrap: [AppComponent]
 })

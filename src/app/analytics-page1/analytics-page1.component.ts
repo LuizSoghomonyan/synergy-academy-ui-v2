@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Config, DataService, Student} from "../services/data.service";
 import {Observable} from "rxjs";
+import {AnalyticsService} from "../services/analytics.service";
 declare var google:any;
 @Component({
   selector: 'app-analytics-page1',
@@ -33,88 +34,52 @@ declare var google:any;
 export class AnalyticsPage1Component implements OnInit {
     tableData$: Observable<any>
     tableData: any
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,private analyticsService: AnalyticsService) { }
 
+    histogramDto: any
   ngOnInit(): void {
       this.tableData$ = this.dataService.getEducationProcessGradesAndFeedbacks(77);
       this.tableData$.subscribe(x => {
           this.tableData = x
-          console.log(this.tableData)
+          google.charts.load('current', {'packages':['table']});
+          const drawTable = () => {
+              var data = new google.visualization.DataTable();
+
+              //columns
+              data.addColumn('string', 'Comment');
+              data.addColumn('number', 'Grade');
+              data.addColumn('number', 'Number Of Passes');
+              data.addColumn('string', 'Student Name');
+              data.addColumn('number', 'Test');
+
+              //data
+              for (var i = 0; i <  this.tableData.length; i++){
+                  const c = [ this.tableData[i].comment,
+                      this.tableData[i].grades,
+                      this.tableData[i].numberofpasses,
+                      this.tableData[i].studentid,
+                      this.tableData[i].test
+                  ];
+                  data.addRow(c);
+              }
+
+
+              var table = new google.visualization.Table(document.getElementById('table_div'));
+
+              table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+          }
+          google.charts.setOnLoadCallback(drawTable);
+
       })
 
-      google.charts.load('current', {'packages':['table']});
-      const drawTable = () => {
-          var data = new google.visualization.DataTable();
-          // comment: "c39c2e"
-          // courseeducationprocessgradesid: 9836
-          // courseeducationprocessid: 77
-          // grades: 84
-          // numberofpasses: 97
-          // studentid: "Karen Novak"
-          // test: 46
-          //columns
-          data.addColumn('string', 'Comment');
-          data.addColumn('number', 'Grade');
-          data.addColumn('number', 'Number Of Passes');
-          data.addColumn('string', 'Student Name');
-          data.addColumn('number', 'Test');
-
-        //data
-          for (var i = 0; i <  this.tableData.length; i++){
-            const c = [ this.tableData[i].comment,
-                  this.tableData[i].grades,
-                 this.tableData[i].numberofpasses,
-                 this.tableData[i].studentid,
-                 this.tableData[i].test
-              ];
-              data.addRow(c);
-          }
 
 
-          var table = new google.visualization.Table(document.getElementById('table_div'));
-
-          table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
-      }
-      google.charts.setOnLoadCallback(drawTable);
-
+      this.analyticsService.histogram().subscribe(x => {
+          this.histogramDto = x;
+          this.forChart(this.histogramDto);
+      })
 
 
-
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawStuff);
-
-      function drawStuff() {
-          var data = new google.visualization.arrayToDataTable([
-              ['Galaxy', 'Distance', 'Brightness'],
-              ['Canis Major Dwarf', 8000, 23.3],
-              ['Sagittarius Dwarf', 24000, 4.5],
-              ['Ursa Major II Dwarf', 30000, 14.3],
-              ['Lg. Magellanic Cloud', 50000, 0.9],
-              ['Bootes I', 60000, 13.1]
-          ]);
-
-          var options = {
-              width: 800,
-              chart: {
-                  title: 'Nearby galaxies',
-                  subtitle: 'distance on the left, brightness on the right'
-              },
-              bars: 'horizontal', // Required for Material Bar Charts.
-              series: {
-                  0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-                  1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
-              },
-              axes: {
-                  x: {
-                      distance: {label: 'parsecs'}, // Bottom x-axis.
-                      brightness: {side: 'top', label: 'apparent magnitude'} // Top x-axis.
-                  }
-              }
-          };
-
-          var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
-          chart.draw(data, options);
-      };
 
 
 
@@ -166,7 +131,7 @@ export class AnalyticsPage1Component implements OnInit {
 
 
 
-    this.forChart()
+
     this.forChart2()
 
 
@@ -176,25 +141,49 @@ export class AnalyticsPage1Component implements OnInit {
 
   }
 
-  forChart()
+  forChart(histogramDto: any)
   {
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
 
-          var data = google.visualization.arrayToDataTable([
-              ['Task', 'Hours per Day'],
-              ['Work',     11],
-              ['Eat',      2],
-              ['Commute',  2],
-              ['Watch TV', 2],
-              ['Sleep',    7]
-          ]);
+
+
+
+      function drawChart() {
+          // var data = google.visualization.arrayToDataTable([
+          //     ['Task', 'Hours per Day'],
+          //     ['Work',     11],
+          //     ['Eat',      2],
+          //     ['Commute',  2],
+          //     ['Watch TV', 2],
+          //     ['Sleep',    7]
+          // ]);
+
+
+
+
+          var data = new google.visualization.DataTable();
+
+          //columns
+          data.addColumn('string', 'Office Name');
+          data.addColumn('number', 'Number Of Courses');
+
+
+          //data
+          for (var i = 0; i <  histogramDto.length; i++){
+              const c = [
+                  histogramDto[i]._officename,
+                  histogramDto[i]._numberofcourses
+
+              ];
+              data.addRow(c);
+          }
+
 
           var options = {
-              title: 'My Daily Activities',
+              title: 'Number of courses per office',
               colors: ['#0285e3', '#275f87', '#72a8cf', '#58656e', '#2d363d']
           };
 

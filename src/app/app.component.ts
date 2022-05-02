@@ -10,7 +10,7 @@ import {DataService} from "./services/data.service";
 export class AppComponent{
     title = 'synergy-academy-ui';
     public sidebarOpened = true;
-    clickButtonOnSideBar_AllStudents = true;
+
     constructor() {
         console.error = () => {}
         // console.warn = () => {}

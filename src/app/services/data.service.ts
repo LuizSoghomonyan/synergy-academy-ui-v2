@@ -134,7 +134,6 @@ export class DataService {
         test : 44,
         comment: 'Good!!'
     }
-    // { birthday: string; firstname: string; address: string; whatprogramminglanguagesdoyouknow: string; phonenumber: string; othercoursesattended: string; lastname: string; studentid: number; howdidyoufindid: string; universityid: string; educationdepartmentadmissionandgraduationyear: string; haveyoueverparticipatedinprogramming: string; doyouhaveworkexperience: string; gpa: number; fullname: string; email: string }
     constructor(private http: HttpClient) {
     }
 

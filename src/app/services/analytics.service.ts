@@ -8,11 +8,19 @@ export class AnalyticsService {
     }
 
     tableReport(): Observable<any>{
-        return this.http.get('')
+        return this.http.get('http://localhost:1238/reports/tableReport')
     }
 
     histogram(): Observable<any>{
-        return this.http.get('http://localhost:1238/reports');
+        return this.http.get('http://localhost:1238/reports/histogram');
+    }
+
+    pieChart(): Observable<any>{
+        return this.http.get('http://localhost:1238/reports/pieChart');
+    }
+
+    columnChart():Observable<any>{
+        return this.http.get('http://localhost:1238/reports/columnChart');
     }
 
 }

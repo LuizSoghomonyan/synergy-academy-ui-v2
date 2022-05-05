@@ -12,7 +12,7 @@ export class AppComponent{
     public sidebarOpened = true;
 
     constructor() {
-        console.error = () => {}
+        // console.error = () => {}
         // console.warn = () => {}
     }
 

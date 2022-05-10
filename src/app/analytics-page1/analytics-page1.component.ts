@@ -196,12 +196,6 @@ export class AnalyticsPage1Component implements OnInit {
         google.charts.load('current', {'packages': ['table']});
         const drawTable = () => {
             var data = new google.visualization.DataTable();
-            //
-            // _coursename: "Justin"
-            // _fullname: "Jamie Salas"
-            // _grade: 100
-            // _universityname: "Yerevan State University (1919)"
-            // _yearid: 1999
 
             //columns
             data.addColumn('string', 'Full Name');

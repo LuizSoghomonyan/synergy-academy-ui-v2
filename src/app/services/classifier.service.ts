@@ -12,7 +12,7 @@ export class ClassifierService {
     constructor(private http: HttpClient) {
     }
 
-    // @ts-ignore
+
     getClassifierData(classiferName: string)
     {
         return this.http.get(`http://localhost:1238/classifierservice/${classiferName}`)

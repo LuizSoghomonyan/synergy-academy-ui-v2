@@ -1,9 +1,9 @@
 <ng-container *ngIf="type == 'text'">
-    <mat-form-field [formGroup]="form">
-<!--<p>{{value}}</p>-->
+    <mat-form-field [formGroup]="form" >
+        <!--<p>{{value}}</p>-->
         <mat-label>{{matlabel}}</mat-label>
         <ng-container *ngIf="_disabled; else active">
-<!--            <input matInput disabled value="Google">-->
+            <!--            <input matInput disabled value="Google">-->
             <input [type]="type"
                    matInput
                    disabled

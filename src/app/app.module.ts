@@ -48,6 +48,7 @@ import { EducationprocessProfileComponent } from './educationprocess-profile/edu
 import { EducationprocessTabsComponent } from './educationprocess-tabs/educationprocess-tabs.component';
 import { EducationprocessGradesFeedbacksComponent } from './educationprocess-grades-feedbacks/educationprocess-grades-feedbacks.component';
 import {AnalyticsService} from "./services/analytics.service";
+import { ExamClassmarkerComponent } from './exam-classmarker/exam-classmarker.component';
 
 @NgModule({
     declarations: [
@@ -81,7 +82,8 @@ import {AnalyticsService} from "./services/analytics.service";
         RegistrationFormComponent,
         EducationprocessProfileComponent,
         EducationprocessTabsComponent,
-        EducationprocessGradesFeedbacksComponent
+        EducationprocessGradesFeedbacksComponent,
+        ExamClassmarkerComponent
 
     ],
     imports: [

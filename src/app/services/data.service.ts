@@ -18,7 +18,8 @@ export interface Student {
     haveyoueverparticipatedinprogramming: string,
     doyouhaveworkexperience: string,
     howdidyoufindid: string,
-    birthday: string
+    birthday: string,
+    checkbox ?: boolean
 }
 
 export interface Course {
@@ -44,6 +45,7 @@ export interface Exam{
     enddate : Date,
     examtypeid : string,
     name : string,
+    classmarkertestid : string,
     startdate : Date
 }
 
@@ -113,6 +115,7 @@ export class DataService {
         enddate : new Date(),
         examtypeid : '',
         name : '',
+        classmarkertestid : '',
         startdate : new Date()
     }
 
@@ -245,6 +248,13 @@ export class DataService {
     }
 
 
+    postEmailsForClassMarker(arrayForBackend: string[]) {
+        console.log('123123123', {arrayForBackend})
+        this.http.post('http://localhost:1238/exams/1/email',
+            ['luiza.soxhomonyan@gmail.com']
+        )
+    }
+
 
 
 
@@ -253,6 +263,7 @@ export class DataService {
         this.destroy$.next(true);
         this.destroy$.unsubscribe();
     }
+
 
 }
 

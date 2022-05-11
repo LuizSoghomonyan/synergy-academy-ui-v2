@@ -41,6 +41,10 @@
         <mat-icon>how_to_reg</mat-icon>
         <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
     </div>
+    <div *ngSwitchCase = "'refresh'">
+        <mat-icon>refresh</mat-icon>
+        <ng-container *ngIf="showText"><span>{{text}}</span></ng-container>
+    </div>
 
 
 </div>

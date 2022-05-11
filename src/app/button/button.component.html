@@ -10,6 +10,16 @@
         Add New
     </button>
 
+</ng-container><ng-container *ngIf="type=='refresh'">
+    <button
+        mat-stroked-button
+        color="blue"
+        class="btn"
+    >
+        <app-maticon class="mat-icon" type="refresh"></app-maticon>
+       Refresh
+    </button>
+
 </ng-container>
 
 <ng-container *ngIf="type=='save&close'">
@@ -46,6 +56,43 @@
         type="button"
         style="background-color: white; color: #4B4B4B"
     >Reset
+    </button>
+
+</ng-container>
+
+
+<ng-container *ngIf="type=='email'">
+    <button
+        mat-stroked-button
+        color="blue"
+        class="btn"
+        style="color: white"
+        type="submit"
+    >Send Email To All
+    </button>
+
+</ng-container>
+
+
+<ng-container *ngIf="type=='emailselect'">
+    <button
+        mat-stroked-button
+        color="blue"
+        class="btn"
+        style="color: white"
+        type="submit"
+    >Send Email Selected
+    </button>
+
+</ng-container>
+<ng-container *ngIf="type=='emailsend'">
+    <button
+        mat-stroked-button
+        color="blue"
+        class="btn"
+        style="color: white"
+        type="submit"
+    >Send Email
     </button>
 
 </ng-container>

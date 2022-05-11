@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-exam-students-result',
@@ -11,5 +11,13 @@ export class ExamStudentsResultComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+//todo
+    viewProgressBar: boolean = false;
+    refresh() {
+        this.viewProgressBar = true;
+        //call to back
+        setTimeout(() => {
+            this.viewProgressBar = false
+        }, 2500)
+    }
 }

@@ -157,7 +157,6 @@ export class StudentProfileComponent implements OnInit {
 
         if (buttontype == 'save&close') {
             this.isSaveClose = true;
-            let test;
             if (this.form.invalid) {
                 this.dialog.open(StudentProfilePopupComponent);
             } else {

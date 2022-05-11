@@ -1,6 +1,15 @@
+<mat-card style="height: 100px">
+    <h1 style="text-align: left">Send Emails</h1>
+<!--    <app-button type="email"></app-button>-->
+    <app-button type="emailselect" (click)="addEmail()"></app-button>
+</mat-card>
+
 <mat-card>
 
-    <iframe src="https://www.classmarker.com/online-test/start/?quiz=nde6276ebbcd4a1e&iframe=1" frameborder="0" style="width:100%;max-width:700px;" height="800"></iframe>
+    <div>
+        <iframe
+            [src]="safeSrc"  frameborder="0" style="width:100%;max-width:700px;" height="800"></iframe>
 
+    </div>
 
 </mat-card>

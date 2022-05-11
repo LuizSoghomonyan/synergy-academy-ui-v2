@@ -50,6 +50,7 @@ export class TableComponent implements OnInit {
     private destroy$: Subject<boolean> = new Subject();
     config: Config
     exams: Exam[]
+    @Input() forRouting:any
     constructor(private dataService: DataService,
                 private route: ActivatedRoute,
                 public datepipe: DatePipe,
@@ -106,6 +107,7 @@ export class TableComponent implements OnInit {
                 )
                 .subscribe(x => console.log('zQWERTYUI'));
         }
+
 
         if (this.datatype == 'allCourses') {
             this.displayedColumnsConfig$ = this.dataService.getConfigs('courses');
@@ -177,15 +179,26 @@ export class TableComponent implements OnInit {
                 this.displayedColumns = this.displayedColumnsConfig.sort(this.sortingConfigs).map(config => config._key);
 
             })
-            this.datatypeIdForRouting = 'studentid'
-            this.route.url.subscribe(x=> {
-                this.dataService.getStudentsByExamId(<number><unknown>(x[1].path))
+            if(this.forRouting){
+                this.dataService.getStudentsByExamId(this.forRouting)
                     .pipe(
                         first(),
                         map((students: Student[]) => this.dataSource.data = students)
                     )
                     .subscribe(x => console.log('zQWERTYUI'));
-            })
+            }
+            else{
+                this.datatypeIdForRouting = 'studentid'
+                this.route.url.subscribe(x=> {
+                    this.dataService.getStudentsByExamId(<number><unknown>(x[1].path))
+                        .pipe(
+                            first(),
+                            map((students: Student[]) => this.dataSource.data = students)
+                        )
+                        .subscribe(x =>  console.log('a'))
+                })
+            }
+
 
 
         }

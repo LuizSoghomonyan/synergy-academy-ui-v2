@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output} from '@angular/core';
 import {DataService, Exam} from "../services/data.service";
 import {ActivatedRoute, Params, Route, Router} from "@angular/router";
 import {Observable} from "rxjs";
@@ -25,67 +25,66 @@ export class ExamProfileComponent implements OnInit {
     isSaveClose: boolean = false
     dialogRef: any
     courseid: number;
+    @Output() classmarkertest: EventEmitter<string> = new EventEmitter<string>()
 
 
     constructor(private dataService: DataService, private route: ActivatedRoute,
-    public dialog: MatDialog,
-    private classiferService: ClassifierService,
-    private router: Router,
-    private elRef: ElementRef) {
+                public dialog: MatDialog,
+                private classiferService: ClassifierService,
+                private router: Router,
+                private elRef: ElementRef) {
         this.form = new FormGroup({
-            examtypeid: new FormControl('',Validators.required),
+            examtypeid: new FormControl('', Validators.required),
             name: new FormControl('', Validators.required),
-            startdate: new FormControl('',Validators.required),
-            enddate: new FormControl('',Validators.required)
+            startdate: new FormControl('', Validators.required),
+            enddate: new FormControl('', Validators.required),
+            classmarkertestid: new FormControl('', Validators.required)
 
         })
     }
 
     ngOnInit(): void {
         this.initializeParams();
-        if(this.isNew){
+        if (this.isNew) {
             this.exams$ = this.dataService.addNew('exam')
-        }
-        else{
+        } else {
             this.exams$ = this.dataService.loadinfo('exams', this.examid.toString())
         }
+
+        this.test()
     }
 
-    initializeParams(){
-        this.route.params.subscribe((x: Params) =>{
+    initializeParams() {
+        this.route.params.subscribe((x: Params) => {
             this.examid = x['examid']
         });
 
-        this.route.queryParams.subscribe((x: Params)=>{
+        this.route.queryParams.subscribe((x: Params) => {
             this.isNew = x['isNew']
         })
     }
 
     onSubmit() {
-        if(this.form.valid){
+        if (this.form.valid) {
             console.log('exam submit')
-            if(!this.isNew){
+            if (!this.isNew) {
                 console.log('old exam')
-                this.dataService.updateDataById(this.examid,'exams', this.form.value).subscribe()
-            }
-            else{
+                this.dataService.updateDataById(this.examid, 'exams', this.form.value).subscribe()
+            } else {
                 console.log('new exam')
-                this.route.params.subscribe((params: Params) =>{
+                this.route.params.subscribe((params: Params) => {
                     this.courseid = params['courseid']
-                    // console.log('ASDFGHJASDFGHJK@#$%^&*', params)
                     this.dataService.addData('exams', this.form.value, this.courseid).subscribe(x => {
                         this.examid = x['id']
 
-                        if(!this.isSaveClose)
+                        if (!this.isSaveClose)
                             this.router.navigate(['exams', this.examid])
                     })
                 })
 
             }
 
-        }
-
-        else
+        } else
             console.log('not valid')
     }
 
@@ -109,7 +108,7 @@ export class ExamProfileComponent implements OnInit {
             } else {
                 this.dialog.open(DataSaveSuccessfulPopupComponent);
                 this.onSubmit()
-                if (this.form.valid){
+                if (this.form.valid) {
                     ///courses/1676/exams/addExam?isNew=true
                     // console.log('URL',this.router.url)
                     this.router.navigate(['/courses'])
@@ -129,5 +128,12 @@ export class ExamProfileComponent implements OnInit {
             });
 
         }
+    }
+
+    test() {
+        this.exams$.subscribe(x=>{
+            this.classmarkertest.emit(x[0].classmarkertestid)
+        })
+
     }
 }

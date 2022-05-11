@@ -49,6 +49,10 @@ import { EducationprocessTabsComponent } from './educationprocess-tabs/education
 import { EducationprocessGradesFeedbacksComponent } from './educationprocess-grades-feedbacks/educationprocess-grades-feedbacks.component';
 import {AnalyticsService} from "./services/analytics.service";
 import { ExamClassmarkerComponent } from './exam-classmarker/exam-classmarker.component';
+import { ExamEmailComponent } from './Popups/exam-email/exam-email.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
     declarations: [
@@ -83,7 +87,8 @@ import { ExamClassmarkerComponent } from './exam-classmarker/exam-classmarker.co
         EducationprocessProfileComponent,
         EducationprocessTabsComponent,
         EducationprocessGradesFeedbacksComponent,
-        ExamClassmarkerComponent
+        ExamClassmarkerComponent,
+        ExamEmailComponent
 
     ],
     imports: [
@@ -99,7 +104,10 @@ import { ExamClassmarkerComponent } from './exam-classmarker/exam-classmarker.co
         AppRoutingModule,
         ReactiveFormsModule,
         MatInputModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatCheckboxModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule
     ],
     providers: [
         DataService,

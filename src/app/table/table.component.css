@@ -13,8 +13,8 @@ table td:nth-child(1) {
 
 
 th {
-    background-color: #cecdcd;
-    color: #464545;
+    background-color: #e8e6e6;
+    /*color: #464545;*/
     /*width: 33%;*/
     padding: 5px;
     /*margin-bottom: 10px;*/
@@ -23,8 +23,8 @@ th {
 
 td {
     padding-bottom: 20px;
-    background-color: whitesmoke;
-    color: #646262;
+    /*background-color: whitesmoke;*/
+    /*color: #646262;*/
     border-top: 1px solid transparent;
     cursor: pointer
 }
@@ -38,6 +38,6 @@ td {
 .mat-card{
     margin: 4%;
     width: 90%;
-    box-shadow: 0px 1px 9px 1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+    /*box-shadow: 0px 1px 9px 1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);*/
 
 }

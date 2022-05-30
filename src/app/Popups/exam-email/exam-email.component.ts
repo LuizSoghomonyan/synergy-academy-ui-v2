@@ -26,7 +26,7 @@ export class ExamEmailComponent implements OnInit {
     dataSource$: Observable<any>
     dataSourceWithCheckbox:Student[] = []
     arrayForBackend: string[] = []
-
+    isDisabledSentEmailButton:  boolean = false
     constructor(
         private route: ActivatedRoute,
         private dialogRef: MatDialogRef<ExamEmailComponent>,
@@ -101,8 +101,7 @@ export class ExamEmailComponent implements OnInit {
         console.log('after createArrayForBackend', this.arrayForBackend)
         console.log('after dataSourceWithCheckbox', this.dataSourceWithCheckbox)
         if(this.arrayForBackend.length > 0) {
-            //todo call to back
-            this.dataService.postEmailsForClassMarker(this.arrayForBackend)
+            this.dataService.postEmailsForClassMarker(this.arrayForBackend, this.examid)
             setTimeout(() => {
                 this.viewProgressBar = false
                 this.dialogRef.close()
@@ -110,7 +109,7 @@ export class ExamEmailComponent implements OnInit {
 
         }
         else
-            this.dialogRef.close()
+            this.isDisabledSentEmailButton = false
     }
 
     createArrayForBackend(){

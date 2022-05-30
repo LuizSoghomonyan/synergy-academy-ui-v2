@@ -11,7 +11,7 @@ export class ExamStudentsResultComponent implements OnInit {
 
   ngOnInit(): void {
   }
-//todo
+
     viewProgressBar: boolean = false;
     refresh() {
         this.viewProgressBar = true;
@@ -19,5 +19,7 @@ export class ExamStudentsResultComponent implements OnInit {
         setTimeout(() => {
             this.viewProgressBar = false
         }, 2500)
+
+        //todo call for
     }
 }

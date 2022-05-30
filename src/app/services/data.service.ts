@@ -248,11 +248,11 @@ export class DataService {
     }
 
 
-    postEmailsForClassMarker(arrayForBackend: string[]) {
+    postEmailsForClassMarker(arrayForBackend: string[], examid: number) {
         console.log('123123123', {arrayForBackend})
-        this.http.post('http://localhost:1238/exams/1/email',
-            ['luiza.soxhomonyan@gmail.com']
-        )
+        this.http.post(`http://localhost:1238/exams/${examid}/email`,
+            arrayForBackend
+        ).subscribe()
     }
 
 

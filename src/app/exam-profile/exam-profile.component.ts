@@ -67,6 +67,7 @@ export class ExamProfileComponent implements OnInit {
     onSubmit() {
         if (this.form.valid) {
             console.log('exam submit')
+            this.classmarkertest.emit(this.form.value['classmarkertestid'])
             if (!this.isNew) {
                 console.log('old exam')
                 this.dataService.updateDataById(this.examid, 'exams', this.form.value).subscribe()

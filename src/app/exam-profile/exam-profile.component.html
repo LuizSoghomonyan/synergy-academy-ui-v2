@@ -1,10 +1,9 @@
-
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div class="btn">
         <app-button type="save&close" (click)="openDialog('save&close')" class="btn"></app-button>
-        <app-button type="save" (click)="openDialog('save')"  class="btn"></app-button>
-        <app-button type="reset" (click)="openDialog('reset')"  class="btn"></app-button>
+        <app-button type="save" (click)="openDialog('save')" class="btn"></app-button>
+        <app-button type="reset" (click)="openDialog('reset')" class="btn"></app-button>
 
     </div>
 
@@ -30,9 +29,16 @@
                  exam[0].startdate.toString()" matlabel="Start Date"
                                    [formCName]="'startdate'" [form]="form"
                                    (changedValueDate)="$event"></app-form-controls>
-                <app-form-controls type="date" [dateValue]="exam[0].enddate == null ? '' : exam[0].enddate.toString()" matlabel="End Date"
+                <app-form-controls type="date" [dateValue]="exam[0].enddate == null ? '' : exam[0].enddate.toString()"
+                                   matlabel="End Date"
                                    [formCName]="'enddate'" [form]="form"
                                    (changedValueDate)="$event"></app-form-controls>
+
+                <app-form-controls type="text" [value]="exam[0].classmarkertestid" matlabel="Class Marker Test"
+                                   [formCName]="'classmarkertestid'" [form]="form"
+                                   (changedValue)="$event"></app-form-controls>
+
+
             </div>
 
         </ng-container>

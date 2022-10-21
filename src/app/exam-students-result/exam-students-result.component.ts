@@ -1,25 +1,25 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {DataService} from "../services/data.service";
+import {ActivatedRoute, Route} from "@angular/router";
 
 @Component({
-  selector: 'app-exam-students-result',
-  templateUrl: './exam-students-result.component.html',
-  styleUrls: ['./exam-students-result.component.css']
+    selector: 'app-exam-students-result',
+    templateUrl: './exam-students-result.component.html',
+    styleUrls: ['./exam-students-result.component.css']
 })
 export class ExamStudentsResultComponent implements OnInit {
 
-  constructor() { }
+    constructor(private dataService: DataService, private route: ActivatedRoute) {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-    viewProgressBar: boolean = false;
+
+
+    tableApp: string = 'allExamStudentsResults';
+
     refresh() {
-        this.viewProgressBar = true;
-        //call to back
-        setTimeout(() => {
-            this.viewProgressBar = false
-        }, 2500)
 
-        //todo call for
     }
 }

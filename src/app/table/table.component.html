@@ -1,3 +1,16 @@
+<ng-container *ngIf="refreshClassmarkerButton">
+
+    <ng-container *ngIf="viewProgressBar" style="margin: 100px">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </ng-container>
+
+
+
+    <app-button type="refresh"
+                class="btn" (click)="refreshClassMarker()"></app-button>
+
+</ng-container>
+
 <div>
 
     <div class="filter">

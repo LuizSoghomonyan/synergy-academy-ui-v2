@@ -39,6 +39,7 @@ import {ExamResultsPopupComponent} from "../exam-results-popup/exam-results-popu
 
 export class TableComponent implements OnInit {
     @Input() datatype: string = ''
+    @Input() refreshClassmarkerButton: boolean = false
     @Output() examsOutput: EventEmitter<Exam[]> = new EventEmitter<Exam[]>()
     datatypeIdForRouting: string = ''
     // @ts-ignore
@@ -326,6 +327,26 @@ export class TableComponent implements OnInit {
         else{
             this.router.navigate(['/', type, id])
         }
+    }
+
+    viewProgressBar: boolean = false;
+    examid: number;
+    refreshClassMarker() {
+
+        this.viewProgressBar = true;
+        //call to back
+        setTimeout(() => {
+            this.viewProgressBar = false
+        }, 2500)
+
+        this.route.params.subscribe(x => {
+            this.examid = x['examid']
+            console.log(this.examid)
+            this.dataService.refreshExamData(this.examid).subscribe( x => {
+                    this.refreshData()
+                }
+            )
+        })
     }
 }
 

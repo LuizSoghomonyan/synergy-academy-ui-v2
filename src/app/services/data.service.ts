@@ -250,7 +250,7 @@ export class DataService {
 
     postEmailsForClassMarker(arrayForBackend: string[], examid: number) {
         console.log('123123123', {arrayForBackend})
-        this.http.post(`http://localhost:1238/exams/${examid}/email`,
+        this.http.post(`http://localhost:1238/email`,
             arrayForBackend
         ).subscribe()
     }
@@ -264,7 +264,9 @@ export class DataService {
         this.destroy$.unsubscribe();
     }
 
-
+    refreshExamData(examid: number) {
+        return this.http.post(`http://localhost:1238/exams/${examid}/results`, {})
+    }
 }
 
 

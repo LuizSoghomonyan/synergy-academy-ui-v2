@@ -121,7 +121,7 @@ export class StudentProfileComponent implements OnInit {
             let test;
             test = this.elRef.nativeElement.querySelector('form')
             test.submit;
-            console.log(this.isNew)
+
             if (!this.isNew) {
                 this.dataService.updateDataById(this.id, 'students', this.form.value)
                     .subscribe()
@@ -135,10 +135,6 @@ export class StudentProfileComponent implements OnInit {
                 })
             }
 
-        } else {
-            console.log('------------', this.form)
-            console.log('VALID DATA, NOT SUBMITTED')
-            console.log('lastname', this.form.controls['lastname'])
         }
     }
 

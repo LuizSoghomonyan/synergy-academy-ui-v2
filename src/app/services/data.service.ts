@@ -28,8 +28,8 @@ export interface Course {
     description: string,
     yearid: number,
     officeid: number,
-    startdate: Date,
-    enddate: Date
+    startdate: string,
+    enddate: string
 }
 
 export interface Config {
@@ -42,11 +42,11 @@ export interface Config {
 export interface Exam{
     courseexamid : number,
     courseid : number,
-    enddate : Date,
+    enddate : string,
     examtypeid : string,
     name : string,
     classmarkertestid : string,
-    startdate : Date
+    startdate : string
 }
 
 export interface ExamStudentResult{
@@ -105,18 +105,18 @@ export class DataService {
         description: '',
         yearid: 0,
         officeid: 0,
-        startdate: new Date(),
-        enddate: new Date()
+        startdate: '',
+        enddate: ''
     };
 
     newExam: Exam = {
         courseexamid : 0,
         courseid : 0,
-        enddate : new Date(),
+        enddate : '',
         examtypeid : '',
         name : '',
         classmarkertestid : '',
-        startdate : new Date()
+        startdate : ''
     }
 
     newEducationProcess: EducationProcess = {

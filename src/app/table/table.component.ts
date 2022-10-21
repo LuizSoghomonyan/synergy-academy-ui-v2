@@ -132,10 +132,10 @@ export class TableComponent implements OnInit {
                 )
                 .subscribe(x =>{
                         console.log( 'ASDFGHJKXCVBN')
-                       this.dataSource.data.forEach((value) => {
-                           value['startdate'] = this.datepipe.transform(value['startdate'], 'mediumDate')
-                           value['enddate'] = this.datepipe.transform(value['enddate'], 'mediumDate')
-                       })
+                        this.dataSource.data.forEach((value) => {
+                            value['startdate'] = this.datepipe.transform(value['startdate'], 'mediumDate')
+                            value['enddate'] = this.datepipe.transform(value['enddate'], 'mediumDate')
+                        })
                     }
                 )
         }

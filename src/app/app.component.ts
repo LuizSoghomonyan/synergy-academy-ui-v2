@@ -8,7 +8,7 @@ import {DataService} from "./services/data.service";
     styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-    title = 'synergy-academy-ui';
+    title = 'academy-ui';
     public sidebarOpened = true;
 
     constructor() {
@@ -17,3 +17,4 @@ export class AppComponent{
     }
 
 }
+
